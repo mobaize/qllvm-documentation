@@ -12,8 +12,6 @@ QLLVM Documentation
 ===================
 Welcome to the QLLVM project documentation! This documentation provides installation guides, usage tutorials, API references, and other content to help you get started with and deeply understand QLLVM.
 
-QLLVM is a quantum program compilation framework built on **MLIR** and **LLVM IR**. It supports multiple quantum programming language inputs, and outputs code supported by target hardware after optimization and mapping. We provide two usage methods: command-line execution through source code installation and quick execution using VSCode plugins.
-
 .. toctree::
    :maxdepth: 2
    :caption: Documentation Navigation:

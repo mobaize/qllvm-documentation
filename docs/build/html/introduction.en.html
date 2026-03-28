@@ -491,7 +491,7 @@
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="usage.html#optional-dependencies-install-as-needed">可选依赖（按需安装）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#optional-dependencies-usage">可选依赖（按需安装）</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#qir-runner">QIR Runner 后端</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#classical-quantum-hybrid-compilation">经典-量子混合编译</a></li>
 </ul>
@@ -555,7 +555,11 @@
              
   <section id="qllvm-introduction">
 <h1>QLLVM Introduction<a class="headerlink" href="#qllvm-introduction" title="Link to this heading"></a></h1>
-<p>QLLVM quantum compilation framework is a quantum program compilation framework built on <strong>MLIR</strong> and <strong>LLVM IR</strong>. The framework adopts a three-stage design of front-end, middle-end, and back-end, supporting multiple quantum programming language inputs, and outputting code supported by target hardware after optimization and mapping.</p>
+<ul class="simple">
+<li><p>QLLVM is a classical-quantum hybrid compilation framework built on LLVM, with excellent extensibility and seamless integration with classical high-performance computing ecosystems.</p></li>
+<li><p>QLLVM supports multiple quantum programming languages and backends, including Qiskit, OpenQASM, etc. for programming languages, and qasm simulator, Benyuan quantum computer, China Telecom “Tianyan” quantum computer, etc. for target backends.</p></li>
+<li><p>QLLVM supports unified compilation of quantum programs, CUDA programs, and classical C++ programs, providing an efficient, flexible, and industrial-grade compilation infrastructure for future classical-quantum software development.</p></li>
+</ul>
 <section id="overall-features">
 <h2>Overall Features<a class="headerlink" href="#overall-features" title="Link to this heading"></a></h2>
 <p>QLLVM compiles high-level quantum programs into target back-end executable code, with the following main features:</p>

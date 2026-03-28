@@ -1,7 +1,11 @@
 QLLVM Introduction
 ==================
 
-QLLVM quantum compilation framework is a quantum program compilation framework built on **MLIR** and **LLVM IR**. The framework adopts a three-stage design of front-end, middle-end, and back-end, supporting multiple quantum programming language inputs, and outputting code supported by target hardware after optimization and mapping.
+* QLLVM is a classical-quantum hybrid compilation framework built on LLVM, with excellent extensibility and seamless integration with classical high-performance computing ecosystems.
+
+* QLLVM supports multiple quantum programming languages and backends, including Qiskit, OpenQASM, etc. for programming languages, and qasm simulator, Benyuan quantum computer, China Telecom "Tianyan" quantum computer, etc. for target backends.
+
+* QLLVM supports unified compilation of quantum programs, CUDA programs, and classical C++ programs, providing an efficient, flexible, and industrial-grade compilation infrastructure for future classical-quantum software development.
 
 Overall Features
 ----------------
