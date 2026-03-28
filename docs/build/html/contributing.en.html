@@ -584,57 +584,57 @@
 <section id="contributing-code">
 <h2>Contributing Code<a class="headerlink" href="#contributing-code" title="Link to this heading"></a></h2>
 <p>If you want to contribute code, please follow these steps:</p>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p><strong>Fork the repository</strong>
 - Fork the QLLVM repository to your own account on GitHub</p></li>
 <li><p><strong>Clone the repository</strong>
-- Clone your forked repository to your local machine
-.. code-block:: bash</p>
-<blockquote>
-<div><p>git clone <a class="reference external" href="https://github.com/QCFlow/QLLVM.git">https://github.com/QCFlow/QLLVM.git</a>
-cd qllvm</p>
-</div></blockquote>
-</li>
+- Clone your forked repository to your local machine</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/QCFlow/QLLVM.git
+<span class="nb">cd</span><span class="w"> </span>qllvm
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
 <li><p><strong>Create a branch</strong>
-- Create a new branch for your modifications
-.. code-block:: bash</p>
-<blockquote>
-<div><p>git checkout -b feature/your-feature-name</p>
-</div></blockquote>
-</li>
+- Create a new branch for your modifications</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
 <li><p><strong>Install development dependencies</strong>
-- Install development dependencies
-.. code-block:: bash</p>
-<blockquote>
-<div><p>pip install -e .[dev]</p>
-</div></blockquote>
-</li>
+- Install development dependencies</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
 <li><p><strong>Make modifications</strong>
 - Make your code modifications
 - Ensure code style meets project requirements
 - Add appropriate tests</p></li>
 <li><p><strong>Run tests</strong>
-- Run tests to ensure your modifications do not break existing functionality
-.. code-block:: bash</p>
-<blockquote>
-<div><p>pytest</p>
-</div></blockquote>
-</li>
+- Run tests to ensure your modifications do not break existing functionality</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
 <li><p><strong>Commit changes</strong>
-- Commit your changes with a clear commit message
-.. code-block:: bash</p>
-<blockquote>
-<div><p>git add .
-git commit -m “Add feature: your feature description”</p>
-</div></blockquote>
-</li>
+- Commit your changes with a clear commit message</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add feature: your feature description&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
 <li><p><strong>Push branch</strong>
-- Push your branch to GitHub
-.. code-block:: bash</p>
-<blockquote>
-<div><p>git push origin feature/your-feature-name</p>
-</div></blockquote>
-</li>
+- Push your branch to GitHub</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
 <li><p><strong>Create Pull Request</strong>
 - Create a Pull Request on GitHub, describing your changes
 - Wait for project maintainers to review</p></li>
@@ -643,28 +643,28 @@ git commit -m “Add feature: your feature description”</p>
 <section id="contributing-documentation">
 <h2>Contributing Documentation<a class="headerlink" href="#contributing-documentation" title="Link to this heading"></a></h2>
 <p>If you want to contribute documentation, please follow these steps:</p>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p>Fork and clone the repository (same as code contribution steps 1-2)</p></li>
 <li><p>Create a branch (same as code contribution step 3)</p></li>
 <li><p><strong>Install documentation dependencies</strong>
-- Install documentation building dependencies
-.. code-block:: bash</p>
-<blockquote>
-<div><p>pip install -e .[docs]</p>
-</div></blockquote>
-</li>
+- Install documentation building dependencies</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>docs<span class="o">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
 <li><p><strong>Modify documentation</strong>
 - Modify or add documentation content
 - Ensure consistent documentation style
 - Check if links are valid</p></li>
 <li><p><strong>Build documentation</strong>
-- Build documentation to ensure no errors
-.. code-block:: bash</p>
-<blockquote>
-<div><p>cd docs
-make html</p>
-</div></blockquote>
-</li>
+- Build documentation to ensure no errors</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+make<span class="w"> </span>html
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
 <li><p>Commit changes (same as code contribution steps 7-9)</p></li>
 </ol>
 </section>

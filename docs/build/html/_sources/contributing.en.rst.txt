@@ -38,22 +38,25 @@ If you want to contribute code, please follow these steps:
 
 2. **Clone the repository**
    - Clone your forked repository to your local machine
-   .. code-block:: bash
 
-       git clone https://github.com/QCFlow/QLLVM.git
-       cd qllvm
+.. code-block:: bash
+
+    git clone https://github.com/QCFlow/QLLVM.git
+    cd qllvm
 
 3. **Create a branch**
    - Create a new branch for your modifications
-   .. code-block:: bash
 
-       git checkout -b feature/your-feature-name
+.. code-block:: bash
+   
+    git checkout -b feature/your-feature-name
 
 4. **Install development dependencies**
    - Install development dependencies
-   .. code-block:: bash
 
-       pip install -e .[dev]
+.. code-block:: bash
+
+    pip install -e .[dev]
 
 5. **Make modifications**
    - Make your code modifications
@@ -62,22 +65,25 @@ If you want to contribute code, please follow these steps:
 
 6. **Run tests**
    - Run tests to ensure your modifications do not break existing functionality
-   .. code-block:: bash
 
-       pytest
+.. code-block:: bash
+
+    pytest
 
 7. **Commit changes**
    - Commit your changes with a clear commit message
-   .. code-block:: bash
 
-       git add .
-       git commit -m "Add feature: your feature description"
+.. code-block:: bash
+
+    git add .
+    git commit -m "Add feature: your feature description"
 
 8. **Push branch**
    - Push your branch to GitHub
-   .. code-block:: bash
 
-       git push origin feature/your-feature-name
+.. code-block:: bash
+
+    git push origin feature/your-feature-name   
 
 9. **Create Pull Request**
    - Create a Pull Request on GitHub, describing your changes
@@ -94,9 +100,10 @@ If you want to contribute documentation, please follow these steps:
 
 3. **Install documentation dependencies**
    - Install documentation building dependencies
-   .. code-block:: bash
 
-       pip install -e .[docs]
+.. code-block:: bash
+
+    pip install -e .[docs]
 
 4. **Modify documentation**
    - Modify or add documentation content
@@ -105,10 +112,11 @@ If you want to contribute documentation, please follow these steps:
 
 5. **Build documentation**
    - Build documentation to ensure no errors
-   .. code-block:: bash
 
-       cd docs
-       make html
+.. code-block:: bash
+
+    cd docs
+    make html
 
 6. Commit changes (same as code contribution steps 7-9)
 

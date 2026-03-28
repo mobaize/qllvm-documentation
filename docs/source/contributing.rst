@@ -38,22 +38,25 @@
 
 2. **克隆仓库**
    - 克隆您fork的仓库到本地
-   .. code-block:: bash
 
-       git clone https://github.com/QCFlow/QLLVM.git
-       cd qllvm
+.. code-block:: bash
+
+   git clone https://github.com/QCFlow/QLLVM.git
+   cd qllvm
 
 3. **创建分支**
    - 创建一个新的分支来进行您的修改
-   .. code-block:: bash
+   
+.. code-block:: bash
 
-       git checkout -b feature/your-feature-name
+   git checkout -b feature/your-feature-name
 
 4. **安装开发依赖**
    - 安装开发依赖
-   .. code-block:: bash
 
-       pip install -e .[dev]
+.. code-block:: bash
+
+   pip install -e .[dev]
 
 5. **进行修改**
    - 进行您的代码修改
@@ -62,22 +65,25 @@
 
 6. **运行测试**
    - 运行测试确保您的修改没有破坏现有功能
-   .. code-block:: bash
 
-       pytest
+.. code-block:: bash
+
+   pytest
 
 7. **提交更改**
    - 提交您的更改，使用清晰的提交信息
-   .. code-block:: bash
 
-       git add .
-       git commit -m "Add feature: your feature description"
+.. code-block:: bash
+
+   git add .
+   git commit -m "Add feature: your feature description"
 
 8. **推送分支**
    - 推送您的分支到GitHub
-   .. code-block:: bash
 
-       git push origin feature/your-feature-name
+.. code-block:: bash
+
+   git push origin feature/your-feature-name
 
 9. **创建Pull Request**
    - 在GitHub上创建一个Pull Request，描述您的更改
@@ -94,9 +100,10 @@
 
 3. **安装文档依赖**
    - 安装文档构建依赖
-   .. code-block:: bash
 
-       pip install -e .[docs]
+.. code-block:: bash
+
+   pip install -e .[docs]
 
 4. **修改文档**
    - 修改或添加文档内容
@@ -105,10 +112,11 @@
 
 5. **构建文档**
    - 构建文档确保没有错误
-   .. code-block:: bash
 
-       cd docs
-       make html
+.. code-block:: bash
+
+   cd docs
+   make html
 
 6. 提交更改（同代码贡献步骤7-9）
 
