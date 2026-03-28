@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Yuqiong Jin,Yu Zhu
+# This file is distributed under the same license as the QLLVM package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QLLVM \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 08:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../index.en.rst:11
+msgid "Documentation Navigation:"
+msgstr ""
+
+#: ../index.en.rst:7
+msgid "QLLVM Documentation"
+msgstr ""
+
+#: ../index.en.rst:9
+msgid ""
+"Welcome to the QLLVM project documentation! This documentation provides "
+"installation guides, usage tutorials, API references, and other content "
+"to help you get started with and deeply understand QLLVM."
+msgstr ""
+
+#: ../index.en.rst:21
+msgid "About QLLVM"
+msgstr ""
+
+#: ../index.en.rst:23
+msgid ""
+"QLLVM quantum compilation framework is a quantum program compilation "
+"framework built on **MLIR** and **LLVM IR**. The framework adopts a "
+"three-stage design of front-end, middle-end, and back-end, supporting "
+"multiple quantum programming language inputs, and outputting code "
+"supported by target hardware after optimization and mapping."
+msgstr ""
+
+#: ../index.en.rst:26
+msgid "Overall Features"
+msgstr ""
+
+#: ../index.en.rst:28
+msgid ""
+"QLLVM compiles high-level quantum programs into target back-end "
+"executable code, with the following main features:"
+msgstr ""
+
+#: ../index.en.rst:30
+msgid ""
+"**Multi-language front-end**: Supports OpenQASM 2.0/3.0, Qiskit "
+"QuantumCircuit, Q# and other inputs"
+msgstr ""
+
+#: ../index.en.rst:31
+msgid ""
+"**MLIR optimization**: Single-qubit gate merging, cancellation, diagonal "
+"gate removal, gate synthesis and other optimization passes"
+msgstr ""
+
+#: ../index.en.rst:32
+msgid ""
+"**QIR generation**: Lowering MLIR dialects to QIR (quantum intermediate "
+"representation in LLVM IR form)"
+msgstr ""
+
+#: ../index.en.rst:33
+msgid ""
+"**SABRE mapping**: C++/Qiskit implementation of qubit layout and SWAP "
+"insertion"
+msgstr ""
+
+#: ../index.en.rst:34
+msgid ""
+"**Multi-backend emission**: Output OpenQASM, hardware-specific formats, "
+"etc."
+msgstr ""
+
+#: ../index.en.rst:36
+msgid ""
+"**Compilation pipeline:** ``` QASM source file → Preprocessing → MLIR "
+"(Quantum dialect) → Optimization Passes → Lowering → LLVM IR (QIR) → "
+"Backend emission ```"
+msgstr ""
+
+#: ../index.en.rst:42
+msgid "Technical Route"
+msgstr ""
+
+#: ../index.en.rst:44
+msgid ""
+"**Front-end**: Responsible for language parsing and intermediate code "
+"generation, converting high-level languages to MLIR Quantum dialect"
+msgstr ""
+
+#: ../index.en.rst:45
+msgid ""
+"**Middle-end**: Perform quantum program optimization based on MLIR, and "
+"further lower MLIR to QIR (LLVM IR)"
+msgstr ""
+
+#: ../index.en.rst:46
+msgid ""
+"**Back-end**: Based on QIR and QIR runtime library, convert programs to "
+"code formats supported by target hardware"
+msgstr ""
+
+#: ../index.en.rst:49
+msgid "Key Advantages"
+msgstr ""
+
+#: ../index.en.rst:51
+msgid ""
+"**Industrial-grade IR infrastructure**: Based on MLIR/LLVM, easy to "
+"extend new dialects and new passes"
+msgstr ""
+
+#: ../index.en.rst:52
+msgid ""
+"**Multiple input forms**: OpenQASM, Qiskit, Q# etc., adapting to "
+"different programming habits"
+msgstr ""
+
+#: ../index.en.rst:53
+msgid ""
+"**Flexible optimization**: -O0/-O1 levels, custom pass sequences, "
+"synthesis optimization"
+msgstr ""
+
+#: ../index.en.rst:54
+msgid ""
+"**Physical constraint mapping**: SABRE and other layout and SWAP "
+"strategies, adapting to real hardware topology"
+msgstr ""
+
+#: ../index.en.rst:57
+msgid "Quick Start"
+msgstr ""
+
+#: ../index.en.rst:59
+msgid ""
+"**Install QLLVM**: Refer to the :doc:`installation.en` guide to install "
+"QLLVM"
+msgstr ""
+
+#: ../index.en.rst:60
+msgid "**Learn usage methods**: Check the tutorials in :doc:`tutorials.en`"
+msgstr ""
+
+#: ../index.en.rst:61
+msgid ""
+"**Consult API documentation**: Refer to :doc:`api.en` for detailed API "
+"information"
+msgstr ""
+
+#: ../index.en.rst:62
+msgid ""
+"**Contribute code**: If you want to contribute code, please refer to the "
+":doc:`contributing.en` guide"
+msgstr ""
+
+#: ../index.en.rst:65
+msgid "Get Help"
+msgstr ""
+
+#: ../index.en.rst:67
+msgid ""
+"If you encounter problems when using QLLVM, you can get help through the "
+"following methods:"
+msgstr ""
+
+#: ../index.en.rst:69
+msgid ""
+"Submit an `Issue <https://github.com/yourusername/qllvm/issues>`_ on "
+"GitHub"
+msgstr ""
+
+#: ../index.en.rst:70
+msgid "Contact the project maintainers"
+msgstr ""
+

@@ -1,0 +1,300 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Yuqiong Jin,Yu Zhu
+# This file is distributed under the same license as the QLLVM package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QLLVM \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 08:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contributing.rst:2
+msgid "贡献指南"
+msgstr ""
+
+#: ../contributing.rst:4
+msgid "感谢您对QLLVM项目的关注和支持！我们欢迎各种形式的贡献，包括代码、文档、测试、问题报告等。本指南将帮助您了解如何为QLLVM项目做出贡献。"
+msgstr ""
+
+#: ../contributing.rst:7
+msgid "行为准则"
+msgstr ""
+
+#: ../contributing.rst:9
+msgid "参与QLLVM项目的所有贡献者都应遵守以下行为准则："
+msgstr ""
+
+#: ../contributing.rst:11
+msgid "尊重他人，保持友好和专业的态度"
+msgstr ""
+
+#: ../contributing.rst:12
+msgid "接受建设性批评"
+msgstr ""
+
+#: ../contributing.rst:13
+msgid "关注社区的最佳利益"
+msgstr ""
+
+#: ../contributing.rst:14
+msgid "对其他贡献者表示同理心"
+msgstr ""
+
+#: ../contributing.rst:17
+msgid "如何贡献"
+msgstr ""
+
+#: ../contributing.rst:20
+msgid "报告问题"
+msgstr ""
+
+#: ../contributing.rst:22
+msgid "如果您发现了bug或有新功能建议，请在GitHub上提交 `Issue <https://github.com/yourusername/qllvm/issues>`_。在提交Issue时，请提供以下信息："
+msgstr ""
+
+#: ../contributing.rst:24
+msgid "问题的详细描述"
+msgstr ""
+
+#: ../contributing.rst:25
+msgid "重现问题的步骤"
+msgstr ""
+
+#: ../contributing.rst:26
+msgid "期望的行为"
+msgstr ""
+
+#: ../contributing.rst:27
+msgid "实际的行为"
+msgstr ""
+
+#: ../contributing.rst:28
+msgid "环境信息（操作系统、Python版本、QLLVM版本等）"
+msgstr ""
+
+#: ../contributing.rst:29
+msgid "相关的错误信息或日志"
+msgstr ""
+
+#: ../contributing.rst:32
+msgid "贡献代码"
+msgstr ""
+
+#: ../contributing.rst:34
+msgid "如果您想贡献代码，请按照以下步骤操作："
+msgstr ""
+
+#: ../contributing.rst:36
+msgid "**Fork仓库** - 在GitHub上fork QLLVM仓库到您自己的账户"
+msgstr ""
+
+#: ../contributing.rst:39
+msgid "**克隆仓库** - 克隆您fork的仓库到本地 .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:43
+msgid "git clone https://github.com/yourusername/qllvm.git cd qllvm"
+msgstr ""
+
+#: ../contributing.rst:46
+msgid "**创建分支** - 创建一个新的分支来进行您的修改 .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:50
+msgid "git checkout -b feature/your-feature-name"
+msgstr ""
+
+#: ../contributing.rst:52
+msgid "**安装开发依赖** - 安装开发依赖 .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:56
+msgid "pip install -e .[dev]"
+msgstr ""
+
+#: ../contributing.rst:58
+msgid "**进行修改** - 进行您的代码修改 - 确保代码风格符合项目要求 - 添加适当的测试"
+msgstr ""
+
+#: ../contributing.rst:63
+msgid "**运行测试** - 运行测试确保您的修改没有破坏现有功能 .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:67
+msgid "pytest"
+msgstr ""
+
+#: ../contributing.rst:69
+msgid "**提交更改** - 提交您的更改，使用清晰的提交信息 .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:73
+msgid "git add . git commit -m \"Add feature: your feature description\""
+msgstr ""
+
+#: ../contributing.rst:76
+msgid "**推送分支** - 推送您的分支到GitHub .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:80
+msgid "git push origin feature/your-feature-name"
+msgstr ""
+
+#: ../contributing.rst:82
+msgid "**创建Pull Request** - 在GitHub上创建一个Pull Request，描述您的更改 - 等待项目维护者的审核"
+msgstr ""
+
+#: ../contributing.rst:87
+msgid "贡献文档"
+msgstr ""
+
+#: ../contributing.rst:89
+msgid "如果您想贡献文档，请按照以下步骤操作："
+msgstr ""
+
+#: ../contributing.rst:91
+#: ../contributing.rst:120
+msgid "Fork和克隆仓库（同代码贡献步骤1-2）"
+msgstr ""
+
+#: ../contributing.rst:93
+#: ../contributing.rst:122
+msgid "创建分支（同代码贡献步骤3）"
+msgstr ""
+
+#: ../contributing.rst:95
+msgid "**安装文档依赖** - 安装文档构建依赖 .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:99
+msgid "pip install -e .[docs]"
+msgstr ""
+
+#: ../contributing.rst:101
+msgid "**修改文档** - 修改或添加文档内容 - 确保文档风格一致 - 检查链接是否有效"
+msgstr ""
+
+#: ../contributing.rst:106
+msgid "**构建文档** - 构建文档确保没有错误 .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.rst:110
+msgid "cd docs make html"
+msgstr ""
+
+#: ../contributing.rst:113
+#: ../contributing.rst:134
+msgid "提交更改（同代码贡献步骤7-9）"
+msgstr ""
+
+#: ../contributing.rst:116
+msgid "贡献测试"
+msgstr ""
+
+#: ../contributing.rst:118
+msgid "如果您想贡献测试，请按照以下步骤操作："
+msgstr ""
+
+#: ../contributing.rst:124
+msgid "**安装测试依赖** - 安装测试依赖"
+msgstr ""
+
+#: ../contributing.rst:127
+msgid "**添加测试** - 添加新的测试用例 - 确保测试覆盖新功能或修复的bug"
+msgstr ""
+
+#: ../contributing.rst:131
+msgid "**运行测试** - 运行测试确保测试通过"
+msgstr ""
+
+#: ../contributing.rst:137
+msgid "代码风格"
+msgstr ""
+
+#: ../contributing.rst:139
+msgid "QLLVM项目遵循以下代码风格："
+msgstr ""
+
+#: ../contributing.rst:141
+msgid "**Python代码**：遵循PEP 8规范 - 使用4个空格进行缩进 - 行长度不超过79个字符 - 导入顺序：标准库、第三方库、本地模块 - 使用文档字符串记录函数和类"
+msgstr ""
+
+#: ../contributing.rst:147
+msgid "**文档**：遵循reStructuredText格式 - 使用清晰的标题层级 - 代码示例使用正确的语法高亮 - 链接使用相对路径"
+msgstr ""
+
+#: ../contributing.rst:152
+msgid "**提交信息**：使用清晰的提交信息 - 第一行：简短的描述（不超过50个字符） - 空行 - 详细描述（如果需要） - 引用相关的Issue（如果有）"
+msgstr ""
+
+#: ../contributing.rst:160
+msgid "沟通渠道"
+msgstr ""
+
+#: ../contributing.rst:162
+msgid "**GitHub Issues**：用于报告问题和讨论功能"
+msgstr ""
+
+#: ../contributing.rst:163
+msgid "**GitHub Discussions**：用于讨论项目相关的话题"
+msgstr ""
+
+#: ../contributing.rst:164
+msgid "**邮件列表**：如果有邮件列表，请在这里提供"
+msgstr ""
+
+#: ../contributing.rst:167
+msgid "贡献者指南"
+msgstr ""
+
+#: ../contributing.rst:170
+msgid "首次贡献"
+msgstr ""
+
+#: ../contributing.rst:172
+msgid "如果您是第一次贡献开源项目，以下资源可能会有所帮助："
+msgstr ""
+
+#: ../contributing.rst:174
+msgid "[How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)"
+msgstr ""
+
+#: ../contributing.rst:175
+msgid "[First Contributions](https://firstcontributions.github.io/)"
+msgstr ""
+
+#: ../contributing.rst:176
+msgid "[GitHub Docs: Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)"
+msgstr ""
+
+#: ../contributing.rst:179
+msgid "代码审查"
+msgstr ""
+
+#: ../contributing.rst:181
+msgid "所有的Pull Request都会经过代码审查。在审查过程中，您可能需要根据审查意见进行修改。请保持耐心和开放的态度，代码审查是提高代码质量的重要环节。"
+msgstr ""
+
+#: ../contributing.rst:184
+msgid "许可证"
+msgstr ""
+
+#: ../contributing.rst:186
+msgid "通过贡献代码到QLLVM项目，您同意您的贡献将在项目的许可证下发布。"
+msgstr ""
+
+#: ../contributing.rst:189
+msgid "致谢"
+msgstr ""
+
+#: ../contributing.rst:191
+msgid "感谢所有为QLLVM项目做出贡献的人！您的贡献是项目成功的关键。"
+msgstr ""

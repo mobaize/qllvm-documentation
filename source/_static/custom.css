@@ -1,0 +1,144 @@
+/* 隐藏搜索栏 */
+.wy-side-nav-search {
+    display: none;
+}
+
+/* 隐藏搜索结果页面 */
+#search-results {
+    display: none;
+}
+
+/* 美化顶部导航栏 */
+.wy-nav-top {
+    background: linear-gradient(135deg, #2980B9 0%, #3498DB 100%);
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.wy-nav-top a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+/* 添加QLLVM文档主题框 */
+.qllvm-theme-box {
+    background: white;
+    color: #2980B9;
+    padding: 8px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.qllvm-theme-box:hover {
+    background: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+/* 美化侧边栏 */
+.wy-nav-side {
+    background: #f8f9fa;
+    border-right: 1px solid #e1e4e8;
+}
+
+.wy-menu-vertical a {
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.wy-menu-vertical a:hover {
+    background: #e6f0f8;
+    color: #2980B9;
+}
+
+/* 美化内容区域 */
+.rst-content {
+    padding: 20px 30px;
+}
+
+/* 美化标题 */
+h1, h2, h3, h4, h5, h6 {
+    color: #2980B9;
+    font-weight: bold;
+}
+
+/* 美化链接 */
+a {
+    color: #2980B9;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #1f618d;
+    text-decoration: underline;
+}
+
+/* 美化按钮 */
+.btn {
+    background: #2980B9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: #1f618d;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 美化代码块 */
+.code {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* 美化表格 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+th {
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #2980B9;
+}
+
+/* 美化面包屑导航 */
+.wy-breadcrumbs {
+    background: #f8f9fa;
+    padding: 10px 0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* 美化页脚 */
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e4e8;
+    color: #666;
+    font-size: 0.9em;
+}

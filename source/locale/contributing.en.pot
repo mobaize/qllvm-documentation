@@ -1,0 +1,300 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Yuqiong Jin,Yu Zhu
+# This file is distributed under the same license as the QLLVM package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QLLVM \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 08:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contributing.en.rst:2
+msgid "Contribution Guide"
+msgstr ""
+
+#: ../contributing.en.rst:4
+msgid "Thank you for your interest and support for the QLLVM project! We welcome contributions in various forms, including code, documentation, testing, issue reports, etc. This guide will help you understand how to contribute to the QLLVM project."
+msgstr ""
+
+#: ../contributing.en.rst:7
+msgid "Code of Conduct"
+msgstr ""
+
+#: ../contributing.en.rst:9
+msgid "All contributors participating in the QLLVM project should adhere to the following code of conduct:"
+msgstr ""
+
+#: ../contributing.en.rst:11
+msgid "Respect others, maintain a friendly and professional attitude"
+msgstr ""
+
+#: ../contributing.en.rst:12
+msgid "Accept constructive criticism"
+msgstr ""
+
+#: ../contributing.en.rst:13
+msgid "Focus on the best interests of the community"
+msgstr ""
+
+#: ../contributing.en.rst:14
+msgid "Show empathy to other contributors"
+msgstr ""
+
+#: ../contributing.en.rst:17
+msgid "How to Contribute"
+msgstr ""
+
+#: ../contributing.en.rst:20
+msgid "Reporting Issues"
+msgstr ""
+
+#: ../contributing.en.rst:22
+msgid "If you find a bug or have a new feature suggestion, please submit an `Issue <https://github.com/yourusername/qllvm/issues>`_ on GitHub. When submitting an Issue, please provide the following information:"
+msgstr ""
+
+#: ../contributing.en.rst:24
+msgid "Detailed description of the issue"
+msgstr ""
+
+#: ../contributing.en.rst:25
+msgid "Steps to reproduce the issue"
+msgstr ""
+
+#: ../contributing.en.rst:26
+msgid "Expected behavior"
+msgstr ""
+
+#: ../contributing.en.rst:27
+msgid "Actual behavior"
+msgstr ""
+
+#: ../contributing.en.rst:28
+msgid "Environment information (operating system, Python version, QLLVM version, etc.)"
+msgstr ""
+
+#: ../contributing.en.rst:29
+msgid "Related error messages or logs"
+msgstr ""
+
+#: ../contributing.en.rst:32
+msgid "Contributing Code"
+msgstr ""
+
+#: ../contributing.en.rst:34
+msgid "If you want to contribute code, please follow these steps:"
+msgstr ""
+
+#: ../contributing.en.rst:36
+msgid "**Fork the repository** - Fork the QLLVM repository to your own account on GitHub"
+msgstr ""
+
+#: ../contributing.en.rst:39
+msgid "**Clone the repository** - Clone your forked repository to your local machine .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:43
+msgid "git clone https://github.com/yourusername/qllvm.git cd qllvm"
+msgstr ""
+
+#: ../contributing.en.rst:46
+msgid "**Create a branch** - Create a new branch for your modifications .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:50
+msgid "git checkout -b feature/your-feature-name"
+msgstr ""
+
+#: ../contributing.en.rst:52
+msgid "**Install development dependencies** - Install development dependencies .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:56
+msgid "pip install -e .[dev]"
+msgstr ""
+
+#: ../contributing.en.rst:58
+msgid "**Make modifications** - Make your code modifications - Ensure code style meets project requirements - Add appropriate tests"
+msgstr ""
+
+#: ../contributing.en.rst:63
+msgid "**Run tests** - Run tests to ensure your modifications do not break existing functionality .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:67
+msgid "pytest"
+msgstr ""
+
+#: ../contributing.en.rst:69
+msgid "**Commit changes** - Commit your changes with a clear commit message .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:73
+msgid "git add . git commit -m \"Add feature: your feature description\""
+msgstr ""
+
+#: ../contributing.en.rst:76
+msgid "**Push branch** - Push your branch to GitHub .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:80
+msgid "git push origin feature/your-feature-name"
+msgstr ""
+
+#: ../contributing.en.rst:82
+msgid "**Create Pull Request** - Create a Pull Request on GitHub, describing your changes - Wait for project maintainers to review"
+msgstr ""
+
+#: ../contributing.en.rst:87
+msgid "Contributing Documentation"
+msgstr ""
+
+#: ../contributing.en.rst:89
+msgid "If you want to contribute documentation, please follow these steps:"
+msgstr ""
+
+#: ../contributing.en.rst:91
+#: ../contributing.en.rst:124
+msgid "Fork and clone the repository (same as code contribution steps 1-2)"
+msgstr ""
+
+#: ../contributing.en.rst:93
+#: ../contributing.en.rst:126
+msgid "Create a branch (same as code contribution step 3)"
+msgstr ""
+
+#: ../contributing.en.rst:95
+msgid "**Install documentation dependencies** - Install documentation building dependencies .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:99
+msgid "pip install -e .[docs]"
+msgstr ""
+
+#: ../contributing.en.rst:101
+msgid "**Modify documentation** - Modify or add documentation content - Ensure consistent documentation style - Check if links are valid"
+msgstr ""
+
+#: ../contributing.en.rst:106
+msgid "**Build documentation** - Build documentation to ensure no errors .. code-block:: bash"
+msgstr ""
+
+#: ../contributing.en.rst:110
+msgid "cd docs make html"
+msgstr ""
+
+#: ../contributing.en.rst:113
+#: ../contributing.en.rst:138
+msgid "Commit changes (same as code contribution steps 7-9)"
+msgstr ""
+
+#: ../contributing.en.rst:116
+msgid "Contributing Tests"
+msgstr ""
+
+#: ../contributing.en.rst:122
+msgid "If you want to contribute tests, please follow these steps:"
+msgstr ""
+
+#: ../contributing.en.rst:128
+msgid "**Install test dependencies** - Install test dependencies"
+msgstr ""
+
+#: ../contributing.en.rst:131
+msgid "**Add tests** - Add new test cases - Ensure tests cover new features or fixed bugs"
+msgstr ""
+
+#: ../contributing.en.rst:135
+msgid "**Run tests** - Run tests to ensure they pass"
+msgstr ""
+
+#: ../contributing.en.rst:141
+msgid "Code Style"
+msgstr ""
+
+#: ../contributing.en.rst:143
+msgid "The QLLVM project follows the following code style:"
+msgstr ""
+
+#: ../contributing.en.rst:145
+msgid "**Python code**: Follow PEP 8 guidelines - Use 4 spaces for indentation - Line length does not exceed 79 characters - Import order: standard library, third-party libraries, local modules - Use docstrings to document functions and classes"
+msgstr ""
+
+#: ../contributing.en.rst:151
+msgid "**Documentation**: Follow reStructuredText format - Use clear heading hierarchy - Code examples use correct syntax highlighting - Links use relative paths"
+msgstr ""
+
+#: ../contributing.en.rst:156
+msgid "**Commit messages**: Use clear commit messages - First line: short description (no more than 50 characters) - Empty line - Detailed description (if needed) - Reference related Issues (if any)"
+msgstr ""
+
+#: ../contributing.en.rst:164
+msgid "Communication Channels"
+msgstr ""
+
+#: ../contributing.en.rst:166
+msgid "**GitHub Issues**: For reporting issues and discussing features"
+msgstr ""
+
+#: ../contributing.en.rst:167
+msgid "**GitHub Discussions**: For discussing project-related topics"
+msgstr ""
+
+#: ../contributing.en.rst:168
+msgid "**Mailing list**: If there is a mailing list, please provide it here"
+msgstr ""
+
+#: ../contributing.en.rst:171
+msgid "Contributor Guide"
+msgstr ""
+
+#: ../contributing.en.rst:174
+msgid "First Contribution"
+msgstr ""
+
+#: ../contributing.en.rst:176
+msgid "If you are contributing to an open source project for the first time, the following resources may be helpful:"
+msgstr ""
+
+#: ../contributing.en.rst:178
+msgid "[How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)"
+msgstr ""
+
+#: ../contributing.en.rst:179
+msgid "[First Contributions](https://firstcontributions.github.io/)"
+msgstr ""
+
+#: ../contributing.en.rst:180
+msgid "[GitHub Docs: Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)"
+msgstr ""
+
+#: ../contributing.en.rst:183
+msgid "Code Review"
+msgstr ""
+
+#: ../contributing.en.rst:185
+msgid "All Pull Requests will go through code review. During the review process, you may need to make modifications based on review comments. Please be patient and open-minded, as code review is an important part of improving code quality."
+msgstr ""
+
+#: ../contributing.en.rst:188
+msgid "License"
+msgstr ""
+
+#: ../contributing.en.rst:190
+msgid "By contributing code to the QLLVM project, you agree that your contributions will be released under the project's license."
+msgstr ""
+
+#: ../contributing.en.rst:193
+msgid "Acknowledgements"
+msgstr ""
+
+#: ../contributing.en.rst:195
+msgid "Thank you to all who have contributed to the QLLVM project! Your contributions are key to the project's success."
+msgstr ""

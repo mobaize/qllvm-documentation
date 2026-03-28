@@ -1,0 +1,71 @@
+QLLVM介绍
+==========
+
+QLLVM量子编译框架是一个基于 **MLIR** 和 **LLVM IR** 构建的量子程序编译框架。框架采用前端、中端、后端的三段式设计，支持多种量子编程语言输入，经过优化与映射后输出目标硬件支持的代码。
+
+总体功能
+--------
+
+QLLVM 将高级量子程序编译为目标后端可执行代码，主要功能包括：
+
+* **多语言前端**：支持 OpenQASM 2.0/3.0、Qiskit QuantumCircuit、Q# 等输入
+* **MLIR 优化**：单比特门合并、抵消、对角门移除、门综合等优化 Pass
+* **QIR 生成**：将 MLIR 方言 Lowering 为 QIR（LLVM IR 形式的量子中间表示）
+* **SABRE 映射**：C++/Qiskit 实现的量子比特布局与 SWAP 插入
+* **多后端发射**：输出 OpenQASM、硬件特定格式等
+
+**编译流水线：**
+```
+QASM 源文件 → 预处理 → MLIR (Quantum 方言) → 优化 Passes → Lowering → LLVM IR (QIR) → 后端发射
+```
+
+技术路线
+--------
+
+.. image:: image/001.png
+   :align: center
+   :width: 80%
+
+QLLVM编译框架
+
+* **前端**：负责语言解析和中间代码生成，将高级语言转换为 MLIR Quantum 方言
+* **中端**：基于 MLIR 进行量子程序优化，并将 MLIR 进一步 Lowering 为 QIR（LLVM IR）
+* **后端**：基于 QIR 和 QIR 运行时库，将程序转换为目标硬件支持的代码格式
+
+主要优势
+--------
+
+1. **工业级 IR 基础设施**：基于 MLIR/LLVM，便于扩展新方言和新 Pass
+2. **多种输入形式**：OpenQASM、Qiskit、Q# 等，适配不同编程习惯
+3. **灵活优化**：-O0/-O1 等级、自定义 Pass 序列、合成优化
+4. **物理约束映射**：SABRE 等布局与 SWAP 策略，适配真实硬件拓扑
+
+项目结构概览
+------------
+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
+
+   * - 目录
+     - 说明
+   * - ``mlir/``
+     - MLIR 方言、解析器、转换、Lowering
+   * - ``mlir/dialect/``
+     - Quantum 方言定义
+   * - ``mlir/parsers/``
+     - OpenQASM3、Qiskit 解析器
+   * - ``mlir/transforms/``
+     - 优化 Pass（门合并、抵消、综合等）
+   * - ``mlir/tools/``
+     - ``qllvm-compile`` 主编译器
+   * - ``passes/``
+     - LLVM IR Pass（SABRE 等）
+   * - ``backend/``
+     - QIR → 后端代码（如 QasmBackend）
+   * - ``tools/driver/``
+     - 驱动脚本 ``qllvm.in``
+   * - ``test/``
+     - 测试与示例 QASM
+   * - ``docs/``
+     - 安装指南、设计文档

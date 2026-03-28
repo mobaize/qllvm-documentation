@@ -1,0 +1,71 @@
+QLLVM Introduction
+==================
+
+QLLVM quantum compilation framework is a quantum program compilation framework built on **MLIR** and **LLVM IR**. The framework adopts a three-stage design of front-end, middle-end, and back-end, supporting multiple quantum programming language inputs, and outputting code supported by target hardware after optimization and mapping.
+
+Overall Features
+----------------
+
+QLLVM compiles high-level quantum programs into target back-end executable code, with the following main features:
+
+* **Multi-language front-end**: Supports OpenQASM 2.0/3.0, Qiskit QuantumCircuit, Q# and other inputs
+* **MLIR optimization**: Single-qubit gate merging, cancellation, diagonal gate removal, gate synthesis and other optimization passes
+* **QIR generation**: Lowering MLIR dialects to QIR (quantum intermediate representation in LLVM IR form)
+* **SABRE mapping**: C++/Qiskit implementation of qubit layout and SWAP insertion
+* **Multi-backend emission**: Output OpenQASM, hardware-specific formats, etc.
+
+**Compilation pipeline:**
+```
+QASM source file → Preprocessing → MLIR (Quantum dialect) → Optimization Passes → Lowering → LLVM IR (QIR) → Backend emission
+```
+
+Technical Route
+---------------
+
+.. image:: image/001.png
+   :align: center
+   :width: 80%
+
+QLLVM Compilation Framework
+
+* **Front-end**: Responsible for language parsing and intermediate code generation, converting high-level languages to MLIR Quantum dialect
+* **Middle-end**: Perform quantum program optimization based on MLIR, and further lower MLIR to QIR (LLVM IR)
+* **Back-end**: Based on QIR and QIR runtime library, convert programs to code formats supported by target hardware
+
+Key Advantages
+--------------
+
+1. **Industrial-grade IR infrastructure**: Based on MLIR/LLVM, easy to extend new dialects and new passes
+2. **Multiple input forms**: OpenQASM, Qiskit, Q# etc., adapting to different programming habits
+3. **Flexible optimization**: -O0/-O1 levels, custom pass sequences, synthesis optimization
+4. **Physical constraint mapping**: SABRE and other layout and SWAP strategies, adapting to real hardware topology
+
+Project Structure Overview
+--------------------------
+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Directory
+     - Description
+   * - ``mlir/``
+     - MLIR dialects, parsers, transforms, lowerings
+   * - ``mlir/dialect/``
+     - Quantum dialect definition
+   * - ``mlir/parsers/``
+     - OpenQASM3, Qiskit parsers
+   * - ``mlir/transforms/``
+     - Optimization passes (gate merging, cancellation, synthesis, etc.)
+   * - ``mlir/tools/``
+     - ``qllvm-compile`` main compiler
+   * - ``passes/``
+     - LLVM IR passes (SABRE, etc.)
+   * - ``backend/``
+     - QIR → backend code (e.g., QasmBackend)
+   * - ``tools/driver/``
+     - Driver script ``qllvm.in``
+   * - ``test/``
+     - Tests and example QASM
+   * - ``docs/``
+     - Installation guides, design documents

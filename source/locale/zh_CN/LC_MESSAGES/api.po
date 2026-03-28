@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Yuqiong Jin,Yu Zhu
+# This file is distributed under the same license as the QLLVM package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QLLVM \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 08:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../api.rst:2
+msgid "QLLVM量子编译框架"
+msgstr ""
+
+#: ../api.rst:4
+msgid ""
+"QLLVM量子编译框架是一个基于 MLIR 和 LLVM IR "
+"构建的量子程序编译框架。框架采用前端、中端、后端的三段式设计，支持多种量子编程语言输入，经过优化与映射后输出目标硬件支持的代码。"
+msgstr ""
+
+#: ../api.rst:7
+msgid "软件介绍"
+msgstr ""
+
+#: ../api.rst:9
+msgid "QLLVM 将高级量子程序编译为目标后端可执行代码，主要功能包括"
+msgstr ""
+
+#: ../api.rst:13
+msgid "功能模块"
+msgstr ""
+
+#: ../api.rst:14
+msgid "说明"
+msgstr ""
+
+#: ../api.rst:15
+msgid "`多语言前端`"
+msgstr ""
+
+#: ../api.rst:16
+msgid "支持 OpenQASM 2.0/3.0、Qiskit QuantumCircuit、Q# 等输入"
+msgstr ""
+
+#: ../api.rst:17
+msgid "`MLIR 优化`"
+msgstr ""
+
+#: ../api.rst:18
+msgid "单比特门合并、抵消、对角门移除、门综合等优化 Pass"
+msgstr ""
+
+#: ../api.rst:19
+msgid "`-basicgate`"
+msgstr ""
+
+#: ../api.rst:20
+msgid "指定基础门组"
+msgstr ""
+
+#: ../api.rst:21
+msgid "`QIR 生成`"
+msgstr ""
+
+#: ../api.rst:22
+msgid "将 MLIR 方言 Lowering 为 QIR (LLVM IR 形式的量子中间表示)"
+msgstr ""
+
+#: ../api.rst:23
+msgid "`SABRE 映射`"
+msgstr ""
+
+#: ../api.rst:24
+msgid "C++/Qiskit 实现的量子比特布局与 SWAP 插入"
+msgstr ""
+
+#: ../api.rst:25
+msgid "`多后端发射`"
+msgstr ""
+
+#: ../api.rst:26
+msgid "输出 OpenQASM、硬件特定格式等"
+msgstr ""
+
+#: ../api.rst:29
+msgid "编译流水线"
+msgstr ""
+
+#: ../api.rst:30
+msgid ""
+"``QASM 源文件 → 预处理 → MLIR (Quantum 方言) → 优化 Passes → Lowering → LLVM IR "
+"(QIR) → 后端发射``"
+msgstr ""
+
+#: ../api.rst:33
+msgid "技术路线"
+msgstr ""
+
+#: ../api.rst:34
+msgid "前端：负责语言解析和中间代码生成，将高级语言转换为 MLIR Quantum 方言"
+msgstr ""
+
+#: ../api.rst:35
+msgid "中端：基于 MLIR 进行量子程序优化，并将 MLIR 进一步 Lowering 为 QIR（LLVM IR）"
+msgstr ""
+
+#: ../api.rst:36
+msgid "后端：基于 QIR 和 QIR 运行时库，将程序转换为目标硬件支持的代码格式"
+msgstr ""
+
+#: ../api.rst:39
+msgid "主要优势"
+msgstr ""
+
+#: ../api.rst:40
+msgid "工业级 IR 基础设施：基于 MLIR/LLVM，便于扩展新方言和新 Pass"
+msgstr ""
+
+#: ../api.rst:41
+msgid "多种输入形式：OpenQASM、Qiskit、Q# 等，适配不同编程习惯"
+msgstr ""
+
+#: ../api.rst:42
+msgid "灵活优化：-O0/-O1 等级、自定义 Pass 序列、合成优化"
+msgstr ""
+
+#: ../api.rst:43
+msgid "物理约束映射：SABRE 等布局与 SWAP 策略，适配真实硬件拓扑"
+msgstr ""
+
+#: ../api.rst:46
+msgid "QLLVM使用指南"
+msgstr ""
+
+#: ../api.rst:48
+msgid "安装QLLVM :doc:`installation` 指南，了解QLLVM的安装方法。"
+msgstr ""
+
+#: ../api.rst:49
+msgid "使用QLLVM :doc:`tutorials` 指南，了解如何使用QLLVM编译量子线路。"
+msgstr ""
+

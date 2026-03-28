@@ -1,0 +1,462 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Yuqiong Jin,Yu Zhu
+# This file is distributed under the same license as the QLLVM package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QLLVM \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 08:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../tutorials.rst:2
+msgid "QLLVM教程"
+msgstr ""
+
+#: ../tutorials.rst:4
+msgid "本部分主要介绍如何使用QLLVM编译量子线路,以及编译参数的详细说明"
+msgstr ""
+
+#: ../tutorials.rst:7
+msgid "运行程序示例"
+msgstr ""
+
+#: ../tutorials.rst:10
+msgid "编译OpenQASM文件"
+msgstr ""
+
+#: ../tutorials.rst:13
+msgid "基本编译:"
+msgstr ""
+
+#: ../tutorials.rst:27
+msgid "指定基础门组:"
+msgstr ""
+
+#: ../tutorials.rst:33
+msgid "带后端拓扑(SABRE 映射):"
+msgstr ""
+
+#: ../tutorials.rst:41
+msgid "Bell态示例"
+msgstr ""
+
+#: ../tutorials.rst:42
+msgid "创建bell.qasm:"
+msgstr ""
+
+#: ../tutorials.rst:55
+msgid "编译并检查输出:"
+msgstr ""
+
+#: ../tutorials.rst:63
+msgid "直接调用 qllvm-mlir-tool"
+msgstr ""
+
+#: ../tutorials.rst:74
+msgid "打印 MLIR / QIR"
+msgstr ""
+
+#: ../tutorials.rst:82
+msgid "后端拓扑配置示例"
+msgstr ""
+
+#: ../tutorials.rst:92
+msgid "编译参数说明"
+msgstr ""
+
+#: ../tutorials.rst:94
+msgid "本教程将介绍qllvm编译参数的详细说明。"
+msgstr ""
+
+#: ../tutorials.rst:97
+msgid "驱动程序（qllvm）参数"
+msgstr ""
+
+#: ../tutorials.rst:99
+msgid "驱动程序（qllvm ）参数"
+msgstr ""
+
+#: ../tutorials.rst:103
+#: ../tutorials.rst:162
+#: ../tutorials.rst:212
+msgid "参数"
+msgstr ""
+
+#: ../tutorials.rst:104
+#: ../tutorials.rst:163
+#: ../tutorials.rst:213
+msgid "说明"
+msgstr ""
+
+#: ../tutorials.rst:105
+msgid "示例"
+msgstr ""
+
+#: ../tutorials.rst:106
+#: ../tutorials.rst:170
+msgid "`-O0`"
+msgstr ""
+
+#: ../tutorials.rst:107
+msgid "不进行编译优化"
+msgstr ""
+
+#: ../tutorials.rst:108
+msgid "``-O0``"
+msgstr ""
+
+#: ../tutorials.rst:109
+#: ../tutorials.rst:172
+msgid "`-O1`"
+msgstr ""
+
+#: ../tutorials.rst:110
+msgid "使用固定优化遍序列"
+msgstr ""
+
+#: ../tutorials.rst:111
+msgid "``-O1``"
+msgstr ""
+
+#: ../tutorials.rst:112
+#: ../tutorials.rst:192
+msgid "`-basicgate`"
+msgstr ""
+
+#: ../tutorials.rst:113
+msgid "指定基础门组"
+msgstr ""
+
+#: ../tutorials.rst:114
+msgid "-basicgate=[rx,ry,rz,h,cz]、-basicgate=[rx,ry,rz,h,cx]"
+msgstr ""
+
+#: ../tutorials.rst:115
+#: ../tutorials.rst:176
+msgid "`-qrt`"
+msgstr ""
+
+#: ../tutorials.rst:116
+msgid "指定设备类型"
+msgstr ""
+
+#: ../tutorials.rst:117
+msgid "``-qrt nisq``, ``-qrt ftqc``"
+msgstr ""
+
+#: ../tutorials.rst:118
+#: ../tutorials.rst:174
+msgid "`-qpu`"
+msgstr ""
+
+#: ../tutorials.rst:119
+msgid "指定后端类型"
+msgstr ""
+
+#: ../tutorials.rst:120
+msgid "``-qpu qasm-backend``"
+msgstr ""
+
+#: ../tutorials.rst:121
+msgid "`-qpu-config`"
+msgstr ""
+
+#: ../tutorials.rst:122
+msgid "指定后端拓扑结构（耦合图）"
+msgstr ""
+
+#: ../tutorials.rst:123
+msgid "``-qpu-config ./backend.ini``"
+msgstr ""
+
+#: ../tutorials.rst:124
+#: ../tutorials.rst:178
+msgid "`-emitmlir`"
+msgstr ""
+
+#: ../tutorials.rst:125
+msgid "打印 MLIR 程序"
+msgstr ""
+
+#: ../tutorials.rst:126
+msgid "``-emitmlir``"
+msgstr ""
+
+#: ../tutorials.rst:127
+#: ../tutorials.rst:180
+msgid "`-emitqir`"
+msgstr ""
+
+#: ../tutorials.rst:128
+msgid "打印 QIR 程序"
+msgstr ""
+
+#: ../tutorials.rst:129
+msgid "``-emitqir``"
+msgstr ""
+
+#: ../tutorials.rst:130
+#: ../tutorials.rst:194
+msgid "`-customPassSequence`"
+msgstr ""
+
+#: ../tutorials.rst:131
+msgid "指定优化遍序列文件"
+msgstr ""
+
+#: ../tutorials.rst:132
+msgid "``-customPassSequence=./pass.txt``"
+msgstr ""
+
+#: ../tutorials.rst:133
+msgid "`-o`"
+msgstr ""
+
+#: ../tutorials.rst:134
+msgid "指定输出路径及文件名"
+msgstr ""
+
+#: ../tutorials.rst:135
+msgid "``-o folder/name``"
+msgstr ""
+
+#: ../tutorials.rst:136
+msgid "`-placement`"
+msgstr ""
+
+#: ../tutorials.rst:137
+msgid "指定映射方法"
+msgstr ""
+
+#: ../tutorials.rst:138
+msgid "``-placement sabre_swap``, ``-placement swap_shortest_path``"
+msgstr ""
+
+#: ../tutorials.rst:139
+msgid "`-initial-mapping`"
+msgstr ""
+
+#: ../tutorials.rst:140
+msgid "指定初始比特映射"
+msgstr ""
+
+#: ../tutorials.rst:141
+msgid "``-initial-mapping [0,1,2,3,4]``"
+msgstr ""
+
+#: ../tutorials.rst:142
+msgid "`-sabre-cpp`"
+msgstr ""
+
+#: ../tutorials.rst:143
+msgid "在 LLVM IR 阶段使用 C++ SABRE（需配合 `-initial-mapping` 和 `-qpu-config`）"
+msgstr ""
+
+#: ../tutorials.rst:144
+msgid "``-sabre-cpp``"
+msgstr ""
+
+#: ../tutorials.rst:145
+#: ../tutorials.rst:188
+msgid "`-circuit-state`"
+msgstr ""
+
+#: ../tutorials.rst:146
+msgid "打印电路状态（深度、门数）"
+msgstr ""
+
+#: ../tutorials.rst:147
+msgid "``-circuit-state``"
+msgstr ""
+
+#: ../tutorials.rst:148
+#: ../tutorials.rst:190
+msgid "`-pass-count`"
+msgstr ""
+
+#: ../tutorials.rst:149
+#: ../tutorials.rst:191
+msgid "打印各 Pass 执行次数"
+msgstr ""
+
+#: ../tutorials.rst:150
+msgid "``-pass-count``"
+msgstr ""
+
+#: ../tutorials.rst:151
+msgid "`-v` / `--verbose`"
+msgstr ""
+
+#: ../tutorials.rst:152
+msgid "开启详细输出"
+msgstr ""
+
+#: ../tutorials.rst:153
+msgid "``-v``"
+msgstr ""
+
+#: ../tutorials.rst:156
+#: ../tutorials.rst:158
+msgid "qllvm-mlir-tool 参数"
+msgstr ""
+
+#: ../tutorials.rst:164
+msgid "`<input.qasm>`"
+msgstr ""
+
+#: ../tutorials.rst:165
+msgid "positional,输入 OpenQASM 文件"
+msgstr ""
+
+#: ../tutorials.rst:166
+msgid "`-internal-func-name`"
+msgstr ""
+
+#: ../tutorials.rst:167
+msgid "生成的内核函数名"
+msgstr ""
+
+#: ../tutorials.rst:168
+msgid "`-no-entrypoint`"
+msgstr ""
+
+#: ../tutorials.rst:169
+msgid "不生成 main 入口"
+msgstr ""
+
+#: ../tutorials.rst:171
+msgid "优化等级 0"
+msgstr ""
+
+#: ../tutorials.rst:173
+msgid "优化等级 1"
+msgstr ""
+
+#: ../tutorials.rst:175
+msgid "目标量子后端"
+msgstr ""
+
+#: ../tutorials.rst:177
+msgid "量子执行模式（nisq/ftqc）"
+msgstr ""
+
+#: ../tutorials.rst:179
+msgid "打印 MLIR"
+msgstr ""
+
+#: ../tutorials.rst:181
+msgid "打印 QIR"
+msgstr ""
+
+#: ../tutorials.rst:182
+msgid "`-emit-backend`"
+msgstr ""
+
+#: ../tutorials.rst:183
+msgid "指定发射后端（如 `qasm-backend`）"
+msgstr ""
+
+#: ../tutorials.rst:184
+msgid "`-output-path`"
+msgstr ""
+
+#: ../tutorials.rst:185
+msgid "输出文件路径"
+msgstr ""
+
+#: ../tutorials.rst:186
+msgid "`-sabre-coupling-map`"
+msgstr ""
+
+#: ../tutorials.rst:187
+msgid "SABRE 耦合图,边格式 `0,1;1,2;2,3`"
+msgstr ""
+
+#: ../tutorials.rst:189
+msgid "打印电路深度和门数"
+msgstr ""
+
+#: ../tutorials.rst:193
+msgid "基础门组"
+msgstr ""
+
+#: ../tutorials.rst:195
+msgid "自定义 Pass 序列文件"
+msgstr ""
+
+#: ../tutorials.rst:196
+msgid "`-verbose-error`"
+msgstr ""
+
+#: ../tutorials.rst:197
+msgid "出错时打印完整 MLIR"
+msgstr ""
+
+#: ../tutorials.rst:198
+msgid "`--pass-timing`"
+msgstr ""
+
+#: ../tutorials.rst:199
+msgid "Pass 耗时统计"
+msgstr ""
+
+#: ../tutorials.rst:200
+msgid "`--print-ir-after-all`"
+msgstr ""
+
+#: ../tutorials.rst:201
+msgid "每 Pass 后打印 IR"
+msgstr ""
+
+#: ../tutorials.rst:202
+msgid "`--print-ir-before-all`"
+msgstr ""
+
+#: ../tutorials.rst:203
+msgid "每 Pass 前打印 IR"
+msgstr ""
+
+#: ../tutorials.rst:206
+#: ../tutorials.rst:208
+msgid "CMake 构建参数"
+msgstr ""
+
+#: ../tutorials.rst:214
+msgid "`-DLLVM_ROOT`"
+msgstr ""
+
+#: ../tutorials.rst:215
+msgid "LLVM 安装路径（含 MLIR）"
+msgstr ""
+
+#: ../tutorials.rst:216
+msgid "`-DXACC_DIR`"
+msgstr ""
+
+#: ../tutorials.rst:217
+msgid "XACC 安装路径；QASM-only 时设为空即 `-DXACC_DIR=`"
+msgstr ""
+
+#: ../tutorials.rst:218
+msgid "`-DCMAKE_INSTALL_PREFIX`"
+msgstr ""
+
+#: ../tutorials.rst:219
+msgid "安装目录"
+msgstr ""
+
+#: ../tutorials.rst:220
+msgid "`-DQLLVM_QASM_ONLY_BUILD=ON`"
+msgstr ""
+
+#: ../tutorials.rst:221
+msgid "启用 QASM-only 独立构建"
+msgstr ""

@@ -1,0 +1,451 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Yuqiong Jin,Yu Zhu
+# This file is distributed under the same license as the QLLVM package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QLLVM \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 08:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../tutorials.en.rst:2
+msgid "QLLVM Tutorial"
+msgstr ""
+
+#: ../tutorials.en.rst:4
+msgid ""
+"This section mainly introduces how to use QLLVM to compile quantum "
+"circuits, as well as detailed explanations of compilation parameters."
+msgstr ""
+
+#: ../tutorials.en.rst:7
+msgid "Running Program Examples"
+msgstr ""
+
+#: ../tutorials.en.rst:10
+msgid "Compiling OpenQASM Files"
+msgstr ""
+
+#: ../tutorials.en.rst:12
+msgid "Basic Compilation:"
+msgstr ""
+
+#: ../tutorials.en.rst:25
+msgid "Specifying Basic Gate Set:"
+msgstr ""
+
+#: ../tutorials.en.rst:31
+msgid "With Backend Topology (SABRE Mapping):"
+msgstr ""
+
+#: ../tutorials.en.rst:39
+msgid "Bell State Example"
+msgstr ""
+
+#: ../tutorials.en.rst:40
+msgid "Create bell.qasm:"
+msgstr ""
+
+#: ../tutorials.en.rst:53
+msgid "Compile and Check Output:"
+msgstr ""
+
+#: ../tutorials.en.rst:61
+msgid "Directly Calling qllvm-mlir-tool"
+msgstr ""
+
+#: ../tutorials.en.rst:72
+msgid "Printing MLIR / QIR"
+msgstr ""
+
+#: ../tutorials.en.rst:80
+msgid "Backend Topology Configuration Example"
+msgstr ""
+
+#: ../tutorials.en.rst:90
+msgid "Compilation Parameter Explanation"
+msgstr ""
+
+#: ../tutorials.en.rst:92
+msgid ""
+"This tutorial will introduce the detailed explanation of qllvm "
+"compilation parameters."
+msgstr ""
+
+#: ../tutorials.en.rst:95 ../tutorials.en.rst:97
+msgid "Driver (qllvm) Parameters"
+msgstr ""
+
+#: ../tutorials.en.rst:101 ../tutorials.en.rst:160 ../tutorials.en.rst:210
+msgid "Parameter"
+msgstr ""
+
+#: ../tutorials.en.rst:102 ../tutorials.en.rst:161 ../tutorials.en.rst:211
+msgid "Description"
+msgstr ""
+
+#: ../tutorials.en.rst:103
+msgid "Example"
+msgstr ""
+
+#: ../tutorials.en.rst:104 ../tutorials.en.rst:168
+msgid "`-O0`"
+msgstr ""
+
+#: ../tutorials.en.rst:105
+msgid "No compilation optimization"
+msgstr ""
+
+#: ../tutorials.en.rst:106
+msgid "``-O0``"
+msgstr ""
+
+#: ../tutorials.en.rst:107 ../tutorials.en.rst:170
+msgid "`-O1`"
+msgstr ""
+
+#: ../tutorials.en.rst:108
+msgid "Use fixed optimization pass sequence"
+msgstr ""
+
+#: ../tutorials.en.rst:109
+msgid "``-O1``"
+msgstr ""
+
+#: ../tutorials.en.rst:110 ../tutorials.en.rst:190
+msgid "`-basicgate`"
+msgstr ""
+
+#: ../tutorials.en.rst:111
+msgid "Specify basic gate set"
+msgstr ""
+
+#: ../tutorials.en.rst:112
+msgid "-basicgate=[rx,ry,rz,h,cz], -basicgate=[rx,ry,rz,h,cx]"
+msgstr ""
+
+#: ../tutorials.en.rst:113 ../tutorials.en.rst:174
+msgid "`-qrt`"
+msgstr ""
+
+#: ../tutorials.en.rst:114
+msgid "Specify device type"
+msgstr ""
+
+#: ../tutorials.en.rst:115
+msgid "``-qrt nisq``, ``-qrt ftqc``"
+msgstr ""
+
+#: ../tutorials.en.rst:116 ../tutorials.en.rst:172
+msgid "`-qpu`"
+msgstr ""
+
+#: ../tutorials.en.rst:117
+msgid "Specify backend type"
+msgstr ""
+
+#: ../tutorials.en.rst:118
+msgid "``-qpu qasm-backend``"
+msgstr ""
+
+#: ../tutorials.en.rst:119
+msgid "`-qpu-config`"
+msgstr ""
+
+#: ../tutorials.en.rst:120
+msgid "Specify backend topology (coupling graph)"
+msgstr ""
+
+#: ../tutorials.en.rst:121
+msgid "``-qpu-config ./backend.ini``"
+msgstr ""
+
+#: ../tutorials.en.rst:122 ../tutorials.en.rst:176
+msgid "`-emitmlir`"
+msgstr ""
+
+#: ../tutorials.en.rst:123
+msgid "Print MLIR program"
+msgstr ""
+
+#: ../tutorials.en.rst:124
+msgid "``-emitmlir``"
+msgstr ""
+
+#: ../tutorials.en.rst:125 ../tutorials.en.rst:178
+msgid "`-emitqir`"
+msgstr ""
+
+#: ../tutorials.en.rst:126
+msgid "Print QIR program"
+msgstr ""
+
+#: ../tutorials.en.rst:127
+msgid "``-emitqir``"
+msgstr ""
+
+#: ../tutorials.en.rst:128 ../tutorials.en.rst:192
+msgid "`-customPassSequence`"
+msgstr ""
+
+#: ../tutorials.en.rst:129
+msgid "Specify optimization pass sequence file"
+msgstr ""
+
+#: ../tutorials.en.rst:130
+msgid "``-customPassSequence=./pass.txt``"
+msgstr ""
+
+#: ../tutorials.en.rst:131
+msgid "`-o`"
+msgstr ""
+
+#: ../tutorials.en.rst:132
+msgid "Specify output path and filename"
+msgstr ""
+
+#: ../tutorials.en.rst:133
+msgid "``-o folder/name``"
+msgstr ""
+
+#: ../tutorials.en.rst:134
+msgid "`-placement`"
+msgstr ""
+
+#: ../tutorials.en.rst:135
+msgid "Specify mapping method"
+msgstr ""
+
+#: ../tutorials.en.rst:136
+msgid "``-placement sabre_swap``, ``-placement swap_shortest_path``"
+msgstr ""
+
+#: ../tutorials.en.rst:137
+msgid "`-initial-mapping`"
+msgstr ""
+
+#: ../tutorials.en.rst:138
+msgid "Specify initial qubit mapping"
+msgstr ""
+
+#: ../tutorials.en.rst:139
+msgid "``-initial-mapping [0,1,2,3,4]``"
+msgstr ""
+
+#: ../tutorials.en.rst:140
+msgid "`-sabre-cpp`"
+msgstr ""
+
+#: ../tutorials.en.rst:141
+msgid ""
+"Use C++ SABRE in LLVM IR phase (requires `-initial-mapping` and `-qpu-"
+"config`)"
+msgstr ""
+
+#: ../tutorials.en.rst:142
+msgid "``-sabre-cpp``"
+msgstr ""
+
+#: ../tutorials.en.rst:143 ../tutorials.en.rst:186
+msgid "`-circuit-state`"
+msgstr ""
+
+#: ../tutorials.en.rst:144
+msgid "Print circuit state (depth, gate count)"
+msgstr ""
+
+#: ../tutorials.en.rst:145
+msgid "``-circuit-state``"
+msgstr ""
+
+#: ../tutorials.en.rst:146 ../tutorials.en.rst:188
+msgid "`-pass-count`"
+msgstr ""
+
+#: ../tutorials.en.rst:147 ../tutorials.en.rst:189
+msgid "Print execution count of each pass"
+msgstr ""
+
+#: ../tutorials.en.rst:148
+msgid "``-pass-count``"
+msgstr ""
+
+#: ../tutorials.en.rst:149
+msgid "`-v` / `--verbose`"
+msgstr ""
+
+#: ../tutorials.en.rst:150
+msgid "Enable detailed output"
+msgstr ""
+
+#: ../tutorials.en.rst:151
+msgid "``-v``"
+msgstr ""
+
+#: ../tutorials.en.rst:154 ../tutorials.en.rst:156
+msgid "qllvm-mlir-tool Parameters"
+msgstr ""
+
+#: ../tutorials.en.rst:162
+msgid "`<input.qasm>`"
+msgstr ""
+
+#: ../tutorials.en.rst:163
+msgid "positional, input OpenQASM file"
+msgstr ""
+
+#: ../tutorials.en.rst:164
+msgid "`-internal-func-name`"
+msgstr ""
+
+#: ../tutorials.en.rst:165
+msgid "Generated kernel function name"
+msgstr ""
+
+#: ../tutorials.en.rst:166
+msgid "`-no-entrypoint`"
+msgstr ""
+
+#: ../tutorials.en.rst:167
+msgid "Do not generate main entry"
+msgstr ""
+
+#: ../tutorials.en.rst:169
+msgid "Optimization level 0"
+msgstr ""
+
+#: ../tutorials.en.rst:171
+msgid "Optimization level 1"
+msgstr ""
+
+#: ../tutorials.en.rst:173
+msgid "Target quantum backend"
+msgstr ""
+
+#: ../tutorials.en.rst:175
+msgid "Quantum execution mode (nisq/ftqc)"
+msgstr ""
+
+#: ../tutorials.en.rst:177
+msgid "Print MLIR"
+msgstr ""
+
+#: ../tutorials.en.rst:179
+msgid "Print QIR"
+msgstr ""
+
+#: ../tutorials.en.rst:180
+msgid "`-emit-backend`"
+msgstr ""
+
+#: ../tutorials.en.rst:181
+msgid "Specify emission backend (e.g., `qasm-backend`)"
+msgstr ""
+
+#: ../tutorials.en.rst:182
+msgid "`-output-path`"
+msgstr ""
+
+#: ../tutorials.en.rst:183
+msgid "Output file path"
+msgstr ""
+
+#: ../tutorials.en.rst:184
+msgid "`-sabre-coupling-map`"
+msgstr ""
+
+#: ../tutorials.en.rst:185
+msgid "SABRE coupling map, edge format `0,1;1,2;2,3`"
+msgstr ""
+
+#: ../tutorials.en.rst:187
+msgid "Print circuit depth and gate count"
+msgstr ""
+
+#: ../tutorials.en.rst:191
+msgid "Basic gate set"
+msgstr ""
+
+#: ../tutorials.en.rst:193
+msgid "Custom pass sequence file"
+msgstr ""
+
+#: ../tutorials.en.rst:194
+msgid "`-verbose-error`"
+msgstr ""
+
+#: ../tutorials.en.rst:195
+msgid "Print complete MLIR on error"
+msgstr ""
+
+#: ../tutorials.en.rst:196
+msgid "`--pass-timing`"
+msgstr ""
+
+#: ../tutorials.en.rst:197
+msgid "Pass timing statistics"
+msgstr ""
+
+#: ../tutorials.en.rst:198
+msgid "`--print-ir-after-all`"
+msgstr ""
+
+#: ../tutorials.en.rst:199
+msgid "Print IR after each pass"
+msgstr ""
+
+#: ../tutorials.en.rst:200
+msgid "`--print-ir-before-all`"
+msgstr ""
+
+#: ../tutorials.en.rst:201
+msgid "Print IR before each pass"
+msgstr ""
+
+#: ../tutorials.en.rst:204 ../tutorials.en.rst:206
+msgid "CMake Build Parameters"
+msgstr ""
+
+#: ../tutorials.en.rst:212
+msgid "`-DLLVM_ROOT`"
+msgstr ""
+
+#: ../tutorials.en.rst:213
+msgid "LLVM installation path (including MLIR)"
+msgstr ""
+
+#: ../tutorials.en.rst:214
+msgid "`-DXACC_DIR`"
+msgstr ""
+
+#: ../tutorials.en.rst:215
+msgid "XACC installation path; set to empty for QASM-only: `-DXACC_DIR=`"
+msgstr ""
+
+#: ../tutorials.en.rst:216
+msgid "`-DCMAKE_INSTALL_PREFIX`"
+msgstr ""
+
+#: ../tutorials.en.rst:217
+msgid "Installation directory"
+msgstr ""
+
+#: ../tutorials.en.rst:218
+msgid "`-DQLLVM_QASM_ONLY_BUILD=ON`"
+msgstr ""
+
+#: ../tutorials.en.rst:219
+msgid "Enable QASM-only independent build"
+msgstr ""
+

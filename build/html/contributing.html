@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>贡献指南 &mdash; QLLVM v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="使用" href="usage.html" />
+     
+    <style>
+        .language-switcher {
+            float: right;
+            margin: 10px 0;
+        }
+        .language-switcher a {
+            margin-left: 10px;
+            color: #2980B9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .language-switcher a:hover {
+            text-decoration: underline;
+        }
+        .wy-breadcrumbs-aside {
+            display: none !important;
+        }
+        .rst-content .wy-breadcrumbs-aside {
+            display: none !important;
+        }
+        a[href*="_sources"], a[href*=".rst.txt"] {
+            display: none !important;
+        }
+        li.wy-breadcrumbs-aside {
+            display: none !important;
+        }
+        .wy-breadcrumbs li:last-child {
+            display: none !important;
+        }
+        /* 隐藏搜索表单和输入框，但保留Home链接 */
+        .wy-side-nav-search div[role="search"] {
+            display: none !important;
+        }
+        .wy-side-nav-search form {
+            display: none !important;
+        }
+        .wy-side-nav-search input[type="text"] {
+            display: none !important;
+        }
+    </style>
+    <script>
+        // 动态修改侧边栏导航菜单的链接和文本，根据当前页面的语言版本
+        function updateNavigation() {
+            // 检测当前页面是否是搜索页面，如果是则不执行任何操作
+            if (window.location.pathname.includes('search.html')) {
+                return;
+            }
+            
+            // 定义全局变量
+            var translations = {
+                'QLLVM介绍': 'QLLVM Introduction',
+                '安装': 'Installation',
+                '使用': 'Usage',
+                '贡献指南': 'Contribution Guide',
+                '总体功能': 'Overall Features',
+                '技术路线': 'Technical Route',
+                '主要优势': 'Key Advantages',
+                '从插件进行安装': 'Installation from Plugins',
+                '从VSIX文件安装': 'Install from VSIX File',
+                '基本配置': 'Basic Configuration',
+                'Quantum Circuit Composer配置': 'Quantum Circuit Composer Configuration',
+                'Qcoder配置': 'Qcoder Configuration',
+                '从源码进行安装': 'Installation from Source',
+                '通用依赖': 'Common Dependencies',
+                'QLLVM构建': 'QLLVM Build',
+                '可选依赖（按需安装）': 'Optional Dependencies (install as needed)',
+                'CUDA环境（仅C+++CUDA+QASM混合需要）': 'CUDA Environment (only needed for C+++CUDA+QASM hybrid)',
+                '验证和测试': 'Verification and Testing',
+                '故障排除': 'Troubleshooting',
+                '使用示例': 'Usage Examples',
+                '使用插件': 'Using Plugins',
+                'Quantum Circuit Composer': 'Quantum Circuit Composer',
+                'Qcoder': 'Qcoder',
+                '使用命令行': 'Using Command Line',
+                '编译OpenQASM文件': 'Compiling OpenQASM Files',
+                'Bell态示例': 'Bell State Example',
+                '直接调用 qllvm-compile': 'Directly Calling qllvm-compile',
+                '打印 MLIR / QIR': 'Printing MLIR / QIR',
+                '后端拓扑配置示例': 'Backend Topology Configuration Example',
+                '编译参数说明': 'Compilation Parameter Explanation',
+                '驱动程序（qllvm）参数': 'Driver Program (qllvm) Parameters',
+                'qllvm-compile 参数': 'qllvm-compile Parameters',
+                'CMake 构建参数': 'CMake Build Parameters',
+                'QIR Runner 后端': 'QIR Runner Backend',
+                'qir-runner 输出格式说明': 'qir-runner Output Format Explanation',
+                'qir-runner 命令行参数': 'qir-runner Command Line Parameters',
+                '输出为 Qiskit 风格 counts': 'Output as Qiskit-style counts',
+                '经典-量子混合编译': 'Classical-Quantum Hybrid Compilation',
+                '使用 qir-runner 作为模拟器': 'Using qir-runner as Simulator',
+                'C++ + CUDA + QASM 混合编译': 'C++ + CUDA + QASM Hybrid Compilation',
+                '项目结构概览': 'Project Structure Overview',
+                '行为准则': 'Code of Conduct',
+                '如何贡献': 'How to Contribute',
+                '报告问题': 'Reporting Issues',
+                '贡献代码': 'Contributing Code',
+                '贡献文档': 'Contributing Documentation',
+                '贡献测试': 'Contributing Tests',
+                '代码风格': 'Code Style',
+                '沟通渠道': 'Communication Channels',
+                '贡献者指南': 'Contributor Guide',
+                '首次贡献': 'First Contribution',
+                '代码审查': 'Code Review',
+                '许可证': 'License',
+                '致谢': 'Acknowledgements',
+                '文档导航:': 'Documentation Navigation:'
+            };
+            
+            var anchorMap = {
+                'Overall Features': 'overall-features',
+                'Technical Route': 'technical-route',
+                'Key Advantages': 'key-advantages',
+                'Installation from Plugins': 'installation-from-plugins',
+                'Install from VSIX File': 'install-from-vsix-file',
+                'Basic Configuration': 'basic-configuration',
+                'Quantum Circuit Composer Configuration': 'quantum-circuit-composer-configuration',
+                'Qcoder Configuration': 'qcoder-configuration',
+                'Installation from Source': 'installation-from-source',
+                'Common Dependencies': 'common-dependencies',
+                'QLLVM Build': 'qllvm-build',
+                'Optional Dependencies (install as needed)': 'optional-dependencies-install-as-needed',
+                'CUDA Environment (only needed for C+++CUDA+QASM hybrid)': 'cuda-environment-only-needed-for-c-cuda-qasm-hybrid',
+                'Verification and Testing': 'verification-and-testing',
+                'Troubleshooting': 'troubleshooting',
+                'Usage Examples': 'usage-examples',
+                'Using Plugins': 'using-plugins',
+                'Quantum Circuit Composer': 'quantum-circuit-composer',
+                'Qcoder': 'qcoder',
+                'Using Command Line': 'using-command-line',
+                'Compiling OpenQASM Files': 'compiling-openqasm-files',
+                'Bell State Example': 'bell-state-example',
+                'Directly Calling qllvm-compile': 'directly-calling-qllvm-compile',
+                'Printing MLIR / QIR': 'printing-mlir-qir',
+                'Backend Topology Configuration Example': 'backend-topology-configuration-example',
+                'Compilation Parameter Explanation': 'compilation-parameter-explanation',
+                'Driver Program (qllvm) Parameters': 'driver-program-qllvm-parameters',
+                'qllvm-compile Parameters': 'qllvm-compile-parameters',
+                'CMake Build Parameters': 'cmake-build-parameters',
+                'QIR Runner Backend': 'qir-runner-backend',
+                'qir-runner Output Format Explanation': 'qir-runner-output-format-explanation',
+                'qir-runner Command Line Parameters': 'qir-runner-command-line-parameters',
+                'Output as Qiskit-style counts': 'output-as-qiskit-style-counts',
+                'Classical-Quantum Hybrid Compilation': 'classical-quantum-hybrid-compilation',
+                'Using qir-runner as Simulator': 'using-qir-runner-as-simulator',
+                'C++ + CUDA + QASM Hybrid Compilation': 'c-cuda-qasm-hybrid-compilation',
+                'Project Structure Overview': 'project-structure-overview',
+                'Code of Conduct': 'code-of-conduct',
+                'How to Contribute': 'how-to-contribute',
+                'Reporting Issues': 'reporting-issues',
+                'Contributing Code': 'contributing-code',
+                'Contributing Documentation': 'contributing-documentation',
+                'Contributing Tests': 'contributing-tests',
+                'Code Style': 'code-style',
+                'Communication Channels': 'communication-channels',
+                'Contributor Guide': 'contributor-guide',
+                'First Contribution': 'first-contribution',
+                'Code Review': 'code-review',
+                'License': 'license',
+                'Acknowledgements': 'acknowledgements'
+            };
+            
+            // 检测当前页面是否是英文页面
+            var isEnglishPage = window.location.pathname.includes('.en.html');
+            
+            if (isEnglishPage) {
+                // 修改导航菜单标题
+                var captions = document.querySelectorAll('.wy-menu-vertical .caption-text');
+                captions.forEach(function(caption) {
+                    caption.textContent = 'Documentation Navigation:';
+                });
+                
+                // 获取侧边栏导航菜单中的所有链接
+                var sidebarLinks = document.querySelectorAll('.wy-menu-vertical a.reference.internal');
+                
+                // 将translations转换为数组，按键长度降序排序（确保更具体的翻译优先）
+                var translationEntries = Object.entries(translations).sort(function(a, b) {
+                    return b[0].length - a[0].length;
+                });
+                
+                // 遍历所有链接，将.html改为.en.html并更新文本
+                sidebarLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    var text = link.textContent;
+                    
+                    // 更新文本
+                    for (var i = 0; i < translationEntries.length; i++) {
+                        var chinese = translationEntries[i][0];
+                        var english = translationEntries[i][1];
+                        if (text.includes(chinese)) {
+                            text = english;
+                            link.textContent = text;
+                            break;
+                        }
+                    }
+                    
+                    // 更新链接
+                    if (href) {
+                        // 处理带有.html的链接
+                        if (href.includes('.html') && !href.includes('.en.html')) {
+                            // 处理带有锚点的链接，如 installation.html#id2
+                            if (href.includes('#')) {
+                                var parts = href.split('#');
+                                var page = parts[0].replace('.html', '.en.html');
+                                var anchor = parts[1];
+                                
+                                // 如果文本在锚点映射中，使用对应的语义化锚点
+                                if (anchorMap[text]) {
+                                    anchor = anchorMap[text];
+                                }
+                                
+                                link.setAttribute('href', page + '#' + anchor);
+                            } else {
+                                link.setAttribute('href', href.replace('.html', '.en.html'));
+                            }
+                        }
+                        // 处理页面内部的锚点链接（没有.html后缀）
+                        else if (href.startsWith('#')) {
+                            // 如果文本在锚点映射中，使用对应的语义化锚点
+                            if (anchorMap[text]) {
+                                var newHref = '#' + anchorMap[text];
+                                link.setAttribute('href', newHref);
+                            }
+                        }
+                    }
+                });
+                
+                // 修复嵌套的锚点链接
+                var nestedLinks = document.querySelectorAll('.wy-menu-vertical .toctree-l2 a.reference.internal, .wy-menu-vertical .toctree-l3 a.reference.internal');
+                nestedLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    var text = link.textContent;
+                    
+                    if (href && (href.includes('.html') || href.startsWith('#'))) {
+                        // 处理带有.html的链接
+                        if (href.includes('.html')) {
+                            // 确保指向英文页面
+                            if (!href.includes('.en.html')) {
+                                var newHref = href.replace('.html', '.en.html');
+                                link.setAttribute('href', newHref);
+                            }
+                        }
+                        // 处理页面内部的锚点链接
+                        else if (href.startsWith('#')) {
+                            // 获取当前页面的URL，提取文件名
+                            var currentUrl = window.location.pathname;
+                            var currentPage = currentUrl.split('/').pop();
+                            
+                            // 如果文本在锚点映射中，使用对应的语义化锚点
+                            if (anchorMap[text]) {
+                                var newHref = currentPage + '#' + anchorMap[text];
+                                link.setAttribute('href', newHref);
+                            } else {
+                                // 否则保持原有锚点
+                                var newHref = currentPage + href;
+                                link.setAttribute('href', newHref);
+                            }
+                        }
+                    }
+                });
+                
+                // 修改Home链接
+                var homeLinks = document.querySelectorAll('a.icon-home');
+                homeLinks.forEach(function(link) {
+                    link.setAttribute('href', 'index.en.html');
+                });
+                
+                // 修改面包屑导航的Home链接
+                var breadcrumbHome = document.querySelector('.wy-breadcrumbs li:first-child a');
+                if (breadcrumbHome) {
+                    breadcrumbHome.setAttribute('href', 'index.en.html');
+                }
+                
+                // 修改页面内的文档引用链接
+                var docLinks = document.querySelectorAll('.doc');
+                docLinks.forEach(function(link) {
+                    var text = link.textContent;
+                    
+                    for (var i = 0; i < translationEntries.length; i++) {
+                        var chinese = translationEntries[i][0];
+                        var english = translationEntries[i][1];
+                        if (text.includes(chinese)) {
+                            link.textContent = english;
+                            // 同时更新链接
+                            var href = link.getAttribute('href');
+                            if (href && href.includes('.html') && !href.includes('.en.html')) {
+                                if (href.includes('#')) {
+                                    var parts = href.split('#');
+                                    link.setAttribute('href', parts[0].replace('.html', '.en.html') + '#' + parts[1]);
+                                } else {
+                                    link.setAttribute('href', href.replace('.html', '.en.html'));
+                                }
+                            }
+                            break;
+                        }
+                    }
+                });
+                
+                // 确保导航菜单能够正确展开
+                var toctreeExpandButtons = document.querySelectorAll('.toctree-expand');
+                toctreeExpandButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var parent = this.parentNode;
+                        // 切换展开/折叠状态
+                        if (parent.classList.contains('open')) {
+                            parent.classList.remove('open');
+                        } else {
+                            parent.classList.add('open');
+                        }
+                    });
+                });
+                
+                // 为大标题添加点击事件，点击时展开/折叠子菜单
+                var topLevelItems = document.querySelectorAll('.wy-menu-vertical > ul > li');
+                topLevelItems.forEach(function(item) {
+                    var link = item.querySelector('a.reference.internal');
+                    if (link) {
+                        // 为链接本身添加点击事件
+                        link.addEventListener('click', function(e) {
+                            // 检查是否点击的是toctree-expand按钮
+                            if (e.target.classList.contains('toctree-expand')) {
+                                // 如果点击的是展开按钮，只切换展开状态，不阻止导航
+                                var hasChildren = item.querySelector('ul');
+                                if (hasChildren) {
+                                    if (item.classList.contains('open')) {
+                                        item.classList.remove('open');
+                                    } else {
+                                        item.classList.add('open');
+                                    }
+                                }
+                                e.preventDefault(); // 阻止默认行为，只切换展开状态
+                            }
+                        });
+                    }
+                });
+                
+                // 展开当前页面的菜单并设置选中状态
+                var currentItems = document.querySelectorAll('.wy-menu-vertical li.current');
+                currentItems.forEach(function(item) {
+                    item.classList.add('open');
+                    // 展开所有父菜单
+                    var parent = item.parentNode;
+                    while (parent.classList.contains('toctree-l1') || parent.classList.contains('toctree-l2') || parent.classList.contains('toctree-l3')) {
+                        parent.classList.add('open');
+                        parent = parent.parentNode;
+                    }
+                });
+                
+                // 为当前页面的导航链接添加选中状态
+                var currentUrl = window.location.pathname;
+                var currentPage = currentUrl.split('/').pop();
+                sidebarLinks.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    if (href) {
+                        // 检查链接是否指向当前页面
+                        if (href === currentPage || href === './' + currentPage) {
+                            // 为链接的父元素添加current类
+                            var parentLi = link.closest('li');
+                            if (parentLi) {
+                                parentLi.classList.add('current');
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        
+        // 页面加载完成后更新导航
+        if (window.addEventListener) {
+            window.addEventListener('load', function() {
+                updateNavigation();
+                
+                // 监听DOM变化，确保动态生成的内容也能被更新
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'childList') {
+                            // 检查是否有新的导航链接被添加
+                            var newLinks = mutation.addedNodes;
+                            for (var i = 0; i < newLinks.length; i++) {
+                                if (newLinks[i].nodeType === 1 && (newLinks[i].classList.contains('wy-menu-vertical') || newLinks[i].querySelector('.wy-menu-vertical'))) {
+                                    updateNavigation();
+                                    break;
+                                }
+                            }
+                        }
+                    });
+                });
+                
+                // 观察整个文档的变化
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }, false);
+        } else if (window.attachEvent) {
+            window.attachEvent('onload', function() {
+                updateNavigation();
+            });
+        }
+    </script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            QLLVM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">文档导航:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">QLLVM介绍</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id1">总体功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id2">技术路线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id3">主要优势</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id4">项目结构概览</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-from-plugins">从插件进行安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#vsix">从VSIX文件安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#basic-configuration">基本配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-circuit-composer">Quantum Circuit Composer配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder">Qcoder配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-from-source">从源码进行安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-dependencies">通用依赖</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#qllvm">QLLVM构建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#optional-dependencies-install-as-needed">可选依赖（按需安装）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#cuda-c-cuda-qasm">CUDA环境（仅C+++CUDA+QASM混合需要）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#verification-and-testing">验证和测试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">故障排除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">使用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#usage-examples">使用示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#using-command-line">使用命令行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#openqasm">编译OpenQASM文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#bell">Bell态示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#qllvm-compile">直接调用 qllvm-compile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#mlir-qir">打印 MLIR / QIR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#backend-topology-configuration-example">后端拓扑配置示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#compilation-parameter-explanation">编译参数说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#optional-dependencies-install-as-needed">可选依赖（按需安装）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#qir-runner">QIR Runner 后端</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#classical-quantum-hybrid-compilation">经典-量子混合编译</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">贡献指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">行为准则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">如何贡献</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">报告问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">贡献代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">贡献文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">贡献测试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">代码风格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">沟通渠道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">贡献者指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">首次贡献</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">代码审查</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">许可证</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">致谢</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QLLVM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+    <div class="language-switcher">
+        
+            <a href="contributing.en.html">English</a>
+            <a href="contributing.html">中文</a>
+        
+    </div>
+    
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">贡献指南</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>贡献指南<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>感谢您对QLLVM项目的关注和支持！我们欢迎各种形式的贡献，包括代码、文档、测试、问题报告等。本指南将帮助您了解如何为QLLVM项目做出贡献。</p>
+<section id="id2">
+<h2>行为准则<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>参与QLLVM项目的所有贡献者都应遵守以下行为准则：</p>
+<ul class="simple">
+<li><p>尊重他人，保持友好和专业的态度</p></li>
+<li><p>接受建设性批评</p></li>
+<li><p>关注社区的最佳利益</p></li>
+<li><p>对其他贡献者表示同理心</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>如何贡献<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>报告问题<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>如果您发现了bug或有新功能建议，请在GitHub上提交 <a class="reference external" href="https://github.com/QCFlow/QLLVM/issues">Issue</a>。在提交Issue时，请提供以下信息：</p>
+<ul class="simple">
+<li><p>问题的详细描述</p></li>
+<li><p>重现问题的步骤</p></li>
+<li><p>期望的行为</p></li>
+<li><p>实际的行为</p></li>
+<li><p>环境信息（操作系统、Python版本、QLLVM版本等）</p></li>
+<li><p>相关的错误信息或日志</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>贡献代码<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>如果您想贡献代码，请按照以下步骤操作：</p>
+<ol class="arabic">
+<li><p><strong>Fork仓库</strong>
+- 在GitHub上fork QLLVM仓库到您自己的账户</p></li>
+<li><p><strong>克隆仓库</strong>
+- 克隆您fork的仓库到本地
+.. code-block:: bash</p>
+<blockquote>
+<div><p>git clone <a class="reference external" href="https://github.com/QCFlow/QLLVM.git">https://github.com/QCFlow/QLLVM.git</a>
+cd qllvm</p>
+</div></blockquote>
+</li>
+<li><p><strong>创建分支</strong>
+- 创建一个新的分支来进行您的修改
+.. code-block:: bash</p>
+<blockquote>
+<div><p>git checkout -b feature/your-feature-name</p>
+</div></blockquote>
+</li>
+<li><p><strong>安装开发依赖</strong>
+- 安装开发依赖
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip install -e .[dev]</p>
+</div></blockquote>
+</li>
+<li><p><strong>进行修改</strong>
+- 进行您的代码修改
+- 确保代码风格符合项目要求
+- 添加适当的测试</p></li>
+<li><p><strong>运行测试</strong>
+- 运行测试确保您的修改没有破坏现有功能
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pytest</p>
+</div></blockquote>
+</li>
+<li><p><strong>提交更改</strong>
+- 提交您的更改，使用清晰的提交信息
+.. code-block:: bash</p>
+<blockquote>
+<div><p>git add .
+git commit -m “Add feature: your feature description”</p>
+</div></blockquote>
+</li>
+<li><p><strong>推送分支</strong>
+- 推送您的分支到GitHub
+.. code-block:: bash</p>
+<blockquote>
+<div><p>git push origin feature/your-feature-name</p>
+</div></blockquote>
+</li>
+<li><p><strong>创建Pull Request</strong>
+- 在GitHub上创建一个Pull Request，描述您的更改
+- 等待项目维护者的审核</p></li>
+</ol>
+</section>
+<section id="id6">
+<h3>贡献文档<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>如果您想贡献文档，请按照以下步骤操作：</p>
+<ol class="arabic">
+<li><p>Fork和克隆仓库（同代码贡献步骤1-2）</p></li>
+<li><p>创建分支（同代码贡献步骤3）</p></li>
+<li><p><strong>安装文档依赖</strong>
+- 安装文档构建依赖
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip install -e .[docs]</p>
+</div></blockquote>
+</li>
+<li><p><strong>修改文档</strong>
+- 修改或添加文档内容
+- 确保文档风格一致
+- 检查链接是否有效</p></li>
+<li><p><strong>构建文档</strong>
+- 构建文档确保没有错误
+.. code-block:: bash</p>
+<blockquote>
+<div><p>cd docs
+make html</p>
+</div></blockquote>
+</li>
+<li><p>提交更改（同代码贡献步骤7-9）</p></li>
+</ol>
+</section>
+<section id="id7">
+<h3>贡献测试<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>如果您想贡献测试，请按照以下步骤操作：</p>
+<ol class="arabic simple">
+<li><p>Fork和克隆仓库（同代码贡献步骤1-2）</p></li>
+<li><p>创建分支（同代码贡献步骤3）</p></li>
+<li><p><strong>安装测试依赖</strong>
+- 安装测试依赖</p></li>
+<li><p><strong>添加测试</strong>
+- 添加新的测试用例
+- 确保测试覆盖新功能或修复的bug</p></li>
+<li><p><strong>运行测试</strong>
+- 运行测试确保测试通过</p></li>
+<li><p>提交更改（同代码贡献步骤7-9）</p></li>
+</ol>
+</section>
+</section>
+<section id="id8">
+<h2>代码风格<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>QLLVM项目遵循以下代码风格：</p>
+<ul class="simple">
+<li><p><strong>Python代码</strong>：遵循PEP 8规范
+- 使用4个空格进行缩进
+- 行长度不超过79个字符
+- 导入顺序：标准库、第三方库、本地模块
+- 使用文档字符串记录函数和类</p></li>
+<li><p><strong>文档</strong>：遵循reStructuredText格式
+- 使用清晰的标题层级
+- 代码示例使用正确的语法高亮
+- 链接使用相对路径</p></li>
+<li><p><strong>提交信息</strong>：使用清晰的提交信息
+- 第一行：简短的描述（不超过50个字符）
+- 空行
+- 详细描述（如果需要）
+- 引用相关的Issue（如果有）</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2>沟通渠道<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>GitHub Issues</strong>：用于报告问题和讨论功能</p></li>
+<li><p><strong>GitHub Discussions</strong>：用于讨论项目相关的话题</p></li>
+<li><p><strong>邮件列表</strong>：如果有邮件列表，请在这里提供</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>贡献者指南<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<section id="id11">
+<h3>首次贡献<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>如果您是第一次贡献开源项目，以下资源可能会有所帮助：</p>
+<ul class="simple">
+<li><p>[How to Contribute to Open Source](<a class="reference external" href="https://opensource.guide/how-to-contribute/">https://opensource.guide/how-to-contribute/</a>)</p></li>
+<li><p>[First Contributions](<a class="reference external" href="https://firstcontributions.github.io/">https://firstcontributions.github.io/</a>)</p></li>
+<li><p>[GitHub Docs: Fork a repo](<a class="reference external" href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">https://docs.github.com/en/get-started/quickstart/fork-a-repo</a>)</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>代码审查<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>所有的Pull Request都会经过代码审查。在审查过程中，您可能需要根据审查意见进行修改。请保持耐心和开放的态度，代码审查是提高代码质量的重要环节。</p>
+</section>
+<section id="id13">
+<h3>许可证<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>通过贡献代码到QLLVM项目，您同意您的贡献将在项目的许可证下发布。</p>
+</section>
+</section>
+<section id="id14">
+<h2>致谢<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<p>感谢所有为QLLVM项目做出贡献的人！您的贡献是项目成功的关键。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="使用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Yuqiong Jin,Yu Zhu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

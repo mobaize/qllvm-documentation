@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Yuqiong Jin,Yu Zhu
+# This file is distributed under the same license as the QLLVM package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QLLVM \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 08:32+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../api.en.rst:2
+msgid "QLLVM Quantum Compilation Framework"
+msgstr ""
+
+#: ../api.en.rst:4
+msgid "QLLVM quantum compilation framework is a quantum program compilation framework built on MLIR and LLVM IR. The framework adopts a three-stage design of front-end, middle-end, and back-end, supporting multiple quantum programming language inputs, and outputting code supported by target hardware after optimization and mapping."
+msgstr ""
+
+#: ../api.en.rst:7
+msgid "Software Introduction"
+msgstr ""
+
+#: ../api.en.rst:9
+msgid "QLLVM compiles high-level quantum programs into target back-end executable code, with the following main features"
+msgstr ""
+
+#: ../api.en.rst:13
+msgid "Function Module"
+msgstr ""
+
+#: ../api.en.rst:14
+msgid "Description"
+msgstr ""
+
+#: ../api.en.rst:15
+msgid "`Multi-language front-end`"
+msgstr ""
+
+#: ../api.en.rst:16
+msgid "Supports OpenQASM 2.0/3.0, Qiskit QuantumCircuit, Q# and other inputs"
+msgstr ""
+
+#: ../api.en.rst:17
+msgid "`MLIR optimization`"
+msgstr ""
+
+#: ../api.en.rst:18
+msgid "Single-qubit gate merging, cancellation, diagonal gate removal, gate synthesis and other optimization passes"
+msgstr ""
+
+#: ../api.en.rst:19
+msgid "`-basicgate`"
+msgstr ""
+
+#: ../api.en.rst:20
+msgid "Specify basic gate set"
+msgstr ""
+
+#: ../api.en.rst:21
+msgid "`QIR generation`"
+msgstr ""
+
+#: ../api.en.rst:22
+msgid "Lowering MLIR dialects to QIR (quantum intermediate representation in LLVM IR form)"
+msgstr ""
+
+#: ../api.en.rst:23
+msgid "`SABRE mapping`"
+msgstr ""
+
+#: ../api.en.rst:24
+msgid "C++/Qiskit implementation of qubit layout and SWAP insertion"
+msgstr ""
+
+#: ../api.en.rst:25
+msgid "`Multi-backend emission`"
+msgstr ""
+
+#: ../api.en.rst:26
+msgid "Output OpenQASM, hardware-specific formats, etc."
+msgstr ""
+
+#: ../api.en.rst:29
+msgid "Compilation Pipeline"
+msgstr ""
+
+#: ../api.en.rst:30
+msgid "``QASM source file → Preprocessing → MLIR (Quantum dialect) → Optimization Passes → Lowering → LLVM IR (QIR) → Backend emission``"
+msgstr ""
+
+#: ../api.en.rst:33
+msgid "Technical Route"
+msgstr ""
+
+#: ../api.en.rst:34
+msgid "Front-end: Responsible for language parsing and intermediate code generation, converting high-level languages to MLIR Quantum dialect"
+msgstr ""
+
+#: ../api.en.rst:35
+msgid "Middle-end: Perform quantum program optimization based on MLIR, and further lower MLIR to QIR (LLVM IR)"
+msgstr ""
+
+#: ../api.en.rst:36
+msgid "Back-end: Based on QIR and QIR runtime library, convert programs to code formats supported by target hardware"
+msgstr ""
+
+#: ../api.en.rst:39
+msgid "Key Advantages"
+msgstr ""
+
+#: ../api.en.rst:40
+msgid "Industrial-grade IR infrastructure: Based on MLIR/LLVM, easy to extend new dialects and new passes"
+msgstr ""
+
+#: ../api.en.rst:41
+msgid "Multiple input forms: OpenQASM, Qiskit, Q# etc., adapting to different programming habits"
+msgstr ""
+
+#: ../api.en.rst:42
+msgid "Flexible optimization: -O0/-O1 levels, custom pass sequences, synthesis optimization"
+msgstr ""
+
+#: ../api.en.rst:43
+msgid "Physical constraint mapping: SABRE and other layout and SWAP strategies, adapting to real hardware topology"
+msgstr ""
+
+#: ../api.en.rst:46
+msgid "QLLVM Usage Guide"
+msgstr ""
+
+#: ../api.en.rst:48
+msgid "Install QLLVM: Refer to the :doc:`installation` guide to learn how to install QLLVM."
+msgstr ""
+
+#: ../api.en.rst:49
+msgid "Use QLLVM: Refer to the :doc:`tutorials` guide to learn how to use QLLVM to compile quantum circuits."
+msgstr ""
