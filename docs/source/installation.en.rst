@@ -30,9 +30,10 @@ Quantum Circuit Composer Configuration
 1. Open compiler settings: Type **Open Quantum Compiler Settings** in the command palette
 2. Enable compilers: Check the compilers you need in the configuration interface (such as QLLVM, Qiskit, QPanda)
 3. Configure compiler parameters:
-   - QLLVM: Set device type (NISQ/FTQC), backend type (qasm-backend/benyuan/tianyan/zheda), optimization level (O0/O1), etc.
-   - Python environment: Supports automatic detection of system Python, virtual environments (venv/conda), or manually specifying interpreter path
-   - Remote compilation: Can configure SSH connection information to submit compilation tasks to remote servers
+
+   * QLLVM: Set device type (NISQ/FTQC), backend type (qasm-backend/benyuan/tianyan/zheda), optimization level (O0/O1), etc.
+   * Python environment: Supports automatic detection of system Python, virtual environments (venv/conda), or manually specifying interpreter path
+   * Remote compilation: Can configure SSH connection information to submit compilation tasks to remote servers
 
 Qcoder Configuration
 ^^^^^^^^^^^^^^^^^^^^^

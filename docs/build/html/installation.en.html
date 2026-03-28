@@ -477,6 +477,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">使用</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#usage-examples">使用示例</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
 </ul>
@@ -488,7 +489,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#id10">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id11">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
@@ -577,10 +578,13 @@
 <ol class="arabic simple">
 <li><p>Open compiler settings: Type <strong>Open Quantum Compiler Settings</strong> in the command palette</p></li>
 <li><p>Enable compilers: Check the compilers you need in the configuration interface (such as QLLVM, Qiskit, QPanda)</p></li>
-<li><p>Configure compiler parameters:
-- QLLVM: Set device type (NISQ/FTQC), backend type (qasm-backend/benyuan/tianyan/zheda), optimization level (O0/O1), etc.
-- Python environment: Supports automatic detection of system Python, virtual environments (venv/conda), or manually specifying interpreter path
-- Remote compilation: Can configure SSH connection information to submit compilation tasks to remote servers</p></li>
+<li><p>Configure compiler parameters:</p>
+<ul class="simple">
+<li><p>QLLVM: Set device type (NISQ/FTQC), backend type (qasm-backend/benyuan/tianyan/zheda), optimization level (O0/O1), etc.</p></li>
+<li><p>Python environment: Supports automatic detection of system Python, virtual environments (venv/conda), or manually specifying interpreter path</p></li>
+<li><p>Remote compilation: Can configure SSH connection information to submit compilation tasks to remote servers</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="qcoder-configuration">

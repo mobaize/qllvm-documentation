@@ -30,7 +30,7 @@ QASM 源文件 → 预处理 → MLIR (Quantum 方言) → 优化 Passes → Low
    :align: center
    :width: 80%
 
-QLLVM编译框架
+.. centered:: QLLVM编译框架
 
 * **前端**：负责语言解析和中间代码生成，将高级语言转换为 MLIR Quantum 方言
 * **中端**：基于 MLIR 进行量子程序优化，并将 MLIR 进一步 Lowering 为 QIR（LLVM IR）
@@ -42,7 +42,7 @@ QLLVM编译框架
    :align: center
    :width: 100%
 
-经典量子混合程序编译机制
+.. centered:: 经典量子混合程序编译机制
 
 同时基于LLVM编译框架，QLLVM编译器能够和多类经典高性能编译器协同编译，从而支持经典量子混合程序的编译。
 
@@ -50,7 +50,7 @@ QLLVM编译框架
    :align: center
    :width: 100%
 
-混合程序代码编写示例
+.. centered:: 混合程序代码编写示例
 
 主要优势
 --------

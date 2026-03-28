@@ -34,10 +34,12 @@ Contributing Code
 If you want to contribute code, please follow these steps:
 
 1. **Fork the repository**
-   - Fork the QLLVM repository to your own account on GitHub
+
+   * Fork the QLLVM repository to your own account on GitHub
 
 2. **Clone the repository**
-   - Clone your forked repository to your local machine
+
+   * Clone your forked repository to your local machine
 
 .. code-block:: bash
 
@@ -45,33 +47,38 @@ If you want to contribute code, please follow these steps:
     cd qllvm
 
 3. **Create a branch**
-   - Create a new branch for your modifications
+
+   * Create a new branch for your modifications
 
 .. code-block:: bash
    
     git checkout -b feature/your-feature-name
 
 4. **Install development dependencies**
-   - Install development dependencies
+
+   * Install development dependencies
 
 .. code-block:: bash
 
     pip install -e .[dev]
 
 5. **Make modifications**
-   - Make your code modifications
-   - Ensure code style meets project requirements
-   - Add appropriate tests
+
+   * Make your code modifications
+   * Ensure code style meets project requirements
+   * Add appropriate tests
 
 6. **Run tests**
-   - Run tests to ensure your modifications do not break existing functionality
+
+   * Run tests to ensure your modifications do not break existing functionality
 
 .. code-block:: bash
 
     pytest
 
 7. **Commit changes**
-   - Commit your changes with a clear commit message
+
+   * Commit your changes with a clear commit message
 
 .. code-block:: bash
 
@@ -79,15 +86,17 @@ If you want to contribute code, please follow these steps:
     git commit -m "Add feature: your feature description"
 
 8. **Push branch**
-   - Push your branch to GitHub
+
+   * Push your branch to GitHub
 
 .. code-block:: bash
 
     git push origin feature/your-feature-name   
 
 9. **Create Pull Request**
-   - Create a Pull Request on GitHub, describing your changes
-   - Wait for project maintainers to review
+
+   * Create a Pull Request on GitHub, describing your changes
+   * Wait for project maintainers to review
 
 Contributing Documentation
 -------------------------------
@@ -99,19 +108,22 @@ If you want to contribute documentation, please follow these steps:
 2. Create a branch (same as code contribution step 3)
 
 3. **Install documentation dependencies**
-   - Install documentation building dependencies
+
+   * Install documentation building dependencies
 
 .. code-block:: bash
 
     pip install -e .[docs]
 
 4. **Modify documentation**
-   - Modify or add documentation content
-   - Ensure consistent documentation style
-   - Check if links are valid
+
+   * Modify or add documentation content
+   * Ensure consistent documentation style
+   * Check if links are valid
 
 5. **Build documentation**
-   - Build documentation to ensure no errors
+
+   * Build documentation to ensure no errors
 
 .. code-block:: bash
 
@@ -134,14 +146,17 @@ If you want to contribute tests, please follow these steps:
 2. Create a branch (same as code contribution step 3)
 
 3. **Install test dependencies**
-   - Install test dependencies
+
+   * Install test dependencies
 
 4. **Add tests**
-   - Add new test cases
-   - Ensure tests cover new features or fixed bugs
+
+   * Add new test cases
+   * Ensure tests cover new features or fixed bugs
 
 5. **Run tests**
-   - Run tests to ensure they pass
+
+   * Run tests to ensure they pass
 
 6. Commit changes (same as code contribution steps 7-9)
 

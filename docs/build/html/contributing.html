@@ -478,6 +478,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">使用</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#usage-examples">使用示例</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
 </ul>
@@ -489,7 +490,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#id10">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id11">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
@@ -581,59 +582,86 @@
 <h3>贡献代码<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <p>如果您想贡献代码，请按照以下步骤操作：</p>
 <ol class="arabic simple">
-<li><p><strong>Fork仓库</strong>
-- 在GitHub上fork QLLVM仓库到您自己的账户</p></li>
-<li><p><strong>克隆仓库</strong>
-- 克隆您fork的仓库到本地</p></li>
+<li><p><strong>Fork仓库</strong></p>
+<ul class="simple">
+<li><p>在GitHub上fork QLLVM仓库到您自己的账户</p></li>
+</ul>
+</li>
+<li><p><strong>克隆仓库</strong></p>
+<ul class="simple">
+<li><p>克隆您fork的仓库到本地</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/QCFlow/QLLVM.git
 <span class="nb">cd</span><span class="w"> </span>qllvm
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p><strong>创建分支</strong>
-- 创建一个新的分支来进行您的修改</p></li>
+<li><p><strong>创建分支</strong></p>
+<ul class="simple">
+<li><p>创建一个新的分支来进行您的修改</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p><strong>安装开发依赖</strong>
-- 安装开发依赖</p></li>
+<li><p><strong>安装开发依赖</strong></p>
+<ul class="simple">
+<li><p>安装开发依赖</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li><p><strong>进行修改</strong>
-- 进行您的代码修改
-- 确保代码风格符合项目要求
-- 添加适当的测试</p></li>
-<li><p><strong>运行测试</strong>
-- 运行测试确保您的修改没有破坏现有功能</p></li>
+<li><p><strong>进行修改</strong></p>
+<ul class="simple">
+<li><p>进行您的代码修改</p></li>
+<li><p>确保代码风格符合项目要求</p></li>
+<li><p>添加适当的测试</p></li>
+</ul>
+</li>
+<li><p><strong>运行测试</strong></p>
+<ul class="simple">
+<li><p>运行测试确保您的修改没有破坏现有功能</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
-<li><p><strong>提交更改</strong>
-- 提交您的更改，使用清晰的提交信息</p></li>
+<li><p><strong>提交更改</strong></p>
+<ul class="simple">
+<li><p>提交您的更改，使用清晰的提交信息</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add feature: your feature description&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="8">
-<li><p><strong>推送分支</strong>
-- 推送您的分支到GitHub</p></li>
+<li><p><strong>推送分支</strong></p>
+<ul class="simple">
+<li><p>推送您的分支到GitHub</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
-<li><p><strong>创建Pull Request</strong>
-- 在GitHub上创建一个Pull Request，描述您的更改
-- 等待项目维护者的审核</p></li>
+<li><p><strong>创建Pull Request</strong></p>
+<ul class="simple">
+<li><p>在GitHub上创建一个Pull Request，描述您的更改</p></li>
+<li><p>等待项目维护者的审核</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="id6">
@@ -642,19 +670,28 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <ol class="arabic simple">
 <li><p>Fork和克隆仓库（同代码贡献步骤1-2）</p></li>
 <li><p>创建分支（同代码贡献步骤3）</p></li>
-<li><p><strong>安装文档依赖</strong>
-- 安装文档构建依赖</p></li>
+<li><p><strong>安装文档依赖</strong></p>
+<ul class="simple">
+<li><p>安装文档构建依赖</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>docs<span class="o">]</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p><strong>修改文档</strong>
-- 修改或添加文档内容
-- 确保文档风格一致
-- 检查链接是否有效</p></li>
-<li><p><strong>构建文档</strong>
-- 构建文档确保没有错误</p></li>
+<li><p><strong>修改文档</strong></p>
+<ul class="simple">
+<li><p>修改或添加文档内容</p></li>
+<li><p>确保文档风格一致</p></li>
+<li><p>检查链接是否有效</p></li>
+</ul>
+</li>
+<li><p><strong>构建文档</strong></p>
+<ul class="simple">
+<li><p>构建文档确保没有错误</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
 make<span class="w"> </span>html
@@ -670,13 +707,22 @@ make<span class="w"> </span>html
 <ol class="arabic simple">
 <li><p>Fork和克隆仓库（同代码贡献步骤1-2）</p></li>
 <li><p>创建分支（同代码贡献步骤3）</p></li>
-<li><p><strong>安装测试依赖</strong>
-- 安装测试依赖</p></li>
-<li><p><strong>添加测试</strong>
-- 添加新的测试用例
-- 确保测试覆盖新功能或修复的bug</p></li>
-<li><p><strong>运行测试</strong>
-- 运行测试确保测试通过</p></li>
+<li><p><strong>安装测试依赖</strong></p>
+<ul class="simple">
+<li><p>安装测试依赖</p></li>
+</ul>
+</li>
+<li><p><strong>添加测试</strong></p>
+<ul class="simple">
+<li><p>添加新的测试用例</p></li>
+<li><p>确保测试覆盖新功能或修复的bug</p></li>
+</ul>
+</li>
+<li><p><strong>运行测试</strong></p>
+<ul class="simple">
+<li><p>运行测试确保测试通过</p></li>
+</ul>
+</li>
 <li><p>提交更改（同代码贡献步骤7-9）</p></li>
 </ol>
 </section>

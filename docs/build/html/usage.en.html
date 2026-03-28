@@ -477,6 +477,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">使用</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#usage-examples">使用示例</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
 </ul>
@@ -488,7 +489,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#id10">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id11">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
@@ -556,6 +557,44 @@
 <span id="id1"></span><h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
 <section id="using-plugins">
 <span id="id2"></span><h3>Using Plugins<a class="headerlink" href="#using-plugins" title="Link to this heading"></a></h3>
+<section id="cloud-usage">
+<h4>Cloud Usage<a class="headerlink" href="#cloud-usage" title="Link to this heading"></a></h4>
+<a class="reference internal image-reference" href="_images/006.png"><img alt="_images/006.png" class="align-center" src="_images/006.png" style="width: 80%;" />
+</a>
+<p class="centered">
+<strong>VScode Plugin Interface</strong></p><table class="docutils align-default" id="id16">
+<caption><span class="caption-text">Feature Description</span><a class="headerlink" href="#id16" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Area</p></th>
+<th class="head"><p>Feature Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>① Qcoder Sidebar</p></td>
+<td><p>Click to use Qcoder intelligent programming assistant</p></td>
+</tr>
+<tr class="row-odd"><td><p>② Qcoder Main Interface</p></td>
+<td><p>Intelligent interactive interface</p></td>
+</tr>
+<tr class="row-even"><td><p>③ Code Interface</p></td>
+<td><p>Used to display quantum programs</p></td>
+</tr>
+<tr class="row-odd"><td><p>④ Compile Button</p></td>
+<td><p>Click to compile the code interface or selected quantum program</p></td>
+</tr>
+<tr class="row-even"><td><p>⑤ Run Button</p></td>
+<td><p>Click to run the code interface or selected quantum program</p></td>
+</tr>
+<tr class="row-odd"><td><p>⑥ Output Interface</p></td>
+<td><p>Output the compiled quantum circuit and various parameters</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="quantum-circuit-composer">
 <h4>Quantum Circuit Composer<a class="headerlink" href="#quantum-circuit-composer" title="Link to this heading"></a></h4>
 <p>Quantum Circuit Composer is a Visual Studio Code plugin with the following main features:</p>
@@ -569,12 +608,17 @@
 </ul>
 <p><strong>Quick start:</strong></p>
 <ol class="arabic">
-<li><p><strong>Install the plugin</strong>
-- Search for “Quantum Circuit Composer” in the VSCode extension store and install it.
-- After installation, a circuit board icon will appear in the status bar, click to open the settings panel.</p></li>
-<li><p><strong>Write quantum circuit</strong>
-- Create a new file, supporting <cite>.qasm</cite> (OpenQASM), <cite>.py</cite> (Qiskit/QPanda code), <cite>.originir</cite>, <cite>.qcis</cite>, etc.
-- For example, a simple Bell state QASM file:</p>
+<li><p><strong>Install the plugin</strong></p>
+<ul class="simple">
+<li><p>Search for “Quantum Circuit Composer” in the VSCode extension store and install it.</p></li>
+<li><p>After installation, a circuit board icon will appear in the status bar, click to open the settings panel.</p></li>
+</ul>
+</li>
+<li><p><strong>Write quantum circuit</strong></p>
+<ul class="simple">
+<li><p>Create a new file, supporting <cite>.qasm</cite> (OpenQASM), <cite>.py</cite> (Qiskit/QPanda code), <cite>.originir</cite>, <cite>.qcis</cite>, etc.</p></li>
+<li><p>For example, a simple Bell state QASM file:</p></li>
+</ul>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>OPENQASM 2.0;
 include &quot;qelib1.inc&quot;;
 qreg q[2];
@@ -586,14 +630,20 @@ measure q[1] -&gt; c[1];
 </pre></div>
 </div>
 </li>
-<li><p><strong>Compile file</strong>
-- Right-click on the file and select <strong>“Compile current quantum circuit file”</strong>.
-- Or open the settings panel and click <strong>“▶ Select file to compile”</strong> at the top.
-- The plugin will use all enabled compilers to compile in parallel and display results and statistical comparison tables in the output channel.</p></li>
-<li><p><strong>Run QIR simulator</strong>
-- In the compiler list of the settings panel, find the QLLVM compiler and click the <strong>“▶ Run simulator”</strong> button on its right.
-- Enter shots (number of runs) and random seed (optional) in the pop-up input box.
-- After simulation is complete, the output channel will display measurement result statistics.</p></li>
+<li><p><strong>Compile file</strong></p>
+<ul class="simple">
+<li><p>Right-click on the file and select <strong>“Compile current quantum circuit file”</strong>.</p></li>
+<li><p>Or open the settings panel and click <strong>“▶ Select file to compile”</strong> at the top.</p></li>
+<li><p>The plugin will use all enabled compilers to compile in parallel and display results and statistical comparison tables in the output channel.</p></li>
+</ul>
+</li>
+<li><p><strong>Run QIR simulator</strong></p>
+<ul class="simple">
+<li><p>In the compiler list of the settings panel, find the QLLVM compiler and click the <strong>“▶ Run simulator”</strong> button on its right.</p></li>
+<li><p>Enter shots (number of runs) and random seed (optional) in the pop-up input box.</p></li>
+<li><p>After simulation is complete, the output channel will display measurement result statistics.</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="qcoder">
@@ -602,19 +652,30 @@ measure q[1] -&gt; c[1];
 <p>QCoder embeds large model dialogue into the editor sidebar, focusing on quantum algorithms, quantum circuits, and toolchain issues, rather than general chat. It allows users to configure their own API Key for Alibaba Cloud, DeepSeek, or <strong>custom SCNet models</strong>.</p>
 <p><strong>Quick start:</strong></p>
 <ol class="arabic">
-<li><p><strong>Installation</strong>
-- Search and install in the VS Code extension view, or use <strong>Install from VSIX…</strong> to install the <cite>.vsix</cite> distributed by the organization.</p></li>
+<li><p><strong>Installation</strong></p>
+<ul class="simple">
+<li><p>Search and install in the VS Code extension view, or use <strong>Install from VSIX…</strong> to install the <cite>.vsix</cite> distributed by the organization.</p></li>
+</ul>
+</li>
 <li><p><strong>Configure API Key (according to the model you actually use)</strong></p>
-<p>Open the command palette (<cite>Ctrl+Shift+P</cite> / <cite>Cmd+Shift+P</cite>):
-- <strong>QCoder: Set QCoder Qwen API Key</strong>: Alibaba Cloud (custom Qwen model)
-- <strong>QCoder: Set QCoder DeepSeek API Key</strong>: DeepSeek (custom)
-- <strong>QCoder: Set QCoder SCNet API Key</strong>: Only used for <strong>custom added SCNet models</strong>, unrelated to the three built-in official models</p>
+<p>Open the command palette (<cite>Ctrl+Shift+P</cite> / <cite>Cmd+Shift+P</cite>):</p>
+<ul class="simple">
+<li><p><strong>QCoder: Set QCoder Qwen API Key</strong>: Alibaba Cloud (custom Qwen model)</p></li>
+<li><p><strong>QCoder: Set QCoder DeepSeek API Key</strong>: DeepSeek (custom)</p></li>
+<li><p><strong>QCoder: Set QCoder SCNet API Key</strong>: Only used for <strong>custom added SCNet models</strong>, unrelated to the three built-in official models</p></li>
+</ul>
 <p>When only using the <strong>three built-in SCNet models</strong>, you don’t need to configure Qwen / DeepSeek / custom SCNet Key.</p>
 </li>
-<li><p><strong>Open chat</strong>
-- Click the <strong>QCoder</strong> icon in the activity bar to open the sidebar chat, or run <strong>QCoder: Chat with Quantum Programming Assistant</strong>.</p></li>
-<li><p><strong>Sidebar settings</strong>
-- Open <strong>Settings</strong> in the title bar or interface: manage custom model lists, interface language, and key writing related to model testing (in supported builds).</p></li>
+<li><p><strong>Open chat</strong></p>
+<ul class="simple">
+<li><p>Click the <strong>QCoder</strong> icon in the activity bar to open the sidebar chat, or run <strong>QCoder: Chat with Quantum Programming Assistant</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Sidebar settings</strong></p>
+<ul class="simple">
+<li><p>Open <strong>Settings</strong> in the title bar or interface: manage custom model lists, interface language, and key writing related to model testing (in supported builds).</p></li>
+</ul>
+</li>
 </ol>
 </section>
 </section>
@@ -858,8 +919,8 @@ qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span clas
 <p>This tutorial will introduce detailed explanations of qllvm compilation parameters.</p>
 <section id="driver-program-qllvm-parameters">
 <span id="id13"></span><h3>Driver Program (qllvm) Parameters<a class="headerlink" href="#driver-program-qllvm-parameters" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id16">
-<caption><span class="caption-text">Driver Program (qllvm) Parameters</span><a class="headerlink" href="#id16" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id17">
+<caption><span class="caption-text">Driver Program (qllvm) Parameters</span><a class="headerlink" href="#id17" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 20.0%" />
 <col style="width: 60.0%" />
@@ -955,8 +1016,8 @@ qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span clas
 </section>
 <section id="qllvm-compile-parameters">
 <span id="id14"></span><h3>qllvm-compile Parameters<a class="headerlink" href="#qllvm-compile-parameters" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id17">
-<caption><span class="caption-text">qllvm-compile Parameters</span><a class="headerlink" href="#id17" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id18">
+<caption><span class="caption-text">qllvm-compile Parameters</span><a class="headerlink" href="#id18" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 70.0%" />
@@ -1035,8 +1096,8 @@ qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span clas
 </section>
 <section id="cmake-build-parameters">
 <span id="id15"></span><h3>CMake Build Parameters<a class="headerlink" href="#cmake-build-parameters" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id18">
-<caption><span class="caption-text">CMake Build Parameters</span><a class="headerlink" href="#id18" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id19">
+<caption><span class="caption-text">CMake Build Parameters</span><a class="headerlink" href="#id19" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 70.0%" />

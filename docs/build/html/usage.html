@@ -479,6 +479,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">使用</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#usage-examples">使用示例</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#using-plugins">使用插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#quantum-circuit-composer">Quantum Circuit Composer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#qcoder">Qcoder</a></li>
 </ul>
@@ -490,7 +491,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id11">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cmake">CMake 构建参数</a></li>
@@ -558,6 +559,44 @@
 <span id="id2"></span><h2>使用示例<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
 <section id="using-plugins">
 <span id="id3"></span><h3>使用插件<a class="headerlink" href="#using-plugins" title="Link to this heading"></a></h3>
+<section id="id4">
+<h4>云端使用<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<a class="reference internal image-reference" href="_images/006.png"><img alt="_images/006.png" class="align-center" src="_images/006.png" style="width: 80%;" />
+</a>
+<p class="centered">
+<strong>VScode插件界面展示</strong></p><table class="docutils align-default" id="id13">
+<caption><span class="caption-text">功能说明</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>区域</p></th>
+<th class="head"><p>功能说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>① Qcoder 侧边栏</p></td>
+<td><p>点击即可使用 Qcoder 智能编程助手</p></td>
+</tr>
+<tr class="row-odd"><td><p>② Qcoder 主界面</p></td>
+<td><p>智能交互界面</p></td>
+</tr>
+<tr class="row-even"><td><p>③ 代码界面</p></td>
+<td><p>用于展示量子程序</p></td>
+</tr>
+<tr class="row-odd"><td><p>④ 编译键</p></td>
+<td><p>点击即可对代码界面或选中的量子程序进行编译</p></td>
+</tr>
+<tr class="row-even"><td><p>⑤ 运行键</p></td>
+<td><p>点击即可运行代码界面或选中的量子程序</p></td>
+</tr>
+<tr class="row-odd"><td><p>⑥ 输出界面</p></td>
+<td><p>输出编译好的量子线路以及各项参数</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="quantum-circuit-composer">
 <h4>Quantum Circuit Composer<a class="headerlink" href="#quantum-circuit-composer" title="Link to this heading"></a></h4>
 <p>Quantum Circuit Composer 是一款 Visual Studio Code 插件，主要功能包括：</p>
@@ -571,12 +610,17 @@
 </ul>
 <p><strong>快速开始：</strong></p>
 <ol class="arabic">
-<li><p><strong>安装插件</strong>
-- 在 VSCode 扩展商店中搜索 “Quantum Circuit Composer” 并安装。
-- 安装后，状态栏会出现一个电路板图标，点击可打开设置面板。</p></li>
-<li><p><strong>编写量子电路</strong>
-- 新建一个文件，支持 <cite>.qasm`（OpenQASM）、</cite>.py`（Qiskit/QPanda 代码）、<cite>.originir</cite>、<cite>.qcis</cite> 等。
-- 例如，一个简单的 Bell 态 QASM 文件：</p>
+<li><p><strong>安装插件</strong></p>
+<ul class="simple">
+<li><p>在 VSCode 扩展商店中搜索 “Quantum Circuit Composer” 并安装。</p></li>
+<li><p>安装后，状态栏会出现一个电路板图标，点击可打开设置面板。</p></li>
+</ul>
+</li>
+<li><p><strong>编写量子电路</strong></p>
+<ul class="simple">
+<li><p>新建一个文件，支持 <cite>.qasm`（OpenQASM）、</cite>.py`（Qiskit/QPanda 代码）、<cite>.originir</cite>、<cite>.qcis</cite> 等。</p></li>
+<li><p>例如，一个简单的 Bell 态 QASM 文件：</p></li>
+</ul>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>OPENQASM 2.0;
 include &quot;qelib1.inc&quot;;
 qreg q[2];
@@ -588,14 +632,20 @@ measure q[1] -&gt; c[1];
 </pre></div>
 </div>
 </li>
-<li><p><strong>编译文件</strong>
-- 右键单击文件，选择 <strong>“编译当前量子电路文件”</strong>。
-- 或打开设置面板，点击顶部的 <strong>“▶ 选择文件进行编译”</strong>。
-- 插件将使用已启用的所有编译器并行编译，并在输出通道中显示结果和统计对比表格。</p></li>
-<li><p><strong>运行 QIR 模拟器</strong>
-- 在设置面板的编译器列表中，找到 QLLVM 编译器，点击其右侧的 <strong>“▶ 运行模拟器”</strong> 按钮。
-- 在弹出的输入框中输入 shots（运行次数）和随机种子（可选）。
-- 模拟完成后，输出通道会显示测量结果统计。</p></li>
+<li><p><strong>编译文件</strong></p>
+<ul class="simple">
+<li><p>右键单击文件，选择 <strong>“编译当前量子电路文件”</strong>。</p></li>
+<li><p>或打开设置面板，点击顶部的 <strong>“▶ 选择文件进行编译”</strong>。</p></li>
+<li><p>插件将使用已启用的所有编译器并行编译，并在输出通道中显示结果和统计对比表格。</p></li>
+</ul>
+</li>
+<li><p><strong>运行 QIR 模拟器</strong></p>
+<ul class="simple">
+<li><p>在设置面板的编译器列表中，找到 QLLVM 编译器，点击其右侧的 <strong>“▶ 运行模拟器”</strong> 按钮。</p></li>
+<li><p>在弹出的输入框中输入 shots（运行次数）和随机种子（可选）。</p></li>
+<li><p>模拟完成后，输出通道会显示测量结果统计。</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="qcoder">
@@ -604,26 +654,37 @@ measure q[1] -&gt; c[1];
 <p>QCoder 将大模型对话嵌入编辑器侧栏，聚焦量子算法、量子电路与工具链问题，而不是通用闲聊。允许用户为阿里云、DeepSeek 或**自定义 SCNet 模型**配置自己的 API Key。</p>
 <p><strong>快速开始：</strong></p>
 <ol class="arabic">
-<li><p><strong>安装</strong>
-- 在 VS Code 扩展视图搜索安装，或使用 <strong>Install from VSIX…</strong> 安装组织分发的 <cite>.vsix</cite>。</p></li>
+<li><p><strong>安装</strong></p>
+<ul class="simple">
+<li><p>在 VS Code 扩展视图搜索安装，或使用 <strong>Install from VSIX…</strong> 安装组织分发的 <cite>.vsix</cite>。</p></li>
+</ul>
+</li>
 <li><p><strong>配置 API Key（按你实际使用的模型）</strong></p>
-<p>打开命令面板（<cite>Ctrl+Shift+P</cite> / <cite>Cmd+Shift+P</cite>）：
-- <strong>QCoder: 设置 QCoder Qwen API Key</strong>：阿里云百炼（自定义 Qwen 模型）
-- <strong>QCoder: 设置 QCoder DeepSeek API Key</strong>：DeepSeek（自定义）
-- <strong>QCoder: 设置 QCoder SCNet API Key</strong>：仅用于**自定义添加的 SCNet 模型**，与内置三条官方模型无关</p>
+<p>打开命令面板（<cite>Ctrl+Shift+P</cite> / <cite>Cmd+Shift+P</cite>）：</p>
+<ul class="simple">
+<li><p><strong>QCoder: 设置 QCoder Qwen API Key</strong>：阿里云百炼（自定义 Qwen 模型）</p></li>
+<li><p><strong>QCoder: 设置 QCoder DeepSeek API Key</strong>：DeepSeek（自定义）</p></li>
+<li><p><strong>QCoder: 设置 QCoder SCNet API Key</strong>：仅用于**自定义添加的 SCNet 模型**，与内置三条官方模型无关</p></li>
+</ul>
 <p>仅使用**内置三条 SCNet 模型**时，可以不配置 Qwen / DeepSeek / 自定义 SCNet Key。</p>
 </li>
-<li><p><strong>打开聊天</strong>
-- 点击活动栏 <strong>QCoder</strong> 图标打开侧栏聊天，或运行 <strong>QCoder: 与量子编程小助手聊天</strong>。</p></li>
-<li><p><strong>侧栏设置</strong>
-- 标题栏或界面内可打开 <strong>设置</strong>：管理自定义模型列表、界面语言、以及（在支持的构建中）与模型测试相关的 Key 写入。</p></li>
+<li><p><strong>打开聊天</strong></p>
+<ul class="simple">
+<li><p>点击活动栏 <strong>QCoder</strong> 图标打开侧栏聊天，或运行 <strong>QCoder: 与量子编程小助手聊天</strong>。</p></li>
+</ul>
+</li>
+<li><p><strong>侧栏设置</strong></p>
+<ul class="simple">
+<li><p>标题栏或界面内可打开 <strong>设置</strong>：管理自定义模型列表、界面语言、以及（在支持的构建中）与模型测试相关的 Key 写入。</p></li>
+</ul>
+</li>
 </ol>
 </section>
 </section>
 <section id="using-command-line">
-<span id="id4"></span><h3>使用命令行<a class="headerlink" href="#using-command-line" title="Link to this heading"></a></h3>
+<span id="id5"></span><h3>使用命令行<a class="headerlink" href="#using-command-line" title="Link to this heading"></a></h3>
 <section id="compiling-openqasm-files">
-<span id="id5"></span><h4>编译纯量子程序<a class="headerlink" href="#compiling-openqasm-files" title="Link to this heading"></a></h4>
+<span id="id6"></span><h4>编译纯量子程序<a class="headerlink" href="#compiling-openqasm-files" title="Link to this heading"></a></h4>
 <section id="openqasm">
 <h5>编译OpenQASM文件<a class="headerlink" href="#openqasm" title="Link to this heading"></a></h5>
 <p><strong>基本编译:</strong></p>
@@ -689,7 +750,7 @@ qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-emitqir<span clas
 </div>
 </section>
 <section id="backend-topology-configuration-example">
-<span id="id6"></span><h5>后端拓扑配置示例<a class="headerlink" href="#backend-topology-configuration-example" title="Link to this heading"></a></h5>
+<span id="id7"></span><h5>后端拓扑配置示例<a class="headerlink" href="#backend-topology-configuration-example" title="Link to this heading"></a></h5>
 <p><cite>backend.ini</cite> 或 <cite>qpu_config_chain3.txt</cite>:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linear chain: 0-1-2</span>
 <span class="na">connectivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[[0, 1], [1, 2]]</span>
@@ -712,7 +773,7 @@ qir-runner<span class="w"> </span>-f<span class="w"> </span>bell.bc<span class="
 </pre></div>
 </div>
 <section id="qir-runner-output-format-explanation">
-<span id="id7"></span><h6>qir-runner 输出格式说明<a class="headerlink" href="#qir-runner-output-format-explanation" title="Link to this heading"></a></h6>
+<span id="id8"></span><h6>qir-runner 输出格式说明<a class="headerlink" href="#qir-runner-output-format-explanation" title="Link to this heading"></a></h6>
 <p>每次 shot 的输出结构：</p>
 <table class="docutils align-default">
 <colgroup>
@@ -755,7 +816,7 @@ END 0
 </div>
 </section>
 <section id="qir-runner-command-line-parameters">
-<span id="id8"></span><h6>qir-runner 命令行参数<a class="headerlink" href="#qir-runner-command-line-parameters" title="Link to this heading"></a></h6>
+<span id="id9"></span><h6>qir-runner 命令行参数<a class="headerlink" href="#qir-runner-command-line-parameters" title="Link to this heading"></a></h6>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20.0%" />
@@ -810,7 +871,7 @@ python3<span class="w"> </span>scripts/qir_runner_counts.py<span class="w"> </sp
 </section>
 </section>
 <section id="classical-quantum-hybrid-compilation">
-<span id="id9"></span><h4>编译经典-量子混合程序<a class="headerlink" href="#classical-quantum-hybrid-compilation" title="Link to this heading"></a></h4>
+<span id="id10"></span><h4>编译经典-量子混合程序<a class="headerlink" href="#classical-quantum-hybrid-compilation" title="Link to this heading"></a></h4>
 <p>如果需要编译经典-量子混合程序，需安装 qir-runner（<cite>pip install qirrunner</cite>）以及下列依赖</p>
 <ul class="simple">
 <li><p><strong>依赖</strong>：Clang（支持 <cite>-x cuda</cite>）、CUDA Toolkit、qir-runner（<cite>pip install qirrunner</cite>）。</p></li>
@@ -855,13 +916,13 @@ qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span clas
 </section>
 </section>
 </section>
-<section id="id10">
-<h2>编译参数说明<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<section id="id11">
+<h2>编译参数说明<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
 <p>本教程将介绍qllvm编译参数的详细说明。</p>
 <section id="qllvm">
 <span id="driver-program-qllvm-parameters"></span><h3>驱动程序（qllvm）参数<a class="headerlink" href="#qllvm" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id12">
-<caption><span class="caption-text">驱动程序（qllvm ）参数</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-text">驱动程序（qllvm ）参数</span><a class="headerlink" href="#id14" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 20.0%" />
 <col style="width: 60.0%" />
@@ -956,9 +1017,9 @@ qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span clas
 </ul>
 </section>
 <section id="qllvm-compile-parameters">
-<span id="id11"></span><h3>qllvm-compile 参数<a class="headerlink" href="#qllvm-compile-parameters" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id13">
-<caption><span class="caption-text">qllvm-compile 参数</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<span id="id12"></span><h3>qllvm-compile 参数<a class="headerlink" href="#qllvm-compile-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id15">
+<caption><span class="caption-text">qllvm-compile 参数</span><a class="headerlink" href="#id15" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 70.0%" />
@@ -1037,8 +1098,8 @@ qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span clas
 </section>
 <section id="cmake">
 <span id="cmake-build-parameters"></span><h3>CMake 构建参数<a class="headerlink" href="#cmake" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id14">
-<caption><span class="caption-text">CMake 构建参数</span><a class="headerlink" href="#id14" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id16">
+<caption><span class="caption-text">CMake 构建参数</span><a class="headerlink" href="#id16" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 70.0%" />

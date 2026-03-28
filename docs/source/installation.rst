@@ -38,9 +38,10 @@ Quantum Circuit Composer配置
 1. 打开编译器设置：在命令面板中输入 Open Quantum Compiler Settings
 2. 启用编译器：在配置界面中勾选需要的编译器（如QLLVM、Qiskit、QPanda）
 3. 配置编译器参数：
-   - QLLVM：设置设备类型（NISQ/FTQC）、后端类型（qasm-backend/benyuan/tianyan/zheda）、优化等级（O0/O1）等
-   - Python环境：支持自动检测系统Python、虚拟环境（venv/conda），或手动指定解释器路径
-   - 远程编译：可配置SSH连接信息，将编译任务提交到远程服务器
+
+   * QLLVM：设置设备类型（NISQ/FTQC）、后端类型（qasm-backend/benyuan/tianyan/zheda）、优化等级（O0/O1）等
+   * Python环境：支持自动检测系统Python、虚拟环境（venv/conda），或手动指定解释器路径
+   * 远程编译：可配置SSH连接信息，将编译任务提交到远程服务器
 
 .. _qcoder-configuration:
 

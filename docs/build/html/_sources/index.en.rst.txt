@@ -24,11 +24,11 @@ Welcome to the QLLVM project documentation! This documentation provides installa
 Quick Start
 -----------
 
-1. **Use Plugins (Recommended)**: 
+1. **Use Plugins (Recommended)**:
 
-   - **Quantum Circuit Composer**: VSCode extension that allows you to use QLLVM compiler without local installation. Supports multi-compiler parallel compilation, QIR simulator running, and other features.
+   * **Quantum Circuit Composer**: VSCode extension that allows you to use QLLVM compiler without local installation. Supports multi-compiler parallel compilation, QIR simulator running, and other features.
 
-   - **Qcoder**: VSCode sidebar AI assistant focused on quantum algorithms, quantum circuits, and toolchain issues, providing intelligent dialogue and code insertion capabilities.
+   * **Qcoder**: VSCode sidebar AI assistant focused on quantum algorithms, quantum circuits, and toolchain issues, providing intelligent dialogue and code insertion capabilities.
 
    For more details, please refer to the usage examples section in the :doc:`usage.en` guide.
 

@@ -30,7 +30,7 @@ Technical Route
    :align: center
    :width: 80%
 
-QLLVM Compilation Framework
+.. centered:: QLLVM Compilation Framework
 
 * **Front-end**: Responsible for language parsing and intermediate code generation, converting high-level languages to MLIR Quantum dialect
 * **Middle-end**: Perform quantum program optimization based on MLIR, and further lower MLIR to QIR (LLVM IR)
@@ -42,7 +42,7 @@ Leveraging the LLVM ecosystem, QLLVM can integrate with classical compilation pa
    :align: center
    :width: 100%
 
-Classical-Quantum Hybrid Program Compilation Mechanism
+.. centered:: Classical-Quantum Hybrid Program Compilation Mechanism
 
 Meanwhile, based on the LLVM compilation framework, the QLLVM compiler can work synergistically with various classical high-performance compilers, thus supporting the compilation of classical-quantum hybrid programs.
 
@@ -50,7 +50,7 @@ Meanwhile, based on the LLVM compilation framework, the QLLVM compiler can work 
    :align: center
    :width: 100%
 
-Hybrid Program Code Writing Example
+.. centered:: Hybrid Program Code Writing Example
 
 Key Advantages
 --------------

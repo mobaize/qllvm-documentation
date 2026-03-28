@@ -13,6 +13,34 @@ Usage Examples
 Using Plugins
 ~~~~~~~~~~~~~
 
+Cloud Usage
+^^^^^^^^^^^
+
+.. image:: image/006.png
+   :align: center
+   :width: 80%
+
+.. centered:: VScode Plugin Interface
+
+.. list-table:: Feature Description
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Area
+     - Feature Description
+   * - ① Qcoder Sidebar
+     - Click to use Qcoder intelligent programming assistant
+   * - ② Qcoder Main Interface
+     - Intelligent interactive interface
+   * - ③ Code Interface
+     - Used to display quantum programs
+   * - ④ Compile Button
+     - Click to compile the code interface or selected quantum program
+   * - ⑤ Run Button
+     - Click to run the code interface or selected quantum program
+   * - ⑥ Output Interface
+     - Output the compiled quantum circuit and various parameters
+
 Quantum Circuit Composer
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -28,12 +56,14 @@ Quantum Circuit Composer is a Visual Studio Code plugin with the following main 
 **Quick start:**
 
 1. **Install the plugin**
-   - Search for "Quantum Circuit Composer" in the VSCode extension store and install it.
-   - After installation, a circuit board icon will appear in the status bar, click to open the settings panel.
+
+   * Search for "Quantum Circuit Composer" in the VSCode extension store and install it.
+   * After installation, a circuit board icon will appear in the status bar, click to open the settings panel.
 
 2. **Write quantum circuit**
-   - Create a new file, supporting `.qasm` (OpenQASM), `.py` (Qiskit/QPanda code), `.originir`, `.qcis`, etc.
-   - For example, a simple Bell state QASM file:
+
+   * Create a new file, supporting `.qasm` (OpenQASM), `.py` (Qiskit/QPanda code), `.originir`, `.qcis`, etc.
+   * For example, a simple Bell state QASM file:
 
    .. code-block:: text
 
@@ -47,14 +77,16 @@ Quantum Circuit Composer is a Visual Studio Code plugin with the following main 
       measure q[1] -> c[1];
 
 3. **Compile file**
-   - Right-click on the file and select **"Compile current quantum circuit file"**.
-   - Or open the settings panel and click **"▶ Select file to compile"** at the top.
-   - The plugin will use all enabled compilers to compile in parallel and display results and statistical comparison tables in the output channel.
+
+   * Right-click on the file and select **"Compile current quantum circuit file"**.
+   * Or open the settings panel and click **"▶ Select file to compile"** at the top.
+   * The plugin will use all enabled compilers to compile in parallel and display results and statistical comparison tables in the output channel.
 
 4. **Run QIR simulator**
-   - In the compiler list of the settings panel, find the QLLVM compiler and click the **"▶ Run simulator"** button on its right.
-   - Enter shots (number of runs) and random seed (optional) in the pop-up input box.
-   - After simulation is complete, the output channel will display measurement result statistics.
+
+   * In the compiler list of the settings panel, find the QLLVM compiler and click the **"▶ Run simulator"** button on its right.
+   * Enter shots (number of runs) and random seed (optional) in the pop-up input box.
+   * After simulation is complete, the output channel will display measurement result statistics.
 
 Qcoder
 ^^^^^^
@@ -66,22 +98,28 @@ QCoder embeds large model dialogue into the editor sidebar, focusing on quantum 
 **Quick start:**
 
 1. **Installation**
-   - Search and install in the VS Code extension view, or use **Install from VSIX…** to install the `.vsix` distributed by the organization.
+
+   * Search and install in the VS Code extension view, or use **Install from VSIX…** to install the `.vsix` distributed by the organization.
 
 2. **Configure API Key (according to the model you actually use)**
 
    Open the command palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
-   - **QCoder: Set QCoder Qwen API Key**: Alibaba Cloud (custom Qwen model)
-   - **QCoder: Set QCoder DeepSeek API Key**: DeepSeek (custom)
-   - **QCoder: Set QCoder SCNet API Key**: Only used for **custom added SCNet models**, unrelated to the three built-in official models
+
+   * **QCoder: Set QCoder Qwen API Key**: Alibaba Cloud (custom Qwen model)
+   * **QCoder: Set QCoder DeepSeek API Key**: DeepSeek (custom)
+   * **QCoder: Set QCoder SCNet API Key**: Only used for **custom added SCNet models**, unrelated to the three built-in official models
 
    When only using the **three built-in SCNet models**, you don't need to configure Qwen / DeepSeek / custom SCNet Key.
 
 3. **Open chat**
-   - Click the **QCoder** icon in the activity bar to open the sidebar chat, or run **QCoder: Chat with Quantum Programming Assistant**.
+
+   * Click the **QCoder** icon in the activity bar to open the sidebar chat, or run **QCoder: Chat with Quantum Programming Assistant**.
 
 4. **Sidebar settings**
-   - Open **Settings** in the title bar or interface: manage custom model lists, interface language, and key writing related to model testing (in supported builds).
+
+   * Open **Settings** in the title bar or interface: manage custom model lists, interface language, and key writing related to model testing (in supported builds).
+
+
 
 .. _using-command-line:
 

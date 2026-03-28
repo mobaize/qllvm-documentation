@@ -479,6 +479,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">使用</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#usage-examples">使用示例</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
 </ul>
@@ -490,7 +491,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#id10">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id11">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
@@ -579,10 +580,13 @@
 <ol class="arabic simple">
 <li><p>打开编译器设置：在命令面板中输入 Open Quantum Compiler Settings</p></li>
 <li><p>启用编译器：在配置界面中勾选需要的编译器（如QLLVM、Qiskit、QPanda）</p></li>
-<li><p>配置编译器参数：
-- QLLVM：设置设备类型（NISQ/FTQC）、后端类型（qasm-backend/benyuan/tianyan/zheda）、优化等级（O0/O1）等
-- Python环境：支持自动检测系统Python、虚拟环境（venv/conda），或手动指定解释器路径
-- 远程编译：可配置SSH连接信息，将编译任务提交到远程服务器</p></li>
+<li><p>配置编译器参数：</p>
+<ul class="simple">
+<li><p>QLLVM：设置设备类型（NISQ/FTQC）、后端类型（qasm-backend/benyuan/tianyan/zheda）、优化等级（O0/O1）等</p></li>
+<li><p>Python环境：支持自动检测系统Python、虚拟环境（venv/conda），或手动指定解释器路径</p></li>
+<li><p>远程编译：可配置SSH连接信息，将编译任务提交到远程服务器</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="qcoder">

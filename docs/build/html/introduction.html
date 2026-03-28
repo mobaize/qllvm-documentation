@@ -479,6 +479,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">使用</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#usage-examples">使用示例</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
 </ul>
@@ -490,7 +491,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#id10">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id11">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
@@ -577,8 +578,8 @@
 <h2>技术路线<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <a class="reference internal image-reference" href="_images/001.png"><img alt="_images/001.png" class="align-center" src="_images/001.png" style="width: 80%;" />
 </a>
-<p>QLLVM编译框架</p>
-<ul class="simple">
+<p class="centered">
+<strong>QLLVM编译框架</strong></p><ul class="simple">
 <li><p><strong>前端</strong>：负责语言解析和中间代码生成，将高级语言转换为 MLIR Quantum 方言</p></li>
 <li><p><strong>中端</strong>：基于 MLIR 进行量子程序优化，并将 MLIR 进一步 Lowering 为 QIR（LLVM IR）</p></li>
 <li><p><strong>后端</strong>：基于 QIR 和 QIR 运行时库，将程序转换为目标硬件支持的代码格式</p></li>
@@ -586,12 +587,12 @@
 <p>依托 LLVM 生态，QLLVM 能够实现与经典编译 Pass、CUDA 编程模型和 HPC 运行时的集成，从而实现高效的经典量子混合任务编译。</p>
 <a class="reference internal image-reference" href="_images/02.png"><img alt="_images/02.png" class="align-center" src="_images/02.png" style="width: 100%;" />
 </a>
-<p>经典量子混合程序编译机制</p>
-<p>同时基于LLVM编译框架，QLLVM编译器能够和多类经典高性能编译器协同编译，从而支持经典量子混合程序的编译。</p>
+<p class="centered">
+<strong>经典量子混合程序编译机制</strong></p><p>同时基于LLVM编译框架，QLLVM编译器能够和多类经典高性能编译器协同编译，从而支持经典量子混合程序的编译。</p>
 <a class="reference internal image-reference" href="_images/003.png"><img alt="_images/003.png" class="align-center" src="_images/003.png" style="width: 100%;" />
 </a>
-<p>混合程序代码编写示例</p>
-</section>
+<p class="centered">
+<strong>混合程序代码编写示例</strong></p></section>
 <section id="id3">
 <h2>主要优势<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
