@@ -96,6 +96,8 @@
                 'Quantum Circuit Composer': 'Quantum Circuit Composer',
                 'Qcoder': 'Qcoder',
                 '使用命令行': 'Using Command Line',
+                '编译纯量子程序': 'Compiling Pure Quantum Programs',
+                '编译经典-量子混合程序': 'Compiling Classical-Quantum Hybrid Programs',
                 '编译OpenQASM文件': 'Compiling OpenQASM Files',
                 'Bell态示例': 'Bell State Example',
                 '直接调用 qllvm-compile': 'Directly Calling qllvm-compile',
@@ -150,6 +152,8 @@
                 'Quantum Circuit Composer': 'quantum-circuit-composer',
                 'Qcoder': 'qcoder',
                 'Using Command Line': 'using-command-line',
+                'Compiling Pure Quantum Programs': 'compiling-openqasm-files',
+                'Compiling Classical-Quantum Hybrid Programs': 'classical-quantum-hybrid-compilation',
                 'Compiling OpenQASM Files': 'compiling-openqasm-files',
                 'Bell State Example': 'bell-state-example',
                 'Directly Calling qllvm-compile': 'directly-calling-qllvm-compile',
@@ -480,24 +484,16 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#using-command-line">使用命令行</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#openqasm">编译OpenQASM文件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bell">Bell态示例</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#qllvm-compile">直接调用 qllvm-compile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mlir-qir">打印 MLIR / QIR</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#backend-topology-configuration-example">后端拓扑配置示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-openqasm-files">编译纯量子程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#classical-quantum-hybrid-compilation">编译经典-量子混合程序</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#compilation-parameter-explanation">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id10">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cmake">CMake 构建参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#optional-dependencies-usage">可选依赖（按需安装）</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#qir-runner">QIR Runner 后端</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#classical-quantum-hybrid-compilation">经典-量子混合编译</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -626,8 +622,10 @@ measure q[1] -&gt; c[1];
 </section>
 <section id="using-command-line">
 <span id="id4"></span><h3>使用命令行<a class="headerlink" href="#using-command-line" title="Link to this heading"></a></h3>
+<section id="compiling-openqasm-files">
+<span id="id5"></span><h4>编译纯量子程序<a class="headerlink" href="#compiling-openqasm-files" title="Link to this heading"></a></h4>
 <section id="openqasm">
-<span id="compiling-openqasm-files"></span><h4>编译OpenQASM文件<a class="headerlink" href="#openqasm" title="Link to this heading"></a></h4>
+<h5>编译OpenQASM文件<a class="headerlink" href="#openqasm" title="Link to this heading"></a></h5>
 <p><strong>基本编译:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using qllvm</span>
 qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-qrt<span class="w"> </span>nisq<span class="w"> </span>-qpu<span class="w"> </span>qasm-backend<span class="w"> </span>-O1
@@ -652,7 +650,7 @@ qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-qrt<span class="w
 </div>
 </section>
 <section id="bell">
-<span id="bell-state-example"></span><h4>Bell态示例<a class="headerlink" href="#bell" title="Link to this heading"></a></h4>
+<span id="bell-state-example"></span><h5>Bell态示例<a class="headerlink" href="#bell" title="Link to this heading"></a></h5>
 <p>创建bell.qasm:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>OPENQASM 2.0;
 include &quot;qelib1.inc&quot;;
@@ -671,7 +669,7 @@ cat<span class="w"> </span>bell_compiled.qasm
 </div>
 </section>
 <section id="qllvm-compile">
-<span id="directly-calling-qllvm-compile"></span><h4>直接调用 qllvm-compile<a class="headerlink" href="#qllvm-compile" title="Link to this heading"></a></h4>
+<span id="directly-calling-qllvm-compile"></span><h5>直接调用 qllvm-compile<a class="headerlink" href="#qllvm-compile" title="Link to this heading"></a></h5>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Without SABRE</span>
 qllvm-compile<span class="w"> </span>test.qasm<span class="w"> </span>-internal-func-name<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-emit-backend<span class="o">=</span>qasm-backend<span class="w"> </span>-output-path<span class="o">=</span>test_out.qasm
@@ -684,29 +682,186 @@ qllvm-compile<span class="w"> </span>test.qasm<span class="w"> </span>-internal-
 </div>
 </section>
 <section id="mlir-qir">
-<span id="printing-mlir-qir"></span><h4>打印 MLIR / QIR<a class="headerlink" href="#mlir-qir" title="Link to this heading"></a></h4>
+<span id="printing-mlir-qir"></span><h5>打印 MLIR / QIR<a class="headerlink" href="#mlir-qir" title="Link to this heading"></a></h5>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-emitmlir<span class="w"> </span>-qrt<span class="w"> </span>nisq<span class="w"> </span>-qpu<span class="w"> </span>qasm-backend<span class="w"> </span>-O1
 qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-emitqir<span class="w"> </span>-qrt<span class="w"> </span>nisq<span class="w"> </span>-qpu<span class="w"> </span>qasm-backend<span class="w"> </span>-O1
 </pre></div>
 </div>
 </section>
 <section id="backend-topology-configuration-example">
-<span id="id5"></span><h4>后端拓扑配置示例<a class="headerlink" href="#backend-topology-configuration-example" title="Link to this heading"></a></h4>
+<span id="id6"></span><h5>后端拓扑配置示例<a class="headerlink" href="#backend-topology-configuration-example" title="Link to this heading"></a></h5>
 <p><cite>backend.ini</cite> 或 <cite>qpu_config_chain3.txt</cite>:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linear chain: 0-1-2</span>
 <span class="na">connectivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[[0, 1], [1, 2]]</span>
 </pre></div>
 </div>
 </section>
+<section id="qir-runner">
+<span id="qir-runner-backend"></span><span id="compilation-parameter-explanation"></span><h5>QIR Runner 后端配置示例<a class="headerlink" href="#qir-runner" title="Link to this heading"></a></h5>
+<p>输出 LLVM 位码 (.bc) 供 QIR Runner 模拟器加载。qllvm 内置 <strong>QirRunnerCompat</strong> 自动适配 qir-runner 的 QIR base profile（<cite>__quantum__rt__initialize</cite> 签名、<cite>__body</cite> 后缀、mz 结果索引等）。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 安装 qir-runner (conda qllvm 环境)</span>
+conda<span class="w"> </span>activate<span class="w"> </span>qllvm
+pip<span class="w"> </span>install<span class="w"> </span>qirrunner
+
+<span class="c1"># 2. 用 qllvm-compile 生成 .bc</span>
+qllvm-compile<span class="w"> </span>bell.qasm<span class="w"> </span>-qrt<span class="w"> </span>nisq<span class="w"> </span>-qpu<span class="w"> </span>qir-runner<span class="w"> </span>-O1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-emit-backend<span class="o">=</span>qir-runner<span class="w"> </span>-output-path<span class="o">=</span>bell.bc
+
+<span class="c1"># 3. 用 qir-runner 运行</span>
+qir-runner<span class="w"> </span>-f<span class="w"> </span>bell.bc<span class="w"> </span>-s<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<section id="qir-runner-output-format-explanation">
+<span id="id7"></span><h6>qir-runner 输出格式说明<a class="headerlink" href="#qir-runner-output-format-explanation" title="Link to this heading"></a></h6>
+<p>每次 shot 的输出结构：</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>行</p></th>
+<th class="head"><p>含义</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>START</cite></p></td>
+<td><p>一次 shot 开始</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>METADATAtEntryPoint</cite></p></td>
+<td><p>入口点元数据</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>RESULTt0</cite> 或 <cite>RESULTt1</cite></p></td>
+<td><p>各 qubit 的测量结果（按测量顺序）</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ENDt0</cite></p></td>
+<td><p>该 shot 结束</p></td>
+</tr>
+</tbody>
+</table>
+<p>示例（Bell 电路 5 shots）：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>START
+METADATA    EntryPoint
+RESULT      0
+RESULT      0
+END 0
+START
+METADATA    EntryPoint
+RESULT      1
+RESULT      1
+END 0
+...
+</pre></div>
+</div>
+</section>
+<section id="qir-runner-command-line-parameters">
+<span id="id8"></span><h6>qir-runner 命令行参数<a class="headerlink" href="#qir-runner-command-line-parameters" title="Link to this heading"></a></h6>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 60.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>默认值</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>-f, –file &lt;PATH&gt;</cite></p></td>
+<td><p>QIR 位码文件路径（必需）</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><cite>-s, –shots &lt;NUM&gt;</cite></p></td>
+<td><p>模拟 shot 次数</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>-r, –rngseed &lt;NUM&gt;</cite></p></td>
+<td><p>随机数种子（可复现）</p></td>
+<td><p>随机</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>-e, –entrypoint &lt;NAME&gt;</cite></p></td>
+<td><p>入口函数名</p></td>
+<td><p>EntryPoint</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
-<section id="compilation-parameter-explanation">
-<span id="id6"></span><h2>编译参数说明<a class="headerlink" href="#compilation-parameter-explanation" title="Link to this heading"></a></h2>
+<section id="qiskit-counts">
+<span id="output-as-qiskit-style-counts"></span><h5>输出为 Qiskit 风格 counts<a class="headerlink" href="#qiskit-counts" title="Link to this heading"></a></h5>
+<p>使用 <cite>scripts/qir_runner_counts.py</cite> 将原始输出转换为 Qiskit 风格的 <cite>get_counts()</cite> 字典：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 管道方式</span>
+qir-runner<span class="w"> </span>-f<span class="w"> </span>bell.bc<span class="w"> </span>-s<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>scripts/qir_runner_counts.py<span class="w"> </span>-
+
+<span class="c1"># 直接指定 bc 与参数</span>
+python3<span class="w"> </span>scripts/qir_runner_counts.py<span class="w"> </span>bell.bc<span class="w"> </span>-s<span class="w"> </span><span class="m">100</span><span class="w"> </span>-r<span class="w"> </span><span class="m">42</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>输出示例（Bell 态）</strong>：<cite>{‘00’: 48, ‘11’: 52}</cite></p></li>
+<li><p><strong>协同测试脚本</strong>：<cite>./scripts/test_qllvm_qirrunner.sh</cite></p></li>
+</ul>
+<p><cite>.bc</cite> 为标准 LLVM 位码，可被 [qir-alliance/qir-runner](<a class="reference external" href="https://github.com/qir-alliance/qir-runner">https://github.com/qir-alliance/qir-runner</a>) 等工具加载（需 Python 3.9+）。</p>
+</section>
+</section>
+<section id="classical-quantum-hybrid-compilation">
+<span id="id9"></span><h4>编译经典-量子混合程序<a class="headerlink" href="#classical-quantum-hybrid-compilation" title="Link to this heading"></a></h4>
+<p>如果需要编译经典-量子混合程序，需安装 qir-runner（<cite>pip install qirrunner</cite>）以及下列依赖</p>
+<ul class="simple">
+<li><p><strong>依赖</strong>：Clang（支持 <cite>-x cuda</cite>）、CUDA Toolkit、qir-runner（<cite>pip install qirrunner</cite>）。</p></li>
+<li><p><strong>Ubuntu apt 安装 CUDA</strong>：运行 <cite>bash scripts/install_cuda_apt.sh</cite> 可自动安装 nvidia-cuda-toolkit 并创建 Clang 兼容目录（<cite>~/.qllvm/cuda-apt-compat</cite>）。详见 <cite>examples/hybrid_cuda/README.md</cite>。</p></li>
+</ul>
+<p>支持将 C++ 主程序与 QASM 量子电路混合编译为单一可执行文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 混合编译（qir-qrt-stub 桩实现）</span>
+qllvm<span class="w"> </span>main.cpp<span class="w"> </span>circuit.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_app
+
+<span class="c1"># 示例位于 examples/hybrid/</span>
+qllvm<span class="w"> </span>examples/hybrid/main.cpp<span class="w"> </span>examples/hybrid/bell.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_bell
+./hybrid_bell
+</pre></div>
+</div>
+<div class="highlight-bash notranslate" id="using-qir-runner-as-simulator"><div class="highlight"><pre><span></span><span class="c1"># 混合编译 + qir-runner 模拟（生成 exe 与 .bc）</span>
+qllvm<span class="w"> </span>main.cpp<span class="w"> </span>bell.qasm<span class="w"> </span>-qpu<span class="w"> </span>qir-runner<span class="w"> </span>-o<span class="w"> </span>hybrid_bell<span class="w"> </span>-O1
+
+<span class="c1"># 运行（需 qir-runner 在 PATH 中）</span>
+./hybrid_bell<span class="w"> </span>-shots<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>工作流程</strong>：QASM → QIR .bc (qir-runner) + C++ 编译 → 可执行文件在运行时间接调用 qir-runner 子进程模拟量子电路。</p></li>
+<li><p><strong>协同测试脚本</strong>：<cite>./scripts/test_hybrid_qirrunner.sh</cite></p></li>
+</ul>
+<p>详见 <cite>examples/hybrid/README.md</cite>。</p>
+<p id="c-cuda-qasm-hybrid-compilation">支持将 C++ 主程序、CUDA 内核与 QASM 量子电路混合编译为单一可执行文件（需 CUDA 环境）：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>examples/hybrid_cuda
+
+<span class="c1"># 编译（-cuda-arch 指定 GPU 架构，如 sm_75、sm_86）</span>
+qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span class="w"> </span>circuit.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_app<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-cuda-arch<span class="w"> </span>sm_75<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-cuda-path<span class="w"> </span>/usr/local/cuda
+
+<span class="c1"># 若 nvcc 在 PATH 中，可省略 -cuda-path，将自动推导</span>
+qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span class="w"> </span>circuit.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_app<span class="w"> </span>-cuda-arch<span class="w"> </span>sm_86
+
+<span class="c1"># 运行</span>
+./hybrid_app<span class="w"> </span>-shots<span class="w"> </span><span class="m">1024</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id10">
+<h2>编译参数说明<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
 <p>本教程将介绍qllvm编译参数的详细说明。</p>
 <section id="qllvm">
 <span id="driver-program-qllvm-parameters"></span><h3>驱动程序（qllvm）参数<a class="headerlink" href="#qllvm" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id13">
-<caption><span class="caption-text">驱动程序（qllvm ）参数</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-text">驱动程序（qllvm ）参数</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 20.0%" />
 <col style="width: 60.0%" />
@@ -801,9 +956,9 @@ qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-emitqir<span clas
 </ul>
 </section>
 <section id="qllvm-compile-parameters">
-<span id="id7"></span><h3>qllvm-compile 参数<a class="headerlink" href="#qllvm-compile-parameters" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id14">
-<caption><span class="caption-text">qllvm-compile 参数</span><a class="headerlink" href="#id14" title="Link to this table"></a></caption>
+<span id="id11"></span><h3>qllvm-compile 参数<a class="headerlink" href="#qllvm-compile-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-text">qllvm-compile 参数</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 70.0%" />
@@ -882,8 +1037,8 @@ qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-emitqir<span clas
 </section>
 <section id="cmake">
 <span id="cmake-build-parameters"></span><h3>CMake 构建参数<a class="headerlink" href="#cmake" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id15">
-<caption><span class="caption-text">CMake 构建参数</span><a class="headerlink" href="#id15" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-text">CMake 构建参数</span><a class="headerlink" href="#id14" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 70.0%" />
@@ -908,178 +1063,7 @@ qllvm<span class="w"> </span>test.qasm<span class="w"> </span>-emitqir<span clas
 </tr>
 </tbody>
 </table>
-</section>
-<section id="optional-dependencies-usage">
-<span id="id8"></span><h3>可选依赖（按需安装）<a class="headerlink" href="#optional-dependencies-usage" title="Link to this heading"></a></h3>
-<section id="qir-runner">
-<span id="qir-runner-backend"></span><h4>QIR Runner 后端<a class="headerlink" href="#qir-runner" title="Link to this heading"></a></h4>
-<p>输出 LLVM 位码 (.bc) 供 QIR Runner 模拟器加载。qllvm 内置 <strong>QirRunnerCompat</strong> 自动适配 qir-runner 的 QIR base profile（<cite>__quantum__rt__initialize</cite> 签名、<cite>__body</cite> 后缀、mz 结果索引等）。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 安装 qir-runner (conda qllvm 环境)</span>
-conda<span class="w"> </span>activate<span class="w"> </span>qllvm
-pip<span class="w"> </span>install<span class="w"> </span>qirrunner
-
-<span class="c1"># 2. 用 qllvm-compile 生成 .bc</span>
-qllvm-compile<span class="w"> </span>bell.qasm<span class="w"> </span>-qrt<span class="w"> </span>nisq<span class="w"> </span>-qpu<span class="w"> </span>qir-runner<span class="w"> </span>-O1<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-emit-backend<span class="o">=</span>qir-runner<span class="w"> </span>-output-path<span class="o">=</span>bell.bc
-
-<span class="c1"># 3. 用 qir-runner 运行</span>
-qir-runner<span class="w"> </span>-f<span class="w"> </span>bell.bc<span class="w"> </span>-s<span class="w"> </span><span class="m">5</span>
-</pre></div>
-</div>
-<section id="qir-runner-output-format-explanation">
-<span id="id9"></span><h5>qir-runner 输出格式说明<a class="headerlink" href="#qir-runner-output-format-explanation" title="Link to this heading"></a></h5>
-<p>每次 shot 的输出结构：</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 20.0%" />
-<col style="width: 80.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>行</p></th>
-<th class="head"><p>含义</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><cite>START</cite></p></td>
-<td><p>一次 shot 开始</p></td>
-</tr>
-<tr class="row-odd"><td><p><cite>METADATAtEntryPoint</cite></p></td>
-<td><p>入口点元数据</p></td>
-</tr>
-<tr class="row-even"><td><p><cite>RESULTt0</cite> 或 <cite>RESULTt1</cite></p></td>
-<td><p>各 qubit 的测量结果（按测量顺序）</p></td>
-</tr>
-<tr class="row-odd"><td><p><cite>ENDt0</cite></p></td>
-<td><p>该 shot 结束</p></td>
-</tr>
-</tbody>
-</table>
-<p>示例（Bell 电路 5 shots）：</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>START
-METADATA    EntryPoint
-RESULT      0
-RESULT      0
-END 0
-START
-METADATA    EntryPoint
-RESULT      1
-RESULT      1
-END 0
-...
-</pre></div>
-</div>
-</section>
-<section id="qir-runner-command-line-parameters">
-<span id="id10"></span><h5>qir-runner 命令行参数<a class="headerlink" href="#qir-runner-command-line-parameters" title="Link to this heading"></a></h5>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 20.0%" />
-<col style="width: 60.0%" />
-<col style="width: 20.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>参数</p></th>
-<th class="head"><p>说明</p></th>
-<th class="head"><p>默认值</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><cite>-f, –file &lt;PATH&gt;</cite></p></td>
-<td><p>QIR 位码文件路径（必需）</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><cite>-s, –shots &lt;NUM&gt;</cite></p></td>
-<td><p>模拟 shot 次数</p></td>
-<td><p>1</p></td>
-</tr>
-<tr class="row-even"><td><p><cite>-r, –rngseed &lt;NUM&gt;</cite></p></td>
-<td><p>随机数种子（可复现）</p></td>
-<td><p>随机</p></td>
-</tr>
-<tr class="row-odd"><td><p><cite>-e, –entrypoint &lt;NAME&gt;</cite></p></td>
-<td><p>入口函数名</p></td>
-<td><p>EntryPoint</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="qiskit-counts">
-<span id="output-as-qiskit-style-counts"></span><h5>输出为 Qiskit 风格 counts<a class="headerlink" href="#qiskit-counts" title="Link to this heading"></a></h5>
-<p>使用 <cite>scripts/qir_runner_counts.py</cite> 将原始输出转换为 Qiskit 风格的 <cite>get_counts()</cite> 字典：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 管道方式</span>
-qir-runner<span class="w"> </span>-f<span class="w"> </span>bell.bc<span class="w"> </span>-s<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>scripts/qir_runner_counts.py<span class="w"> </span>-
-
-<span class="c1"># 直接指定 bc 与参数</span>
-python3<span class="w"> </span>scripts/qir_runner_counts.py<span class="w"> </span>bell.bc<span class="w"> </span>-s<span class="w"> </span><span class="m">100</span><span class="w"> </span>-r<span class="w"> </span><span class="m">42</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><strong>输出示例（Bell 态）</strong>：<cite>{‘00’: 48, ‘11’: 52}</cite></p></li>
-<li><p><strong>协同测试脚本</strong>：<cite>./scripts/test_qllvm_qirrunner.sh</cite></p></li>
-</ul>
-<p><cite>.bc</cite> 为标准 LLVM 位码，可被 [qir-alliance/qir-runner](<a class="reference external" href="https://github.com/qir-alliance/qir-runner">https://github.com/qir-alliance/qir-runner</a>) 等工具加载（需 Python 3.9+）。</p>
-</section>
-</section>
-<section id="classical-quantum-hybrid-compilation">
-<span id="id11"></span><h4>经典-量子混合编译<a class="headerlink" href="#classical-quantum-hybrid-compilation" title="Link to this heading"></a></h4>
-<p>依托 LLVM 生态，QLLVM 能够实现与经典编译 Pass、CUDA 编程模型和 HPC 运行时的集成，从而实现高效的经典量子混合任务编译。</p>
-<a class="reference internal image-reference" href="_images/02.png"><img alt="_images/02.png" class="align-center" src="_images/02.png" style="width: 100%;" />
-</a>
-<p>经典量子混合程序编译机制</p>
-<p>支持将 C++ 主程序与 QASM 量子电路混合编译为单一可执行文件：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 混合编译（qir-qrt-stub 桩实现）</span>
-qllvm<span class="w"> </span>main.cpp<span class="w"> </span>circuit.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_app
-
-<span class="c1"># 示例位于 examples/hybrid/</span>
-qllvm<span class="w"> </span>examples/hybrid/main.cpp<span class="w"> </span>examples/hybrid/bell.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_bell
-./hybrid_bell
-</pre></div>
-</div>
-<section id="using-qir-runner-as-simulator">
-<span id="id12"></span><h5>使用 qir-runner 作为模拟器<a class="headerlink" href="#using-qir-runner-as-simulator" title="Link to this heading"></a></h5>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 混合编译 + qir-runner 模拟（生成 exe 与 .bc）</span>
-qllvm<span class="w"> </span>main.cpp<span class="w"> </span>bell.qasm<span class="w"> </span>-qpu<span class="w"> </span>qir-runner<span class="w"> </span>-o<span class="w"> </span>hybrid_bell<span class="w"> </span>-O1
-
-<span class="c1"># 运行（需 qir-runner 在 PATH 中）</span>
-./hybrid_bell<span class="w"> </span>-shots<span class="w"> </span><span class="m">10</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><strong>工作流程</strong>：QASM → QIR .bc (qir-runner) + C++ 编译 → 可执行文件在运行时间接调用 qir-runner 子进程模拟量子电路。</p></li>
-<li><p><strong>协同测试脚本</strong>：<cite>./scripts/test_hybrid_qirrunner.sh</cite></p></li>
-</ul>
-<p>详见 <cite>examples/hybrid/README.md</cite>。</p>
-</section>
-<section id="c-cuda-qasm">
-<span id="c-cuda-qasm-hybrid-compilation"></span><h5>C++ + CUDA + QASM 混合编译<a class="headerlink" href="#c-cuda-qasm" title="Link to this heading"></a></h5>
-<a class="reference internal image-reference" href="_images/003.png"><img alt="_images/003.png" class="align-center" src="_images/003.png" style="width: 100%;" />
-</a>
-<p>混合程序代码编写示例</p>
-<p>支持将 C++ 主程序、CUDA 内核与 QASM 量子电路混合编译为单一可执行文件（需 CUDA 环境）：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>examples/hybrid_cuda
-
-<span class="c1"># 编译（-cuda-arch 指定 GPU 架构，如 sm_75、sm_86）</span>
-qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span class="w"> </span>circuit.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_app<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>-cuda-arch<span class="w"> </span>sm_75<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>-cuda-path<span class="w"> </span>/usr/local/cuda
-
-<span class="c1"># 若 nvcc 在 PATH 中，可省略 -cuda-path，将自动推导</span>
-qllvm<span class="w"> </span>main.cpp<span class="w"> </span>kernel.cu<span class="w"> </span>circuit.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_app<span class="w"> </span>-cuda-arch<span class="w"> </span>sm_86
-
-<span class="c1"># 运行</span>
-./hybrid_app<span class="w"> </span>-shots<span class="w"> </span><span class="m">1024</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><strong>依赖</strong>：Clang（支持 <cite>-x cuda</cite>）、CUDA Toolkit、qir-runner（<cite>pip install qirrunner</cite>）。</p></li>
-<li><p><strong>Ubuntu apt 安装 CUDA</strong>：运行 <cite>bash scripts/install_cuda_apt.sh</cite> 可自动安装 nvidia-cuda-toolkit 并创建 Clang 兼容目录（<cite>~/.qllvm/cuda-apt-compat</cite>）。详见 <cite>examples/hybrid_cuda/README.md</cite>。</p></li>
-</ul>
-</section>
-</section>
-</section>
+<span class="target" id="optional-dependencies-usage"></span></section>
 </section>
 </section>
 

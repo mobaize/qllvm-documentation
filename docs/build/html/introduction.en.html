@@ -94,6 +94,8 @@
                 'Quantum Circuit Composer': 'Quantum Circuit Composer',
                 'Qcoder': 'Qcoder',
                 '使用命令行': 'Using Command Line',
+                '编译纯量子程序': 'Compiling Pure Quantum Programs',
+                '编译经典-量子混合程序': 'Compiling Classical-Quantum Hybrid Programs',
                 '编译OpenQASM文件': 'Compiling OpenQASM Files',
                 'Bell态示例': 'Bell State Example',
                 '直接调用 qllvm-compile': 'Directly Calling qllvm-compile',
@@ -148,6 +150,8 @@
                 'Quantum Circuit Composer': 'quantum-circuit-composer',
                 'Qcoder': 'qcoder',
                 'Using Command Line': 'using-command-line',
+                'Compiling Pure Quantum Programs': 'compiling-openqasm-files',
+                'Compiling Classical-Quantum Hybrid Programs': 'classical-quantum-hybrid-compilation',
                 'Compiling OpenQASM Files': 'compiling-openqasm-files',
                 'Bell State Example': 'bell-state-example',
                 'Directly Calling qllvm-compile': 'directly-calling-qllvm-compile',
@@ -478,24 +482,16 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-command-line">使用命令行</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#openqasm">编译OpenQASM文件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#bell">Bell态示例</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#qllvm-compile">直接调用 qllvm-compile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#mlir-qir">打印 MLIR / QIR</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#backend-topology-configuration-example">后端拓扑配置示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#compiling-openqasm-files">编译纯量子程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#classical-quantum-hybrid-compilation">编译经典-量子混合程序</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#compilation-parameter-explanation">编译参数说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id10">编译参数说明</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm">驱动程序（qllvm）参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#qllvm-compile-parameters">qllvm-compile 参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#cmake">CMake 构建参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="usage.html#optional-dependencies-usage">可选依赖（按需安装）</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#qir-runner">QIR Runner 后端</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#classical-quantum-hybrid-compilation">经典-量子混合编译</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -585,6 +581,14 @@
 <li><p><strong>Middle-end</strong>: Perform quantum program optimization based on MLIR, and further lower MLIR to QIR (LLVM IR)</p></li>
 <li><p><strong>Back-end</strong>: Based on QIR and QIR runtime library, convert programs to code formats supported by target hardware</p></li>
 </ul>
+<p>Leveraging the LLVM ecosystem, QLLVM can integrate with classical compilation passes, CUDA programming models, and HPC runtimes, enabling efficient compilation of classical-quantum hybrid tasks.</p>
+<a class="reference internal image-reference" href="_images/02.png"><img alt="_images/02.png" class="align-center" src="_images/02.png" style="width: 100%;" />
+</a>
+<p>Classical-Quantum Hybrid Program Compilation Mechanism</p>
+<p>Meanwhile, based on the LLVM compilation framework, the QLLVM compiler can work synergistically with various classical high-performance compilers, thus supporting the compilation of classical-quantum hybrid programs.</p>
+<a class="reference internal image-reference" href="_images/003.png"><img alt="_images/003.png" class="align-center" src="_images/003.png" style="width: 100%;" />
+</a>
+<p>Hybrid Program Code Writing Example</p>
 </section>
 <section id="key-advantages">
 <h2>Key Advantages<a class="headerlink" href="#key-advantages" title="Link to this heading"></a></h2>

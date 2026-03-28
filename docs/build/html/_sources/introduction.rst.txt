@@ -36,6 +36,22 @@ QLLVM编译框架
 * **中端**：基于 MLIR 进行量子程序优化，并将 MLIR 进一步 Lowering 为 QIR（LLVM IR）
 * **后端**：基于 QIR 和 QIR 运行时库，将程序转换为目标硬件支持的代码格式
 
+依托 LLVM 生态，QLLVM 能够实现与经典编译 Pass、CUDA 编程模型和 HPC 运行时的集成，从而实现高效的经典量子混合任务编译。
+
+.. image:: image/02.png
+   :align: center
+   :width: 100%
+
+经典量子混合程序编译机制
+
+同时基于LLVM编译框架，QLLVM编译器能够和多类经典高性能编译器协同编译，从而支持经典量子混合程序的编译。
+
+.. image:: image/003.png
+   :align: center
+   :width: 100%
+
+混合程序代码编写示例
+
 主要优势
 --------
 

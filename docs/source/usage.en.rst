@@ -3,8 +3,12 @@ Usage
 
 This section mainly introduces how to use QLLVM to compile quantum circuits, as well as detailed explanations of compilation parameters.
 
+.. _usage-examples:
+
 Usage Examples
 --------------
+
+.. _using-plugins:
 
 Using Plugins
 ~~~~~~~~~~~~~
@@ -12,9 +16,7 @@ Using Plugins
 Quantum Circuit Composer
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Welcome to **Quantum Circuit Composer**! This plugin aims to provide an integrated development environment for quantum programming, supporting multiple quantum programming languages (QASM, Qiskit, QPanda, OriginIR, QCIS) and multiple compilers (QLLVM, Qiskit, QPanda), and implementing remote/local compilation, QIR simulator running, compilation result statistical comparison and other functions.
-
-**Main features:**
+Quantum Circuit Composer is a Visual Studio Code plugin with the following main features:
 
 - **Multi-compiler support**: Configure multiple compilers (self-developed QLLVM, IBM Qiskit, Origin QPanda) simultaneously, compile in parallel with one click, and automatically generate result comparison tables.
 - **Multi-frontend input**: Supports QASM, Qiskit Python code, QPanda Python code, OriginIR, QCIS and other input formats, which are uniformly converted to QASM for compilation.
@@ -41,8 +43,8 @@ Welcome to **Quantum Circuit Composer**! This plugin aims to provide an integrat
       creg c[2];
       h q[0];
       cx q[0],q[1];
-      measure q[0] -&gt; c[0];
-      measure q[1] -&gt; c[1];
+      measure q[0] -> c[0];
+      measure q[1] -> c[1];
 
 3. **Compile file**
    - Right-click on the file and select **"Compile current quantum circuit file"**.
@@ -81,13 +83,20 @@ QCoder embeds large model dialogue into the editor sidebar, focusing on quantum 
 4. **Sidebar settings**
    - Open **Settings** in the title bar or interface: manage custom model lists, interface language, and key writing related to model testing (in supported builds).
 
+.. _using-command-line:
+
 Using Command Line
 ~~~~~~~~~~~~~~~~~~
 
-Compiling OpenQASM Files
-^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _compiling-openqasm-files:
 
-**Basic Compilation:**
+Compiling Pure Quantum Programs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Compiling OpenQASM Files
+""""""""""""""""""""""""""
+
+**Basic compilation:**
 
 .. code-block:: bash
 
@@ -95,21 +104,21 @@ Compiling OpenQASM Files
   qllvm test.qasm -qrt nisq -qpu qasm-backend -O1
   # Output: test_compiled.qasm
 
-**Specifying Output Path:**
+**Specify output path:**
 
 .. code-block:: bash
 
   qllvm test.qasm -qrt nisq -qpu qasm-backend -O0 -o folder/try
   # Output: folder/try.qasm
 
-**Specifying Basic Gates:**
+**Specify basis gate set:**
 
 .. code-block:: bash
 
     qllvm test.qasm -qrt nisq -qpu qasm-backend -O1 -o folder/try \
       -basicgate=[rx,ry,rz,h,cx]
 
-**With Backend Topology (SABRE Mapping):**
+**With backend topology (SABRE mapping):**
 
 .. code-block:: bash
 
@@ -117,8 +126,10 @@ Compiling OpenQASM Files
       -qpu-config backend.ini -initial-mapping '[0,1,2]' \
       -sabre-cpp
 
+.. _bell-state-example:
+
 Bell State Example
-^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""
 
 Create bell.qasm:
 
@@ -130,8 +141,8 @@ Create bell.qasm:
     creg q_c[2];
     h q[0];
     CX q[0], q[1];
-    measure q[0] -&gt; q_c[0];
-    measure q[1] -&gt; q_c[1];
+    measure q[0] -> q_c[0];
+    measure q[1] -> q_c[1];
 
 Compile and check output:
 
@@ -140,8 +151,10 @@ Compile and check output:
     qllvm bell.qasm -qrt nisq -qpu qasm-backend -O1
     cat bell_compiled.qasm
 
+.. _directly-calling-qllvm-compile:
+
 Directly Calling qllvm-compile
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""
 
 .. code-block:: bash
 
@@ -154,16 +167,20 @@ Directly Calling qllvm-compile
       -emit-backend=qasm-backend -output-path=test_sabre.qasm \
       -sabre-coupling-map="0,1;1,2"
 
+.. _printing-mlir-qir:
+
 Printing MLIR / QIR
-^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""
 
 .. code-block:: bash
 
     qllvm test.qasm -emitmlir -qrt nisq -qpu qasm-backend -O1
     qllvm test.qasm -emitqir -qrt nisq -qpu qasm-backend -O1
 
+.. _backend-topology-configuration-example:
+
 Backend Topology Configuration Example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""
 
 `backend.ini` or `qpu_config_chain3.txt`:
 
@@ -172,13 +189,189 @@ Backend Topology Configuration Example
     # Linear chain: 0-1-2
     connectivity = [[0, 1], [1, 2]]
 
+.. _qir-runner-backend:
+
+QIR Runner Backend Configuration Example
+"""""""""""""""""""""""""""""""""""""""""""
+
+Output LLVM bitcode (.bc) for QIR Runner simulator loading. qllvm has built-in **QirRunnerCompat** to automatically adapt to qir-runner's QIR base profile (`__quantum__rt__initialize` signature, `__body` suffix, mz result index, etc.).
+
+.. code-block:: bash
+
+    # 1. Install qir-runner (conda qllvm environment)
+    conda activate qllvm
+    pip install qirrunner
+
+    # 2. Use qllvm-compile to generate .bc
+    qllvm-compile bell.qasm -qrt nisq -qpu qir-runner -O1 \
+      -emit-backend=qir-runner -output-path=bell.bc
+
+    # 3. Run with qir-runner
+    qir-runner -f bell.bc -s 5
+
+.. _qir-runner-output-format-explanation:
+
+qir-runner Output Format Explanation
+++++++++++++++++++++++++++++++++++++
+
+Output structure for each shot:
+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Line
+     - Meaning
+   * - `START`
+     - A shot begins
+   * - `METADATA\tEntryPoint`
+     - Entry point metadata
+   * - `RESULT\t0` or `RESULT\t1`
+     - Measurement results for each qubit (in measurement order)
+   * - `END\t0`
+     - The shot ends
+
+Example (Bell circuit 5 shots):
+
+.. code-block:: text
+
+    START
+    METADATA	EntryPoint
+    RESULT	0
+    RESULT	0
+    END	0
+    START
+    METADATA	EntryPoint
+    RESULT	1
+    RESULT	1
+    END	0
+    ...
+
+.. _qir-runner-command-line-parameters:
+
+qir-runner Command Line Parameters
+++++++++++++++++++++++++++++++++++
+
+.. list-table::
+   :widths: 20 60 20
+   :header-rows: 1
+
+   * - Parameter
+     - Description
+     - Default
+   * - `-f, --file <PATH>`
+     - QIR bitcode file path (required)
+     - -
+   * - `-s, --shots <NUM>`
+     - Number of simulation shots
+     - 1
+   * - `-r, --rngseed <NUM>`
+     - Random number seed (for reproducibility)
+     - Random
+   * - `-e, --entrypoint <NAME>`
+     - Entry function name
+     - EntryPoint
+
+.. _output-as-qiskit-style-counts:
+
+Output as Qiskit-style Counts
+"""""""""""""""""""""""""""""""
+
+Use `scripts/qir_runner_counts.py` to convert raw output to Qiskit-style `get_counts()` dictionary:
+
+.. code-block:: bash
+
+    # Pipe method
+    qir-runner -f bell.bc -s 100 | python3 scripts/qir_runner_counts.py -
+
+    # Directly specify bc and parameters
+    python3 scripts/qir_runner_counts.py bell.bc -s 100 -r 42
+
+- **Output example (Bell state)**: `{'00': 48, '11': 52}`
+
+- **Collaborative test script**: `./scripts/test_qllvm_qirrunner.sh`
+
+`.bc` is standard LLVM bitcode, which can be loaded by tools like [qir-alliance/qir-runner](https://github.com/qir-alliance/qir-runner) (requires Python 3.9+).
+
+.. _classical-quantum-hybrid-compilation:
+
+Compiling Classical-Quantum Hybrid Programs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optional Dependencies (Install as needed)
++++++++++++++++++++++++++++++++++++++++++
+
+If you need to compile classical-quantum hybrid programs, you need to install qir-runner (`pip install qirrunner`) and the following dependencies:
+
+- **Dependencies**: Clang (supports `-x cuda`), CUDA Toolkit, qir-runner (`pip install qirrunner`).
+- **Ubuntu apt install CUDA**: Run `bash scripts/install_cuda_apt.sh` to automatically install nvidia-cuda-toolkit and create Clang-compatible directory (`~/.qllvm/cuda-apt-compat`). See `examples/hybrid_cuda/README.md` for details.
+
+Classical-Quantum Hybrid Compilation
+++++++++++++++++++++++++++++++++++++
+
+Supports compiling C++ main programs with QASM quantum circuits into a single executable:
+
+.. code-block:: bash
+
+    # Hybrid compilation (qir-qrt-stub stub implementation)
+    qllvm main.cpp circuit.qasm -o hybrid_app
+
+    # Example located in examples/hybrid/
+    qllvm examples/hybrid/main.cpp examples/hybrid/bell.qasm -o hybrid_bell
+    ./hybrid_bell
+
+.. _using-qir-runner-as-simulator:
+
+Using qir-runner as Simulator
++++++++++++++++++++++++++++++
+
+.. code-block:: bash
+
+    # Hybrid compilation + qir-runner simulation (generates exe and .bc)
+    qllvm main.cpp bell.qasm -qpu qir-runner -o hybrid_bell -O1
+
+    # Run (requires qir-runner in PATH)
+    ./hybrid_bell -shots 10
+
+- **Workflow**: QASM → QIR .bc (qir-runner) + C++ compilation → Executable indirectly calls qir-runner subprocess to simulate quantum circuits at runtime.
+
+- **Collaborative test script**: `./scripts/test_hybrid_qirrunner.sh`
+
+See `examples/hybrid/README.md` for details.
+
+.. _c-cuda-qasm-hybrid-compilation:
+
+C++ + CUDA + QASM Hybrid Compilation
+++++++++++++++++++++++++++++++++++++++
+
+Supports compiling C++ main programs, CUDA kernels, and QASM quantum circuits into a single executable (requires CUDA environment):
+
+.. code-block:: bash
+
+    cd examples/hybrid_cuda
+
+    # Compile (-cuda-arch specifies GPU architecture, e.g., sm_75, sm_86)
+    qllvm main.cpp kernel.cu circuit.qasm -o hybrid_app \
+          -cuda-arch sm_75 \
+          -cuda-path /usr/local/cuda
+
+    # If nvcc is in PATH, you can omit -cuda-path, it will be auto-detected
+    qllvm main.cpp kernel.cu circuit.qasm -o hybrid_app -cuda-arch sm_86
+
+    # Run
+    ./hybrid_app -shots 1024
+
+.. _compilation-parameter-explanation:
+
 Compilation Parameter Explanation
 ---------------------------------
 
 This tutorial will introduce detailed explanations of qllvm compilation parameters.
 
+.. _driver-program-qllvm-parameters:
+
 Driver Program (qllvm) Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: Driver Program (qllvm) Parameters
    :widths: 20 60 20
@@ -194,7 +387,7 @@ Driver Program (qllvm) Parameters
      - Use fixed optimization pass sequence
      - ``-O1``
    * - `-basicgate`
-     - Specify basic gate set
+     - Specify basis gate set
      - ``-basicgate=[rx,ry,rz,h,cz]``, ``-basicgate=[rx,ry,rz,h,cx]``, ``-basicgate=[su2,x,y,z,cz]`` (for measurement and control)
    * - `-qrt`
      - Specify device type
@@ -203,7 +396,7 @@ Driver Program (qllvm) Parameters
      - Specify backend type
      - ``-qpu qasm-backend``
    * - `-qpu-config`
-     - Specify backend topology (coupling graph)
+     - Specify backend topology structure (coupling graph)
      - ``-qpu-config ./backend.ini``
    * - `-emitmlir`
      - Print MLIR program
@@ -233,23 +426,25 @@ Driver Program (qllvm) Parameters
      - Print execution count of each Pass
      - ``-pass-count``
    * - `-v` / `--verbose`
-     - Enable detailed output
+     - Enable verbose output
      - ``-v``
    * - `-cuda-arch`
      - Specify GPU architecture for hybrid CUDA
      - ``-cuda-arch sm_75``
    * - `-cuda-path`
-     - Specify CUDA installation path for hybrid CUDA (optional, defaults to `CUDA_PATH` or nvcc derivation)
+     - Specify CUDA installation path for hybrid CUDA (optional, defaults to `CUDA_PATH` or nvcc inference)
      - ``-cuda-path /usr/local/cuda``
 
-**Common Basic Gate Sets:**
+**Common basis gate sets:**
 
 - ``[rx,ry,rz,h,cz]``: Default
-- ``[rx,ry,rz,h,cx]``: Using CX
+- ``[rx,ry,rz,h,cx]``: Use CX
 - ``[su2,x,y,z,cz]``: For measurement and control systems
 
+.. _qllvm-compile-parameters:
+
 qllvm-compile Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: qllvm-compile Parameters
    :widths: 30 70
@@ -258,11 +453,11 @@ qllvm-compile Parameters
    * - Parameter
      - Description
    * - `<input.qasm>`
-     - Positional, input OpenQASM file
+     - positional, input OpenQASM file
    * - `-internal-func-name`
      - Generated kernel function name
    * - `-no-entrypoint`
-     - Do not generate main entry point
+     - Do not generate main entry
    * - `-O0`
      - Optimization level 0
    * - `-O1`
@@ -288,17 +483,19 @@ qllvm-compile Parameters
    * - `-pass-count`
      - Print execution count of each Pass
    * - `-basicgate`
-     - Basic gate set
+     - Basis gate set
    * - `-customPassSequence`
      - Custom Pass sequence file
    * - `-verbose-error`
-     - Print full MLIR when error occurs
+     - Print full MLIR on error
    * - `--pass-timing`
-     - Pass timing statistics
+     - Pass execution time statistics
    * - `--print-ir-after-all`
      - Print IR after each Pass
    * - `--print-ir-before-all`
      - Print IR before each Pass
+
+.. _cmake-build-parameters:
 
 CMake Build Parameters
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -310,178 +507,31 @@ CMake Build Parameters
    * - Parameter
      - Description
    * - `-DLLVM_ROOT`
-     - LLVM installation path (with MLIR)
+     - LLVM installation path (includes MLIR)
    * - `-DXACC_DIR`
-     - Optional dependency path (antlr4/exprtk); set to empty for QASM-only standalone build: `-DXACC_DIR=`
+     - Optional dependency path (antlr4/exprtk); Set to empty for QASM-only standalone build: `-DXACC_DIR=`
    * - `-DCMAKE_INSTALL_PREFIX`
      - Installation directory (default ~/.qllvm)
    * - `-DQLLVM_QASM_ONLY_BUILD=ON`
      - Enable QASM-only standalone build
 
-Optional Dependencies (install as needed)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _optional-dependencies-usage:
 
-QIR Runner Backend
-^^^^^^^^^^^^^^^^^^
+Optional Dependencies
+~~~~~~~~~~~~~~~~~~~~~
 
-Output LLVM bitcode (.bc) for QIR Runner simulator loading. qllvm has built-in **QirRunnerCompat** that automatically adapts to qir-runner's QIR base profile (`__quantum__rt__initialize` signature, `__body` suffix, mz result indexing, etc.).
+QASM-Only Standalone Build
+++++++++++++++++++++++++++
 
-.. code-block:: bash
-
-    # 1. Install qir-runner (conda qllvm environment)
-    conda activate qllvm
-    pip install qirrunner
-
-    # 2. Generate .bc with qllvm-compile
-    qllvm-compile bell.qasm -qrt nisq -qpu qir-runner -O1 \
-      -emit-backend=qir-runner -output-path=bell.bc
-
-    # 3. Run with qir-runner
-    qir-runner -f bell.bc -s 5
-
-qir-runner Output Format Explanation
-""""""""""""""""""""""""""""""""""""""""""
-
-Output structure for each shot:
-
-.. list-table::
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Line
-     - Meaning
-   * - `START`
-     - Start of a shot
-   * - `METADATA\tEntryPoint`
-     - Entry point metadata
-   * - `RESULT\t0` or `RESULT\t1`
-     - Measurement result for each qubit (in measurement order)
-   * - `END\t0`
-     - End of the shot
-
-Example (Bell circuit 5 shots):
-
-.. code-block:: text
-
-    START
-    METADATA	EntryPoint
-    RESULT	0
-    RESULT	0
-    END	0
-    START
-    METADATA	EntryPoint
-    RESULT	1
-    RESULT	1
-    END	0
-    ...
-
-qir-runner Command Line Parameters
-"""""""""""""""""""""""""""""""""""
-
-.. list-table::
-   :widths: 20 60 20
-   :header-rows: 1
-
-   * - Parameter
-     - Description
-     - Default Value
-   * - `-f, --file &lt;PATH&gt;`
-     - QIR bitcode file path (required)
-     - -
-   * - `-s, --shots &lt;NUM&gt;`
-     - Number of simulation shots
-     - 1
-   * - `-r, --rngseed &lt;NUM&gt;`
-     - Random number seed (for reproducibility)
-     - Random
-   * - `-e, --entrypoint &lt;NAME&gt;`
-     - Entry function name
-     - EntryPoint
-
-Output as Qiskit-style counts
-""""""""""""""""""""""""""""""""
-
-Use `scripts/qir_runner_counts.py` to convert raw output to Qiskit-style `get_counts()` dictionary:
+If you only need QASM compilation functionality without XACC dependencies, you can enable QASM-only standalone build:
 
 .. code-block:: bash
 
-    # Pipe mode
-    qir-runner -f bell.bc -s 100 | python3 scripts/qir_runner_counts.py -
+    mkdir build && cd build
+    cmake .. -DQLLVM_QASM_ONLY_BUILD=ON -DXACC_DIR= \
+             -DLLVM_ROOT=/path/to/llvm \
+             -DCMAKE_INSTALL_PREFIX=~/.qllvm
+    make -j$(nproc)
+    make install
 
-    # Directly specify bc and parameters
-    python3 scripts/qir_runner_counts.py bell.bc -s 100 -r 42
-
-- **Output Example (Bell state)**: `{'00': 48, '11': 52}`
-
-- **Collaborative Test Script**: `./scripts/test_qllvm_qirrunner.sh`
-
-`.bc` is standard LLVM bitcode, can be loaded by tools like [qir-alliance/qir-runner](https://github.com/qir-alliance/qir-runner) (requires Python 3.9+).
-
-Classical-Quantum Hybrid Compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Relying on the LLVM ecosystem, QLLVM can integrate with classical compilation passes, CUDA programming models, and HPC runtimes, enabling efficient classical-quantum hybrid task compilation.
-
-.. image:: image/02.png
-   :align: center
-   :width: 100%
-
-Classical-Quantum Hybrid Program Compilation Mechanism
-
-Supports compiling C++ main programs and QASM quantum circuits into a single executable file:
-
-.. code-block:: bash
-
-    # Hybrid compilation (qir-qrt-stub stub implementation)
-    qllvm main.cpp circuit.qasm -o hybrid_app
-
-    # Example in examples/hybrid/
-    qllvm examples/hybrid/main.cpp examples/hybrid/bell.qasm -o hybrid_bell
-    ./hybrid_bell
-
-Using qir-runner as Simulator
-""""""""""""""""""""""""""""""""
-
-.. code-block:: bash
-
-    # Hybrid compilation + qir-runner simulation (generates exe and .bc)
-    qllvm main.cpp bell.qasm -qpu qir-runner -o hybrid_bell -O1
-
-    # Run (requires qir-runner in PATH)
-    ./hybrid_bell -shots 10
-
-- **Workflow**: QASM → QIR .bc (qir-runner) + C++ compilation → executable indirectly calls qir-runner subprocess at runtime to simulate quantum circuits.
-
-- **Collaborative Test Script**: `./scripts/test_hybrid_qirrunner.sh`
-
-See `examples/hybrid/README.md` for details.
-
-C++ + CUDA + QASM Hybrid Compilation
-""""""""""""""""""""""""""""""""""""
-
-.. image:: image/003.png
-   :align: center
-   :width: 100%
-
-Hybrid Program Code Writing Example
-
-Supports compiling C++ main programs, CUDA kernels, and QASM quantum circuits into a single executable file (requires CUDA environment):
-
-.. code-block:: bash
-
-    cd examples/hybrid_cuda
-
-    # Compile (-cuda-arch specifies GPU architecture, e.g., sm_75, sm_86)
-    qllvm main.cpp kernel.cu circuit.qasm -o hybrid_app \
-          -cuda-arch sm_75 \
-          -cuda-path /usr/local/cuda
-
-    # If nvcc is in PATH, -cuda-path can be omitted and will be auto-deduced
-    qllvm main.cpp kernel.cu circuit.qasm -o hybrid_app -cuda-arch sm_86
-
-    # Run
-    ./hybrid_app -shots 1024
-
-- **Dependencies**: Clang (supports `-x cuda`), CUDA Toolkit, qir-runner (`pip install qirrunner`).
-
-- **Ubuntu apt Install CUDA**: Run `bash scripts/install_cuda_apt.sh` to automatically install nvidia-cuda-toolkit and create Clang-compatible directory (`~/.qllvm/cuda-apt-compat`). See `examples/hybrid_cuda/README.md` for details.
+This will only build the QASM frontend and related passes, without depending on XACC and its dependencies (antlr4, exprtk, etc.).

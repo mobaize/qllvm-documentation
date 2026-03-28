@@ -36,6 +36,22 @@ QLLVM Compilation Framework
 * **Middle-end**: Perform quantum program optimization based on MLIR, and further lower MLIR to QIR (LLVM IR)
 * **Back-end**: Based on QIR and QIR runtime library, convert programs to code formats supported by target hardware
 
+Leveraging the LLVM ecosystem, QLLVM can integrate with classical compilation passes, CUDA programming models, and HPC runtimes, enabling efficient compilation of classical-quantum hybrid tasks.
+
+.. image:: image/02.png
+   :align: center
+   :width: 100%
+
+Classical-Quantum Hybrid Program Compilation Mechanism
+
+Meanwhile, based on the LLVM compilation framework, the QLLVM compiler can work synergistically with various classical high-performance compilers, thus supporting the compilation of classical-quantum hybrid programs.
+
+.. image:: image/003.png
+   :align: center
+   :width: 100%
+
+Hybrid Program Code Writing Example
+
 Key Advantages
 --------------
 
