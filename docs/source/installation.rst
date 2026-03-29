@@ -64,6 +64,24 @@ Qcoder配置
 
 如果您需要直接在本地环境中使用QLLVM命令行工具或进行自定义开发，可以选择从源码编译安装。
 
+.. _environment-requirements:
+
+环境要求
+~~~~~~~~
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 70
+
+   * - 依赖项
+     - 版本要求
+   * - LLVM 预编译版本
+     - 12.0.0
+   * - Ubuntu 版本
+     - 20.04+
+   * - Python 版本
+     - 3.10+
+
 .. _common-dependencies:
 
 通用依赖
@@ -78,13 +96,31 @@ Qcoder配置
     sudo apt-get install -y build-essential cmake ninja-build \
       libcurl4-openssl-dev libssl-dev liblapack-dev libblas-dev \
       lsb-release git
+    # 额外依赖
+    sudo apt-get install -y libantlr4-runtime-dev libeigen3-dev
 
-**LLVM/MLIR**：QLLVM 需要带 MLIR 的 LLVM。推荐使用 ``llvm`` 预编译包，或从 [llvm-project-csp](https://github.com/ornl-qci/llvm-project-csp) 源码编译（启用 ``clang;mlir``）。
+**LLVM/MLIR**：QLLVM 需要带 MLIR 的 LLVM。推荐使用预编译包，或从 `llvm-project-csp <https://github.com/ornl-qci/llvm-project-csp>`_ 源码编译（启用 ``clang;mlir``）。
+
+下载 LLVM 12.0.0 预编译包并解压到 ``$HOME/.llvm``：
 
 .. code-block:: bash
 
-    # 额外依赖
-    sudo apt-get install -y libantlr4-runtime-dev libeigen3-dev
+   # 手动下载解压方式
+   # 访问 https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
+   # 选择 clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz 下载
+   cd ~/Downloads
+   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+
+   # 或使用 wget 直接下载并解压
+   wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+
+   # 将 LLVM 添加到 PATH（可选）
+   echo 'export PATH=$HOME/.llvm/bin:$PATH' >> ~/.bashrc
+   source ~/.bashrc
+
 
 .. _qllvm-build:
 
@@ -94,8 +130,8 @@ QLLVM构建
 .. code-block:: bash
 
     # 克隆仓库
-    git clone https://github.com/QCFlow/QLLVM qllvm
-    cd qllvm
+    git clone https://github.com/QCFlow/QLLVM.git
+    cd QLLVM
 
     # 构建和安装
     mkdir build && cd build
@@ -111,6 +147,20 @@ QLLVM构建
 
     export PATH=$PATH:$HOME/.qllvm/bin
 
+.. _verification-and-testing:
+
+验证和测试
+~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    # 运行测试脚本
+    ./scripts/test_openqasm_only.sh
+
+    # 手动验证
+    qllvm test/test_bell.qasm -qrt nisq -qpu qasm-backend -O1
+    cat test/test_bell_compiled.qasm
+
 .. _optional-dependencies-install-as-needed:
 
 可选依赖（按需安装）
@@ -123,13 +173,10 @@ QLLVM构建
    * - 功能
      - 依赖
      - 安装方法
-   * - QIR Runner 模拟
+   * - QIR Runner 模拟器
      - qir-runner, Python 3.9+
      - ``pip install qirrunner``
-   * - 经典-量子混合编译
-     - qir-runner
-     - ``pip install qirrunner``
-   * - C++ + CUDA + QASM 混合
+   * - C++ + CUDA + QASM 混合程序编译
      - CUDA Toolkit, nvcc, qir-runner
      - 见下文 CUDA 环境
 
@@ -159,20 +206,6 @@ CUDA环境（仅C+++CUDA+QASM混合需要）
     export PATH=$CUDA_PATH/bin:$PATH
 
 **注意**：编译混合程序不需要物理 GPU；运行生成的 ``hybrid_app`` 需要 NVIDIA 显卡和驱动。
-
-.. _verification-and-testing:
-
-验证和测试
-~~~~~~~~~~~~~~
-
-.. code-block:: bash
-
-    # 运行测试脚本
-    ./scripts/test_openqasm_only.sh
-
-    # 手动验证
-    qllvm test/test_bell.qasm -qrt nisq -qpu qasm-backend -O1
-    cat test/test_bell_compiled.qasm
 
 .. _troubleshooting:
 

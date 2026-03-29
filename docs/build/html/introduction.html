@@ -85,11 +85,12 @@
                 'Quantum Circuit Composer配置': 'Quantum Circuit Composer Configuration',
                 'Qcoder配置': 'Qcoder Configuration',
                 '从源码进行安装': 'Installation from Source',
+                '环境要求': 'Environment Requirements',
                 '通用依赖': 'Common Dependencies',
                 'QLLVM构建': 'QLLVM Build',
+                '验证和测试': 'Verification and Testing',
                 '可选依赖（按需安装）': 'Optional Dependencies (install as needed)',
                 'CUDA环境（仅C+++CUDA+QASM混合需要）': 'CUDA Environment (only needed for C+++CUDA+QASM hybrid)',
-                '验证和测试': 'Verification and Testing',
                 '故障排除': 'Troubleshooting',
                 '使用示例': 'Usage Examples',
                 '使用插件': 'Using Plugins',
@@ -141,11 +142,12 @@
                 'Quantum Circuit Composer Configuration': 'quantum-circuit-composer-configuration',
                 'Qcoder Configuration': 'qcoder-configuration',
                 'Installation from Source': 'installation-from-source',
+                'Environment Requirements': 'environment-requirements',
                 'Common Dependencies': 'common-dependencies',
                 'QLLVM Build': 'qllvm-build',
+                'Verification and Testing': 'verification-and-testing',
                 'Optional Dependencies (install as needed)': 'optional-dependencies-install-as-needed',
                 'CUDA Environment (only needed for C+++CUDA+QASM hybrid)': 'cuda-environment-only-needed-for-c-cuda-qasm-hybrid',
-                'Verification and Testing': 'verification-and-testing',
                 'Troubleshooting': 'troubleshooting',
                 'Usage Examples': 'usage-examples',
                 'Using Plugins': 'using-plugins',
@@ -466,11 +468,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#installation-from-source">从源码进行安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#environment-requirements">环境要求</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#common-dependencies">通用依赖</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#qllvm">QLLVM构建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#verification-and-testing">验证和测试</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#optional-dependencies-install-as-needed">可选依赖（按需安装）</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#cuda-c-cuda-qasm">CUDA环境（仅C+++CUDA+QASM混合需要）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#verification-and-testing">验证和测试</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">故障排除</a></li>
@@ -556,27 +559,23 @@
 <h1>QLLVM介绍<a class="headerlink" href="#qllvm" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p>QLLVM是一个基于LLVM构建的经典-量子混合编译框架，具备卓越的可扩展性以及与经典高性能计算生态的无缝集成能力。</p></li>
-<li><p>QLLVM支持多种量子编程语言及后端，所支持的编程语言包括Qiskit、OpenQASM等，目标后端包括qasm模拟器、本源量子计算机、中电信“天衍”量子计算机等。</p></li>
+<li><p>QLLVM支持多种量子编程语言及后端，所支持的编程语言包括Qiskit、OpenQASM、QPanda、Cirq等，目标后端包括qasm模拟器、本源量子计算机、中电信“天衍”量子计算机等。</p></li>
 <li><p>QLLVM支持量子程序、CUDA程序和经典C++程序的统一编译，为未来经典-量子软件开发提供了高效、灵活且工业级的编译基础设施。</p></li>
 </ul>
 <section id="id1">
 <h2>总体功能<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>QLLVM 将高级量子程序编译为目标后端可执行代码，主要功能包括：</p>
 <ul class="simple">
-<li><p><strong>多语言前端</strong>：支持 OpenQASM 2.0/3.0、Qiskit QuantumCircuit、Q# 等输入</p></li>
+<li><p><strong>多语言前端</strong>：支持 OpenQASM 2.0/3.0、Qiskit QuantumCircuit、QPanda、Cirq 等输入</p></li>
 <li><p><strong>MLIR 优化</strong>：单比特门合并、抵消、对角门移除、门综合等优化 Pass</p></li>
 <li><p><strong>QIR 生成</strong>：将 MLIR 方言 Lowering 为 QIR（LLVM IR 形式的量子中间表示）</p></li>
 <li><p><strong>SABRE 映射</strong>：C++/Qiskit 实现的量子比特布局与 SWAP 插入</p></li>
 <li><p><strong>多后端发射</strong>：输出 OpenQASM、硬件特定格式等</p></li>
 </ul>
-<p><strong>编译流水线：</strong>
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">QASM</span> <span class="pre">源文件</span> <span class="pre">→</span> <span class="pre">预处理</span> <span class="pre">→</span> <span class="pre">MLIR</span> <span class="pre">(Quantum</span> <span class="pre">方言)</span> <span class="pre">→</span> <span class="pre">优化</span> <span class="pre">Passes</span> <span class="pre">→</span> <span class="pre">Lowering</span> <span class="pre">→</span> <span class="pre">LLVM</span> <span class="pre">IR</span> <span class="pre">(QIR)</span> <span class="pre">→</span> <span class="pre">后端发射</span>
-<span class="pre">`</span></code></p>
 </section>
 <section id="id2">
 <h2>技术路线<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<a class="reference internal image-reference" href="_images/001.png"><img alt="_images/001.png" class="align-center" src="_images/001.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/001.png"><img alt="_images/001.png" class="align-center" src="_images/001.png" style="width: 60%;" />
 </a>
 <p class="centered">
 <strong>QLLVM编译框架</strong></p><ul class="simple">
@@ -588,8 +587,7 @@
 <a class="reference internal image-reference" href="_images/02.png"><img alt="_images/02.png" class="align-center" src="_images/02.png" style="width: 100%;" />
 </a>
 <p class="centered">
-<strong>经典量子混合程序编译机制</strong></p><p>同时基于LLVM编译框架，QLLVM编译器能够和多类经典高性能编译器协同编译，从而支持经典量子混合程序的编译。</p>
-<a class="reference internal image-reference" href="_images/003.png"><img alt="_images/003.png" class="align-center" src="_images/003.png" style="width: 100%;" />
+<strong>经典量子混合程序编译机制</strong></p><a class="reference internal image-reference" href="_images/003.png"><img alt="_images/003.png" class="align-center" src="_images/003.png" style="width: 100%;" />
 </a>
 <p class="centered">
 <strong>混合程序代码编写示例</strong></p></section>
@@ -597,7 +595,7 @@
 <h2>主要优势<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p><strong>工业级 IR 基础设施</strong>：基于 MLIR/LLVM，便于扩展新方言和新 Pass</p></li>
-<li><p><strong>多种输入形式</strong>：OpenQASM、Qiskit、Q# 等，适配不同编程习惯</p></li>
+<li><p><strong>多种输入形式</strong>：OpenQASM、Qiskit 等，适配不同编程习惯</p></li>
 <li><p><strong>灵活优化</strong>：-O0/-O1 等级、自定义 Pass 序列、合成优化</p></li>
 <li><p><strong>物理约束映射</strong>：SABRE 等布局与 SWAP 策略，适配真实硬件拓扑</p></li>
 </ol>

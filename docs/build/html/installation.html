@@ -85,11 +85,12 @@
                 'Quantum Circuit Composer配置': 'Quantum Circuit Composer Configuration',
                 'Qcoder配置': 'Qcoder Configuration',
                 '从源码进行安装': 'Installation from Source',
+                '环境要求': 'Environment Requirements',
                 '通用依赖': 'Common Dependencies',
                 'QLLVM构建': 'QLLVM Build',
+                '验证和测试': 'Verification and Testing',
                 '可选依赖（按需安装）': 'Optional Dependencies (install as needed)',
                 'CUDA环境（仅C+++CUDA+QASM混合需要）': 'CUDA Environment (only needed for C+++CUDA+QASM hybrid)',
-                '验证和测试': 'Verification and Testing',
                 '故障排除': 'Troubleshooting',
                 '使用示例': 'Usage Examples',
                 '使用插件': 'Using Plugins',
@@ -141,11 +142,12 @@
                 'Quantum Circuit Composer Configuration': 'quantum-circuit-composer-configuration',
                 'Qcoder Configuration': 'qcoder-configuration',
                 'Installation from Source': 'installation-from-source',
+                'Environment Requirements': 'environment-requirements',
                 'Common Dependencies': 'common-dependencies',
                 'QLLVM Build': 'qllvm-build',
+                'Verification and Testing': 'verification-and-testing',
                 'Optional Dependencies (install as needed)': 'optional-dependencies-install-as-needed',
                 'CUDA Environment (only needed for C+++CUDA+QASM hybrid)': 'cuda-environment-only-needed-for-c-cuda-qasm-hybrid',
-                'Verification and Testing': 'verification-and-testing',
                 'Troubleshooting': 'troubleshooting',
                 'Usage Examples': 'usage-examples',
                 'Using Plugins': 'using-plugins',
@@ -466,11 +468,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-from-source">从源码进行安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-requirements">环境要求</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#common-dependencies">通用依赖</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#qllvm">QLLVM构建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification-and-testing">验证和测试</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#optional-dependencies-install-as-needed">可选依赖（按需安装）</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cuda-c-cuda-qasm">CUDA环境（仅C+++CUDA+QASM混合需要）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#verification-and-testing">验证和测试</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">故障排除</a></li>
@@ -607,27 +610,68 @@
 <section id="installation-from-source">
 <span id="id4"></span><h2>从源码进行安装<a class="headerlink" href="#installation-from-source" title="Link to this heading"></a></h2>
 <p>如果您需要直接在本地环境中使用QLLVM命令行工具或进行自定义开发，可以选择从源码编译安装。</p>
+<section id="environment-requirements">
+<span id="id5"></span><h3>环境要求<a class="headerlink" href="#environment-requirements" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>依赖项</p></th>
+<th class="head"><p>版本要求</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LLVM 预编译版本</p></td>
+<td><p>12.0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ubuntu 版本</p></td>
+<td><p>20.04+</p></td>
+</tr>
+<tr class="row-even"><td><p>Python 版本</p></td>
+<td><p>3.10+</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="common-dependencies">
-<span id="id5"></span><h3>通用依赖<a class="headerlink" href="#common-dependencies" title="Link to this heading"></a></h3>
+<span id="id6"></span><h3>通用依赖<a class="headerlink" href="#common-dependencies" title="Link to this heading"></a></h3>
 <p>在系统中执行以下命令，安装系统基础依赖</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 系统基础依赖</span>
 sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>ninja-build<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>libcurl4-openssl-dev<span class="w"> </span>libssl-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>libblas-dev<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>lsb-release<span class="w"> </span>git
+<span class="c1"># 额外依赖</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libantlr4-runtime-dev<span class="w"> </span>libeigen3-dev
 </pre></div>
 </div>
-<p><strong>LLVM/MLIR</strong>：QLLVM 需要带 MLIR 的 LLVM。推荐使用 <code class="docutils literal notranslate"><span class="pre">llvm</span></code> 预编译包，或从 [llvm-project-csp](<a class="reference external" href="https://github.com/ornl-qci/llvm-project-csp">https://github.com/ornl-qci/llvm-project-csp</a>) 源码编译（启用 <code class="docutils literal notranslate"><span class="pre">clang;mlir</span></code>）。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 额外依赖</span>
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libantlr4-runtime-dev<span class="w"> </span>libeigen3-dev
+<p><strong>LLVM/MLIR</strong>：QLLVM 需要带 MLIR 的 LLVM。推荐使用预编译包，或从 <a class="reference external" href="https://github.com/ornl-qci/llvm-project-csp">llvm-project-csp</a> 源码编译（启用 <code class="docutils literal notranslate"><span class="pre">clang;mlir</span></code>）。</p>
+<p>下载 LLVM 12.0.0 预编译包并解压到 <code class="docutils literal notranslate"><span class="pre">$HOME/.llvm</span></code>：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 手动下载解压方式</span>
+<span class="c1"># 访问 https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0</span>
+<span class="c1"># 选择 clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz 下载</span>
+<span class="nb">cd</span><span class="w"> </span>~/Downloads
+tar<span class="w"> </span>-xf<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+mv<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04<span class="w"> </span>~/.llvm
+
+<span class="c1"># 或使用 wget 直接下载并解压</span>
+wget<span class="w"> </span>https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+tar<span class="w"> </span>-xf<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+mv<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04<span class="w"> </span>~/.llvm
+
+<span class="c1"># 将 LLVM 添加到 PATH（可选）</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=$HOME/.llvm/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
 </pre></div>
 </div>
 </section>
 <section id="qllvm">
 <span id="qllvm-build"></span><h3>QLLVM构建<a class="headerlink" href="#qllvm" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 克隆仓库</span>
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/QCFlow/QLLVM<span class="w"> </span>qllvm
-<span class="nb">cd</span><span class="w"> </span>qllvm
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/QCFlow/QLLVM.git
+<span class="nb">cd</span><span class="w"> </span>QLLVM
 
 <span class="c1"># 构建和安装</span>
 mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
@@ -643,8 +687,19 @@ ninja<span class="w"> </span>install
 </pre></div>
 </div>
 </section>
+<section id="verification-and-testing">
+<span id="id7"></span><h3>验证和测试<a class="headerlink" href="#verification-and-testing" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行测试脚本</span>
+./scripts/test_openqasm_only.sh
+
+<span class="c1"># 手动验证</span>
+qllvm<span class="w"> </span>test/test_bell.qasm<span class="w"> </span>-qrt<span class="w"> </span>nisq<span class="w"> </span>-qpu<span class="w"> </span>qasm-backend<span class="w"> </span>-O1
+cat<span class="w"> </span>test/test_bell_compiled.qasm
+</pre></div>
+</div>
+</section>
 <section id="optional-dependencies-install-as-needed">
-<span id="id6"></span><h3>可选依赖（按需安装）<a class="headerlink" href="#optional-dependencies-install-as-needed" title="Link to this heading"></a></h3>
+<span id="id8"></span><h3>可选依赖（按需安装）<a class="headerlink" href="#optional-dependencies-install-as-needed" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20.0%" />
@@ -658,15 +713,11 @@ ninja<span class="w"> </span>install
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>QIR Runner 模拟</p></td>
+<tr class="row-even"><td><p>QIR Runner 模拟器</p></td>
 <td><p>qir-runner, Python 3.9+</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qirrunner</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>经典-量子混合编译</p></td>
-<td><p>qir-runner</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qirrunner</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>C++ + CUDA + QASM 混合</p></td>
+<tr class="row-odd"><td><p>C++ + CUDA + QASM 混合程序编译</p></td>
 <td><p>CUDA Toolkit, nvcc, qir-runner</p></td>
 <td><p>见下文 CUDA 环境</p></td>
 </tr>
@@ -690,20 +741,9 @@ bash<span class="w"> </span>scripts/install_cuda_apt.sh
 </div>
 <p><strong>注意</strong>：编译混合程序不需要物理 GPU；运行生成的 <code class="docutils literal notranslate"><span class="pre">hybrid_app</span></code> 需要 NVIDIA 显卡和驱动。</p>
 </section>
-<section id="verification-and-testing">
-<span id="id7"></span><h3>验证和测试<a class="headerlink" href="#verification-and-testing" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行测试脚本</span>
-./scripts/test_openqasm_only.sh
-
-<span class="c1"># 手动验证</span>
-qllvm<span class="w"> </span>test/test_bell.qasm<span class="w"> </span>-qrt<span class="w"> </span>nisq<span class="w"> </span>-qpu<span class="w"> </span>qasm-backend<span class="w"> </span>-O1
-cat<span class="w"> </span>test/test_bell_compiled.qasm
-</pre></div>
-</div>
-</section>
 </section>
 <section id="troubleshooting">
-<span id="id8"></span><h2>故障排除<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<span id="id9"></span><h2>故障排除<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
 <p>如果您在安装过程中遇到问题，请尝试以下解决方法：</p>
 <ol class="arabic simple">
 <li><p><strong>依赖问题</strong>：确保所有依赖项都已正确安装</p></li>

@@ -52,6 +52,24 @@ Installation from Source
 
 If you need to use QLLVM command line tools directly in your local environment or perform custom development, you can choose to compile and install from source code.
 
+.. _environment-requirements:
+
+Environment Requirements
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Dependency
+     - Version Requirement
+   * - LLVM precompiled version
+     - 12.0.0
+   * - Ubuntu version
+     - 20.04+
+   * - Python version
+     - 3.10+
+
 Common Dependencies
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -64,13 +82,30 @@ Execute the following commands in the system to install system basic dependencie
     sudo apt-get install -y build-essential cmake ninja-build \
       libcurl4-openssl-dev libssl-dev liblapack-dev libblas-dev \
       lsb-release git
+    # Additional dependencies
+    sudo apt-get install -y libantlr4-runtime-dev libeigen3-dev
 
-**LLVM/MLIR**: QLLVM requires LLVM with MLIR. It is recommended to use the ``llvm`` precompiled package, or compile from [llvm-project-csp](https://github.com/ornl-qci/llvm-project-csp) source code (enable ``clang;mlir``).
+**LLVM/MLIR**: QLLVM requires LLVM with MLIR. It is recommended to use a pre-built package, or build from source using `llvm-project-csp <https://github.com/ornl-qci/llvm-project-csp>`_ (enable ``clang;mlir``).
+
+Download the LLVM 12.0.0 pre-built package and extract it to ``$HOME/.llvm``:
 
 .. code-block:: bash
 
-    # Additional dependencies
-    sudo apt-get install -y libantlr4-runtime-dev libeigen3-dev
+   # Manual download and extraction
+   # Visit https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
+   # Select clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz to download
+   cd ~/Downloads
+   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+
+   # Or download and extract directly using wget
+   wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+
+   # Add LLVM to PATH (optional)
+   echo 'export PATH=$HOME/.llvm/bin:$PATH' >> ~/.bashrc
+   source ~/.bashrc
 
 QLLVM Build
 ~~~~~~~~~~~~
@@ -78,8 +113,8 @@ QLLVM Build
 .. code-block:: bash
 
     # Clone repository
-    git clone https://github.com/QCFlow/QLLVM qllvm
-    cd qllvm
+    git clone https://github.com/QCFlow/QLLVM.git
+    cd QLLVM
 
     # Build and install
     mkdir build && cd build
@@ -95,6 +130,22 @@ QLLVM Build
 
     export PATH=$PATH:$HOME/.qllvm/bin
 
+.. _verification-and-testing:
+
+Verification and Testing
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    # Run test script
+    ./scripts/test_openqasm_only.sh
+
+    # Manual verification
+    qllvm test/test_bell.qasm -qrt nisq -qpu qasm-backend -O1
+    cat test/test_bell_compiled.qasm
+
+.. _optional-dependencies-install-as-needed:
+
 Optional Dependencies (install as needed)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -105,13 +156,10 @@ Optional Dependencies (install as needed)
    * - Function
      - Dependency
      - Installation Method
-   * - QIR Runner Simulation
+   * - QIR Runner Simulator
      - qir-runner, Python 3.9+
      - ``pip install qirrunner``
-   * - Classical-Quantum Hybrid Compilation
-     - qir-runner
-     - ``pip install qirrunner``
-   * - C++ + CUDA + QASM Hybrid
+   * - C++ + CUDA + QASM Hybrid Program Compilation
      - CUDA Toolkit, nvcc, qir-runner
      - See CUDA Environment below
 
@@ -140,17 +188,7 @@ Download runfile from [NVIDIA CUDA download page](https://developer.nvidia.com/c
 
 **Note**: Compiling hybrid programs does not require a physical GPU; running the generated ``hybrid_app`` requires an NVIDIA graphics card and driver.
 
-Verification and Testing
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: bash
-
-    # Run test script
-    ./scripts/test_openqasm_only.sh
-
-    # Manual verification
-    qllvm test/test_bell.qasm -qrt nisq -qpu qasm-backend -O1
-    cat test/test_bell_compiled.qasm
+.. _troubleshooting:
 
 Troubleshooting
 ---------------
@@ -161,5 +199,3 @@ If you encounter problems during installation, please try the following solution
 2. **LLVM version**: Ensure the LLVM version used is compatible with QLLVM
 3. **Permission issues**: Use administrator privileges or sudo to install
 4. **Network issues**: Ensure network connection is normal, especially when cloning code from GitHub
-
-If the problem still exists, please submit an `Issue <https://github.com/QCFlow/QLLVM/issues>`_ on GitHub.
