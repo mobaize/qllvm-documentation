@@ -87,25 +87,33 @@ Execute the following commands in the system to install system basic dependencie
 
 **LLVM/MLIR**: QLLVM requires LLVM with MLIR. It is recommended to use a pre-built package, or build from source using `llvm-project-csp <https://github.com/ornl-qci/llvm-project-csp>`_ (enable ``clang;mlir``).
 
-Download the LLVM 12.0.0 pre-built package and extract it to ``$HOME/.llvm``:
+Download and Install LLVM 12.0.0 Pre-built Package
+
+Download and extract to ``$HOME/.llvm``:
 
 .. code-block:: bash
 
-   # Manual download and extraction
-   # Visit https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
-   # Select clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz to download
-   cd ~/Downloads
-   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+  # Manual download and extraction
+  # Visit https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
+  # Select clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz to download
 
-   # Or download and extract directly using wget
-   wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+  tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+  mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
 
-   # Add LLVM to PATH (optional)
-   echo 'export PATH=$HOME/.llvm/bin:$PATH' >> ~/.bashrc
-   source ~/.bashrc
+  # Or download and extract directly using wget
+  wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+  tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+  mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+
+  # Add LLVM to environment variables:
+
+  echo 'export PATH="$HOME/.llvm/bin:$PATH"' >> ~/.bashrc
+  echo 'export LLVM_HOME="$HOME/.llvm"' >> ~/.bashrc
+  echo 'export LD_LIBRARY_PATH="$HOME/.llvm/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
+  source ~/.bashrc
+
+  # Install dependency packages:
+  sudo apt install zlib1g-dev libtinfo-dev
 
 QLLVM Build
 ~~~~~~~~~~~~

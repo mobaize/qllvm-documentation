@@ -646,11 +646,12 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 </pre></div>
 </div>
 <p><strong>LLVM/MLIR</strong>: QLLVM requires LLVM with MLIR. It is recommended to use a pre-built package, or build from source using <a class="reference external" href="https://github.com/ornl-qci/llvm-project-csp">llvm-project-csp</a> (enable <code class="docutils literal notranslate"><span class="pre">clang;mlir</span></code>).</p>
-<p>Download the LLVM 12.0.0 pre-built package and extract it to <code class="docutils literal notranslate"><span class="pre">$HOME/.llvm</span></code>:</p>
+<p>Download and Install LLVM 12.0.0 Pre-built Package</p>
+<p>Download and extract to <code class="docutils literal notranslate"><span class="pre">$HOME/.llvm</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Manual download and extraction</span>
 <span class="c1"># Visit https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0</span>
 <span class="c1"># Select clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz to download</span>
-<span class="nb">cd</span><span class="w"> </span>~/Downloads
+
 tar<span class="w"> </span>-xf<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
 mv<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04<span class="w"> </span>~/.llvm
 
@@ -659,9 +660,15 @@ wget<span class="w"> </span>https://github.com/llvm/llvm-project/releases/downlo
 tar<span class="w"> </span>-xf<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
 mv<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04<span class="w"> </span>~/.llvm
 
-<span class="c1"># Add LLVM to PATH (optional)</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=$HOME/.llvm/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="c1"># Add LLVM to environment variables:</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;$HOME/.llvm/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export LLVM_HOME=&quot;$HOME/.llvm&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export LD_LIBRARY_PATH=&quot;$HOME/.llvm/lib:$LD_LIBRARY_PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 <span class="nb">source</span><span class="w"> </span>~/.bashrc
+
+<span class="c1"># Install dependency packages:</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zlib1g-dev<span class="w"> </span>libtinfo-dev
 </pre></div>
 </div>
 </section>

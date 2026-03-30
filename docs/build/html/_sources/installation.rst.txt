@@ -101,25 +101,33 @@ Qcoder配置
 
 **LLVM/MLIR**：QLLVM 需要带 MLIR 的 LLVM。推荐使用预编译包，或从 `llvm-project-csp <https://github.com/ornl-qci/llvm-project-csp>`_ 源码编译（启用 ``clang;mlir``）。
 
-下载 LLVM 12.0.0 预编译包并解压到 ``$HOME/.llvm``：
+下载并安装 LLVM 12.0.0 预编译包
+
+下载并解压到 ``$HOME/.llvm``：
 
 .. code-block:: bash
 
-   # 手动下载解压方式
-   # 访问 https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
-   # 选择 clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz 下载
-   cd ~/Downloads
-   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+  # 手动下载解压方式
+  # 访问 https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
+  # 选择 clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz 下载
 
-   # 或使用 wget 直接下载并解压
-   wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+  tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+  mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
 
-   # 将 LLVM 添加到 PATH（可选）
-   echo 'export PATH=$HOME/.llvm/bin:$PATH' >> ~/.bashrc
-   source ~/.bashrc
+  # 或使用 wget 直接下载并解压
+  wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+  tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+  mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
+
+  # 将 LLVM 添加到环境变量：
+
+  echo 'export PATH="$HOME/.llvm/bin:$PATH"' >> ~/.bashrc
+  echo 'export LLVM_HOME="$HOME/.llvm"' >> ~/.bashrc
+  echo 'export LD_LIBRARY_PATH="$HOME/.llvm/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
+  source ~/.bashrc
+
+  # 安装依赖包：
+  sudo apt install zlib1g-dev libtinfo-dev
 
 
 .. _qllvm-build:
