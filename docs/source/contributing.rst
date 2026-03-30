@@ -31,72 +31,271 @@
 贡献代码
 ~~~~~~~~~
 
-如果您想贡献代码，请按照以下步骤操作：
+扩展开发指南
+^^^^^^^^^^^^
 
-1. **Fork仓库**
+在提交代码前，请根据您的贡献类型参考以下开发指南。
 
-   * 在GitHub上fork QLLVM仓库到您自己的账户
+.. _add-new-pass:
 
-2. **克隆仓库**
+添加 MLIR 优化 Pass
+"""""""""""""""""""
 
-   * 克隆您fork的仓库到本地
+**1. 创建 Pass 源文件**
 
-.. code-block:: bash
+在 ``qllvm/mlir/transforms/optimizations/`` 下新增优化 Pass 的源码。
 
-   git clone https://github.com/QCFlow/QLLVM.git
-   cd qllvm
+- **new.hpp 示例**
 
-3. **创建分支**
+  .. code-block:: cpp
+     :caption: qllvm/mlir/transforms/optimizations/new.hpp
+     :linenos:
 
-   * 创建一个新的分支来进行您的修改
-   
-.. code-block:: bash
+     #pragma once
+     #include "Quantum/QuantumOps.h"
+     #include "mlir/Pass/Pass.h"
+     #include "mlir/Pass/PassManager.h"
+     #include "mlir/Target/LLVMIR.h"
+     #include "mlir/Transforms/DialectConversion.h"
+     #include "mlir/Transforms/Passes.h"
+     #include <unordered_map>
+     #include <tr1/unordered_map>
+     #include <iostream>
+     #include <unordered_set>
+     
+     using namespace mlir;
+     
+     namespace qllvm {
+     struct new
+         : public PassWrapper<new, OperationPass<ModuleOp>> {
+       void getDependentDialects(DialectRegistry &registry) const override;
+       void runOnOperation() final;
+       new() {};
+       new(std::unordered_set<std::string> basicgate){
+         basic_gate = basicgate;
+       }
+       new(std::map<std::string, bool> bool_args,int &opt_count, int &opt_depth, int &cir_depth, int &zero_count, int &enable, int &pass_count) {
+         if(bool_args.find("pass_effect") != bool_args.end()){
+           printCountAndDepth = false;
+           p = &opt_count;
+           q = &opt_depth;
+           c_d = &cir_depth;
+         }
+         if(bool_args.find("syn_opt") != bool_args.end()||bool_args.find("customPassSequence") != bool_args.end()){
+           syn = true;
+           o = &zero_count;
+           e = &enable;
+           c_d = &cir_depth;
+         }
+         if(bool_args.find("pass_count") != bool_args.end()){
+           c = &pass_count;
+           f = true;
+         }
+       }
+     
+       private:
+       bool printCountAndDepth = false;
+       bool syn = false;
+       bool f = false;
+       int *p = nullptr;
+       int *q = nullptr;
+       int *o = nullptr;
+       int *e = nullptr;
+       int *c = nullptr;
+       int *c_d = nullptr;
+       int before_gate_count = 0;
+       int before_circuit_depth = 0;
+       int after_gate_count = 0;
+       int after_circuit_depth = 0;
+       std::unordered_set<std::string> basic_gate;
+       std::vector<mlir::quantum::ValueSemanticsInstOp> top_op;
+       std::string passname = "new";
+     };
+     }
 
-   git checkout -b feature/your-feature-name
+- **new.cpp 示例**
 
-4. **安装开发依赖**
+  .. code-block:: cpp
+     :caption: qllvm/mlir/transforms/optimizations/new.cpp
+     :linenos:
 
-   * 安装开发依赖
+     #include "new.hpp"  
+     #include "Quantum/QuantumOps.h"  
+     #include "mlir/Dialect/LLVMIR/LLVMDialect.h"  
+     #include "mlir/Dialect/StandardOps/IR/Ops.h"  
+     #include "mlir/IR/Matchers.h"  
+     #include "mlir/IR/PatternMatch.h"  
+     #include "mlir/Pass/Pass.h"  
+     #include "mlir/Pass/PassManager.h"  
+     #include "mlir/Target/LLVMIR.h"  
+     #include "mlir/Transforms/DialectConversion.h"  
+     #include "mlir/Transforms/Passes.h"  
+     
+     namespace qllvm {  
+     using namespace std::complex_literals;  
+     
+     void new::getDependentDialects(DialectRegistry &registry) const {  
+       registry.insert<LLVM::LLVMDialect>();  
+     }  
+         
+     void new::runOnOperation() {  
+         
+     }  
+     }
 
-.. code-block:: bash
+**2. 挂载到 PassManager**
 
-   pip install -e .[dev]
+在 ``qllvm/mlir/transforms/pass_manager.hpp`` 的 ``configureOptimizationPasses`` 中，将新 Pass 挂到 ``mlir::PassManager`` 上。
 
-5. **进行修改**
+编译器支持两种配置方式：
 
-   * 进行您的代码修改
-   * 确保代码风格符合项目要求
-   * 添加适当的测试
+- **默认顺序**：基于 ``PassManagerOptions``（例如 ``customPassSequence``）的定制序列
+- **默认启用**：在默认分支里直接调用 ``addPass``
+- **可选启用**：按现有宏与 ``switch`` 模式扩展
 
-6. **运行测试**
+**方式一：默认启用**
 
-   * 运行测试确保您的修改没有破坏现有功能
+在 ``configureOptimizationPasses`` 中添加：
 
-.. code-block:: bash
+.. code-block:: cpp
 
-   pytest
+   passManager.addPass(std::make_unique<new>());
 
-7. **提交更改**
+.. image:: image/010.png
+   :align: center
+   :width: 80%
 
-   * 提交您的更改，使用清晰的提交信息
+**方式二：可选启用（通过宏与 switch）**
 
-.. code-block:: bash
+- 定义宏：在 ``pass_manager.hpp`` 中添加 ``#define NEW 12``
 
-   git add .
-   git commit -m "Add feature: your feature description"
+.. image:: image/011.png
+   :align: center
+   :width: 80%
 
-8. **推送分支**
+- 在 ``passNames`` 中新增 ``"NEW"``
 
-   * 推送您的分支到GitHub
+- 在 ``for`` 循环中新增对应的 ``case`` 分支
 
-.. code-block:: bash
+.. image:: image/012.png
+   :align: center
+   :width: 80%
 
-   git push origin feature/your-feature-name
+.. _add-new-language:
 
-9. **创建Pull Request**
+增加输入语言支持
+""""""""""""""""
 
-   * 在GitHub上创建一个Pull Request，描述您的更改
-   * 等待项目维护者的审核
+**1. 实现解析器**
+
+在 ``qllvm/mlir/parsers/`` 下创建语言子目录：
+
+- 编写 ANTLR 语法文件（``.g4``）并生成词法/语法分析代码
+- 实现 Visitor 和 ``*_mlir_generator``，将 AST 逐步降为 MLIR
+- 参考现有实现：``qasm3/``、``qiskit/``、``qcis/``
+
+.. image:: image/013.png
+   :align: center
+   :width: 80%
+
+|
+
+.. warning::
+   QASM 程序当前仅支持 **OPENQASM 2.0** 格式规范，不支持编译含多种量子寄存器的 QASM 程序。
+
+**2. 添加路由**
+
+在 ``qllvm/mlir/tools/qllvm-mlir-helper.hpp`` 的 ``loadMLIR`` 中增加路由：
+
+- 扩展 ``SourceLanguage`` 枚举
+- 按文件内容、扩展名或调用参数选择对应的生成函数
+- 返回 ``OwningModuleRef`` 及统一的 ``MlirGenerationResult`` 语义
+
+.. image:: image/014.png
+   :align: center
+   :width: 80%
+
+.. _add-new-backend:
+
+增加后端类型
+""""""""""""
+
+**1. 实现后端逻辑**
+
+在 ``qllvm/backend/backends/`` 中实现后端的 ``emit`` 方法（QIR 到目标表示的转换），与现有 ``QasmBackend``、``TianyanBackend`` 等并列。
+
+.. image:: image/015.png
+   :align: center
+   :width: 80%
+
+**2. 声明后端类**
+
+在 ``qllvm/backend/include/qllvm/backends/`` 中声明对应的后端类。
+
+.. image:: image/016.png
+   :align: center
+   :width: 80%
+
+**3. 注册后端**
+
+在 ``qllvm/backend/BackendRegistry.cpp`` 的 ``registerBuiltinBackends()`` 中注册：
+
+.. code-block:: cpp
+
+   BackendRegistry::instance().registerBackend(
+       std::make_unique<YourBackend>());
+
+.. image:: image/017.png
+   :align: center
+   :width: 80%
+
+注册后，运行时即可通过名称解析到该实现。
+
+.. note::
+   新增文件通常还需在相关 ``CMakeLists.txt`` 中加入编译目标及链接依赖。
+
+
+提交 Pull Request
+^^^^^^^^^^^^^^^^^
+
+完成代码修改后，按以下步骤提交贡献。
+
+- **Fork 仓库**：在 GitHub 上将 QLLVM 仓库 Fork 到个人账户
+
+- **克隆并创建分支**
+
+   .. code-block:: bash
+
+      git clone https://github.com/your-username/QLLVM.git
+      cd qllvm
+      git checkout -b feature/your-feature-name
+
+- **安装开发依赖**
+
+   .. code-block:: bash
+
+      pip install -e .[dev]
+
+- **进行修改并测试**
+
+   .. code-block:: bash
+
+      pytest
+
+- **提交并推送**
+
+   .. code-block:: bash
+
+      git add .
+      git commit -m "Add feature: brief description"
+      git push origin feature/your-feature-name
+
+- **创建 Pull Request**：在 GitHub 上创建 PR，清晰描述您的更改，等待维护者审核
+
+.. tip::
+   - 保持代码风格与项目一致
+   - 添加适当的测试用例
+   - 使用清晰、规范的提交信息
 
 贡献文档
 ~~~~~~~~~

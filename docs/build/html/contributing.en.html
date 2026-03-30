@@ -118,6 +118,11 @@
                 '如何贡献': 'How to Contribute',
                 '报告问题': 'Reporting Issues',
                 '贡献代码': 'Contributing Code',
+                '扩展开发指南': 'Extension Development Guide',
+                '添加 MLIR 优化 Pass': 'Adding MLIR Optimization Pass',
+                '增加输入语言支持': 'Adding Input Language Support',
+                '增加后端类型': 'Adding Backend Type',
+                '提交 Pull Request': 'Submitting Pull Request',
                 '贡献文档': 'Contributing Documentation',
                 '贡献测试': 'Contributing Tests',
                 '代码风格': 'Code Style',
@@ -175,6 +180,11 @@
                 'How to Contribute': 'how-to-contribute',
                 'Reporting Issues': 'reporting-issues',
                 'Contributing Code': 'contributing-code',
+                'Extension Development Guide': 'extension-development-guide',
+                'Adding MLIR Optimization Pass': 'add-new-pass',
+                'Adding Input Language Support': 'add-new-language',
+                'Adding Backend Type': 'add-new-backend',
+                'Submitting Pull Request': 'submitting-pull-request',
                 'Contributing Documentation': 'contributing-documentation',
                 'Contributing Tests': 'contributing-tests',
                 'Code Style': 'code-style',
@@ -504,20 +514,24 @@
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#id2">行为准则</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#id3">如何贡献</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="contributing.html#id4">报告问题</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#id5">贡献代码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#id6">贡献文档</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#id7">贡献测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#id5">贡献代码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contributing.html#id6">扩展开发指南</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contributing.html#pull-request">提交 Pull Request</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#id8">代码风格</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#id9">沟通渠道</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#id10">贡献者指南</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#id11">首次贡献</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#id12">代码审查</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#id13">许可证</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#id9">贡献文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#id10">贡献测试</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#id14">致谢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#id11">代码风格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#id12">沟通渠道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#id13">贡献者指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#id14">首次贡献</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#id15">代码审查</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#id16">许可证</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#id17">致谢</a></li>
 </ul>
 </li>
 </ul>
@@ -583,89 +597,242 @@
 </section>
 <section id="contributing-code">
 <h2>Contributing Code<a class="headerlink" href="#contributing-code" title="Link to this heading"></a></h2>
-<p>If you want to contribute code, please follow these steps:</p>
-<ol class="arabic simple">
-<li><p><strong>Fork the repository</strong></p>
-<ul class="simple">
-<li><p>Fork the QLLVM repository to your own account on GitHub</p></li>
-</ul>
+<section id="extension-development-guide">
+<h3>Extension Development Guide<a class="headerlink" href="#extension-development-guide" title="Link to this heading"></a></h3>
+<p id="id1">Before submitting code, please refer to the following development guides based on your contribution type.</p>
+</section>
+<section id="adding-mlir-optimization-pass">
+<span id="add-new-pass"></span><h3>Adding MLIR Optimization Pass<a class="headerlink" href="#adding-mlir-optimization-pass" title="Link to this heading"></a></h3>
+<p><strong>1. Create Pass Source Files</strong></p>
+<p>Add new optimization Pass source code under <code class="docutils literal notranslate"><span class="pre">qllvm/mlir/transforms/optimizations/</span></code>.</p>
+<ul>
+<li><p><strong>new.hpp Example</strong></p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">qllvm/mlir/transforms/optimizations/new.hpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#pragma once</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Quantum/QuantumOps.h&quot;</span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Pass/Pass.h&quot;</span>
+<span class="linenos"> 4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Pass/PassManager.h&quot;</span>
+<span class="linenos"> 5</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Target/LLVMIR.h&quot;</span>
+<span class="linenos"> 6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Transforms/DialectConversion.h&quot;</span>
+<span class="linenos"> 7</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Transforms/Passes.h&quot;</span>
+<span class="linenos"> 8</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_map&gt;</span>
+<span class="linenos"> 9</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tr1/unordered_map&gt;</span>
+<span class="linenos">10</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos">11</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_set&gt;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">mlir</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="k">namespace</span><span class="w"> </span><span class="nn">qllvm</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">16</span><span class="k">struct</span><span class="w"> </span><span class="nc">new</span>
+<span class="linenos">17</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">PassWrapper</span><span class="o">&lt;</span><span class="k">new</span><span class="p">,</span><span class="w"> </span><span class="n">OperationPass</span><span class="o">&lt;</span><span class="n">ModuleOp</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">18</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">getDependentDialects</span><span class="p">(</span><span class="n">DialectRegistry</span><span class="w"> </span><span class="o">&amp;</span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="linenos">19</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">runOnOperation</span><span class="p">()</span><span class="w"> </span><span class="k">final</span><span class="p">;</span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+<span class="linenos">21</span><span class="w">  </span><span class="k">new</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">basicgate</span><span class="p">){</span>
+<span class="linenos">22</span><span class="w">    </span><span class="n">basic_gate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">basicgate</span><span class="p">;</span>
+<span class="linenos">23</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">24</span><span class="w">  </span><span class="k">new</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bool_args</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">opt_count</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">opt_depth</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cir_depth</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">zero_count</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">enable</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pass_count</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">bool_args</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;pass_effect&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">bool_args</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+<span class="linenos">26</span><span class="w">      </span><span class="n">printCountAndDepth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">27</span><span class="w">      </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">opt_count</span><span class="p">;</span>
+<span class="linenos">28</span><span class="w">      </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">opt_depth</span><span class="p">;</span>
+<span class="linenos">29</span><span class="w">      </span><span class="n">c_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cir_depth</span><span class="p">;</span>
+<span class="linenos">30</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">31</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">bool_args</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;syn_opt&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">bool_args</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="o">||</span><span class="n">bool_args</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;customPassSequence&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">bool_args</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+<span class="linenos">32</span><span class="w">      </span><span class="n">syn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">33</span><span class="w">      </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">zero_count</span><span class="p">;</span>
+<span class="linenos">34</span><span class="w">      </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">enable</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">      </span><span class="n">c_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cir_depth</span><span class="p">;</span>
+<span class="linenos">36</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">37</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">bool_args</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;pass_count&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">bool_args</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+<span class="linenos">38</span><span class="w">      </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pass_count</span><span class="p">;</span>
+<span class="linenos">39</span><span class="w">      </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">40</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">41</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">44</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">printCountAndDepth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">45</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">syn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">46</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">47</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="linenos">48</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="linenos">49</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="linenos">50</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="linenos">51</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="linenos">52</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">c_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="linenos">53</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">before_gate_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">54</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">before_circuit_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">55</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">after_gate_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">56</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">after_circuit_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">57</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">basic_gate</span><span class="p">;</span>
+<span class="linenos">58</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mlir</span><span class="o">::</span><span class="n">quantum</span><span class="o">::</span><span class="n">ValueSemanticsInstOp</span><span class="o">&gt;</span><span class="w"> </span><span class="n">top_op</span><span class="p">;</span>
+<span class="linenos">59</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">passname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;new&quot;</span><span class="p">;</span>
+<span class="linenos">60</span><span class="p">};</span>
+<span class="linenos">61</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </li>
-<li><p><strong>Clone the repository</strong></p>
-<ul class="simple">
-<li><p>Clone your forked repository to your local machine</p></li>
-</ul>
+<li><p><strong>new.cpp Example</strong></p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">qllvm/mlir/transforms/optimizations/new.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;new.hpp&quot;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Quantum/QuantumOps.h&quot;</span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Dialect/LLVMIR/LLVMDialect.h&quot;</span>
+<span class="linenos"> 4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Dialect/StandardOps/IR/Ops.h&quot;</span>
+<span class="linenos"> 5</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/IR/Matchers.h&quot;</span>
+<span class="linenos"> 6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/IR/PatternMatch.h&quot;</span>
+<span class="linenos"> 7</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Pass/Pass.h&quot;</span>
+<span class="linenos"> 8</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Pass/PassManager.h&quot;</span>
+<span class="linenos"> 9</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Target/LLVMIR.h&quot;</span>
+<span class="linenos">10</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Transforms/DialectConversion.h&quot;</span>
+<span class="linenos">11</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mlir/Transforms/Passes.h&quot;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">namespace</span><span class="w"> </span><span class="nn">qllvm</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">complex_literals</span><span class="p">;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="kt">void</span><span class="w"> </span><span class="nf">new::getDependentDialects</span><span class="p">(</span><span class="n">DialectRegistry</span><span class="w"> </span><span class="o">&amp;</span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">  </span><span class="n">registry</span><span class="p">.</span><span class="n">insert</span><span class="o">&lt;</span><span class="n">LLVM</span><span class="o">::</span><span class="n">LLVMDialect</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">18</span><span class="p">}</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="kt">void</span><span class="w"> </span><span class="nf">new::runOnOperation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="p">}</span>
+<span class="linenos">23</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/QCFlow/QLLVM.git
+</ul>
+<p><strong>2. Mount to PassManager</strong></p>
+<p>In <code class="docutils literal notranslate"><span class="pre">qllvm/mlir/transforms/pass_manager.hpp</span></code>, mount the new Pass to <code class="docutils literal notranslate"><span class="pre">mlir::PassManager</span></code> in the <code class="docutils literal notranslate"><span class="pre">configureOptimizationPasses</span></code> function.</p>
+<p>The compiler supports two configuration methods:</p>
+<ul class="simple">
+<li><p><strong>Default order</strong>: Custom sequence based on <code class="docutils literal notranslate"><span class="pre">PassManagerOptions</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">customPassSequence</span></code>)</p></li>
+<li><p><strong>Default enabled</strong>: Directly call <code class="docutils literal notranslate"><span class="pre">addPass</span></code> in the default branch</p></li>
+<li><p><strong>Optional enabled</strong>: Extend according to existing macros and <code class="docutils literal notranslate"><span class="pre">switch</span></code> patterns</p></li>
+</ul>
+<p><strong>Method 1: Default Enabled</strong></p>
+<p>Add in <code class="docutils literal notranslate"><span class="pre">configureOptimizationPasses</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">passManager</span><span class="p">.</span><span class="n">addPass</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="k">new</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/010.png"><img alt="_images/010.png" class="align-center" src="_images/010.png" style="width: 80%;" />
+</a>
+<p><strong>Method 2: Optional Enabled (via macros and switch)</strong></p>
+<ul class="simple">
+<li><p>Define macro: Add <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">NEW</span> <span class="pre">12</span></code> in <code class="docutils literal notranslate"><span class="pre">pass_manager.hpp</span></code></p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/011.png"><img alt="_images/011.png" class="align-center" src="_images/011.png" style="width: 80%;" />
+</a>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">&quot;NEW&quot;</span></code> to <code class="docutils literal notranslate"><span class="pre">passNames</span></code></p></li>
+<li><p>Add corresponding <code class="docutils literal notranslate"><span class="pre">case</span></code> branch in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/012.png"><img alt="_images/012.png" class="align-center" src="_images/012.png" style="width: 80%;" />
+</a>
+</section>
+<section id="adding-input-language-support">
+<span id="add-new-language"></span><h3>Adding Input Language Support<a class="headerlink" href="#adding-input-language-support" title="Link to this heading"></a></h3>
+<p><strong>1. Implement Parser</strong></p>
+<p>Create language subdirectory under <code class="docutils literal notranslate"><span class="pre">qllvm/mlir/parsers/</span></code>:</p>
+<ul class="simple">
+<li><p>Write ANTLR grammar file (<code class="docutils literal notranslate"><span class="pre">.g4</span></code>) and generate lexer/parser code</p></li>
+<li><p>Implement Visitor and <code class="docutils literal notranslate"><span class="pre">*_mlir_generator</span></code> to gradually lower AST to MLIR</p></li>
+<li><p>Refer to existing implementations: <code class="docutils literal notranslate"><span class="pre">qasm3/</span></code>, <code class="docutils literal notranslate"><span class="pre">qiskit/</span></code>, <code class="docutils literal notranslate"><span class="pre">qcis/</span></code></p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/013.png"><img alt="_images/013.png" class="align-center" src="_images/013.png" style="width: 80%;" />
+</a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>QASM programs currently only support <strong>OPENQASM 2.0</strong> format specification, and do not support compiling QASM programs with multiple quantum registers.</p>
+</div>
+<p><strong>2. Add Routing</strong></p>
+<p>Add routing in <code class="docutils literal notranslate"><span class="pre">loadMLIR</span></code> in <code class="docutils literal notranslate"><span class="pre">qllvm/mlir/tools/qllvm-mlir-helper.hpp</span></code>:</p>
+<ul class="simple">
+<li><p>Extend <code class="docutils literal notranslate"><span class="pre">SourceLanguage</span></code> enum</p></li>
+<li><p>Select corresponding generation function by file content, extension, or invocation parameters</p></li>
+<li><p>Return <code class="docutils literal notranslate"><span class="pre">OwningModuleRef</span></code> and unified <code class="docutils literal notranslate"><span class="pre">MlirGenerationResult</span></code> semantics</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/014.png"><img alt="_images/014.png" class="align-center" src="_images/014.png" style="width: 80%;" />
+</a>
+</section>
+<section id="adding-backend-type">
+<span id="add-new-backend"></span><h3>Adding Backend Type<a class="headerlink" href="#adding-backend-type" title="Link to this heading"></a></h3>
+<p><strong>1. Implement Backend Logic</strong></p>
+<p>Implement the backend’s <code class="docutils literal notranslate"><span class="pre">emit</span></code> method (QIR to target representation conversion) in <code class="docutils literal notranslate"><span class="pre">qllvm/backend/backends/</span></code>, alongside existing backends like <code class="docutils literal notranslate"><span class="pre">QasmBackend</span></code>, <code class="docutils literal notranslate"><span class="pre">TianyanBackend</span></code>, etc.</p>
+<a class="reference internal image-reference" href="_images/015.png"><img alt="_images/015.png" class="align-center" src="_images/015.png" style="width: 80%;" />
+</a>
+<p><strong>2. Declare Backend Class</strong></p>
+<p>Declare the corresponding backend class in <code class="docutils literal notranslate"><span class="pre">qllvm/backend/include/qllvm/backends/</span></code>.</p>
+<a class="reference internal image-reference" href="_images/016.png"><img alt="_images/016.png" class="align-center" src="_images/016.png" style="width: 80%;" />
+</a>
+<p><strong>3. Register Backend</strong></p>
+<p>Register in <code class="docutils literal notranslate"><span class="pre">registerBuiltinBackends()</span></code> in <code class="docutils literal notranslate"><span class="pre">qllvm/backend/BackendRegistry.cpp</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BackendRegistry</span><span class="o">::</span><span class="n">instance</span><span class="p">().</span><span class="n">registerBackend</span><span class="p">(</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">YourBackend</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/017.png"><img alt="_images/017.png" class="align-center" src="_images/017.png" style="width: 80%;" />
+</a>
+<p>After registration, the implementation can be resolved by name at runtime.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New files typically need to add compilation targets and link dependencies in relevant <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>.</p>
+</div>
+</section>
+<section id="submitting-pull-request">
+<span id="id2"></span><h3>Submitting Pull Request<a class="headerlink" href="#submitting-pull-request" title="Link to this heading"></a></h3>
+<p>After completing code modifications, follow these steps to submit your contribution.</p>
+<ul>
+<li><p><strong>Fork repository</strong>: Fork the QLLVM repository to your personal account on GitHub</p></li>
+<li><p><strong>Clone and create branch</strong></p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/QLLVM.git
 <span class="nb">cd</span><span class="w"> </span>qllvm
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p><strong>Create a branch</strong></p>
-<ul class="simple">
-<li><p>Create a new branch for your modifications</p></li>
-</ul>
+</div></blockquote>
 </li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
 <li><p><strong>Install development dependencies</strong></p>
-<ul class="simple">
-<li><p>Install development dependencies</p></li>
-</ul>
-</li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="5">
-<li><p><strong>Make modifications</strong></p>
-<ul class="simple">
-<li><p>Make your code modifications</p></li>
-<li><p>Ensure code style meets project requirements</p></li>
-<li><p>Add appropriate tests</p></li>
-</ul>
+</div></blockquote>
 </li>
-<li><p><strong>Run tests</strong></p>
-<ul class="simple">
-<li><p>Run tests to ensure your modifications do not break existing functionality</p></li>
-</ul>
-</li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+<li><p><strong>Make modifications and test</strong></p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
 </pre></div>
 </div>
-<ol class="arabic simple" start="7">
-<li><p><strong>Commit changes</strong></p>
-<ul class="simple">
-<li><p>Commit your changes with a clear commit message</p></li>
-</ul>
+</div></blockquote>
 </li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add feature: your feature description&quot;</span>
+<li><p><strong>Commit and push</strong></p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add feature: brief description&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
 </pre></div>
 </div>
-<ol class="arabic simple" start="8">
-<li><p><strong>Push branch</strong></p>
-<ul class="simple">
-<li><p>Push your branch to GitHub</p></li>
-</ul>
+</div></blockquote>
 </li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
-</pre></div>
+<li><p><strong>Create Pull Request</strong>: Create a PR on GitHub, clearly describing your changes, and wait for maintainers to review</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Maintain consistent code style with the project</p></li>
+<li><p>Add appropriate test cases</p></li>
+<li><p>Use clear, standardized commit messages</p></li>
+</ul>
 </div>
-<ol class="arabic simple" start="9">
-<li><p><strong>Create Pull Request</strong></p>
-<ul class="simple">
-<li><p>Create a Pull Request on GitHub, describing your changes</p></li>
-<li><p>Wait for project maintainers to review</p></li>
-</ul>
-</li>
-</ol>
+</section>
 </section>
 <section id="contributing-documentation">
 <h2>Contributing Documentation<a class="headerlink" href="#contributing-documentation" title="Link to this heading"></a></h2>
@@ -759,23 +926,14 @@ make<span class="w"> </span>html
 </section>
 <section id="contributor-guide">
 <h2>Contributor Guide<a class="headerlink" href="#contributor-guide" title="Link to this heading"></a></h2>
-<section id="first-contribution">
-<h3>First Contribution<a class="headerlink" href="#first-contribution" title="Link to this heading"></a></h3>
 <p>If you are contributing to an open source project for the first time, the following resources may be helpful:</p>
 <ul class="simple">
 <li><p>[How to Contribute to Open Source](<a class="reference external" href="https://opensource.guide/how-to-contribute/">https://opensource.guide/how-to-contribute/</a>)</p></li>
 <li><p>[First Contributions](<a class="reference external" href="https://firstcontributions.github.io/">https://firstcontributions.github.io/</a>)</p></li>
 <li><p>[GitHub Docs: Fork a repo](<a class="reference external" href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">https://docs.github.com/en/get-started/quickstart/fork-a-repo</a>)</p></li>
 </ul>
-</section>
-<section id="code-review">
-<h3>Code Review<a class="headerlink" href="#code-review" title="Link to this heading"></a></h3>
 <p>All Pull Requests will go through code review. During the review process, you may need to make modifications based on review comments. Please be patient and open-minded, as code review is an important part of improving code quality.</p>
-</section>
-<section id="license">
-<h3>License<a class="headerlink" href="#license" title="Link to this heading"></a></h3>
 <p>By contributing code to the QLLVM project, you agree that your contributions will be released under the project’s license.</p>
-</section>
 </section>
 <section id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h2>

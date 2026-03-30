@@ -31,72 +31,275 @@ If you find a bug or have a new feature suggestion, please submit an `Issue <htt
 Contributing Code
 ------------------
 
-If you want to contribute code, please follow these steps:
+Extension Development Guide
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. **Fork the repository**
+.. _extension-development-guide:
 
-   * Fork the QLLVM repository to your own account on GitHub
+Before submitting code, please refer to the following development guides based on your contribution type.
 
-2. **Clone the repository**
+.. _add-new-pass:
 
-   * Clone your forked repository to your local machine
+Adding MLIR Optimization Pass
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: bash
+**1. Create Pass Source Files**
 
-    git clone https://github.com/QCFlow/QLLVM.git
-    cd qllvm
+Add new optimization Pass source code under ``qllvm/mlir/transforms/optimizations/``.
 
-3. **Create a branch**
+- **new.hpp Example**
 
-   * Create a new branch for your modifications
+  .. code-block:: cpp
+     :caption: qllvm/mlir/transforms/optimizations/new.hpp
+     :linenos:
 
-.. code-block:: bash
-   
-    git checkout -b feature/your-feature-name
+     #pragma once
+     #include "Quantum/QuantumOps.h"
+     #include "mlir/Pass/Pass.h"
+     #include "mlir/Pass/PassManager.h"
+     #include "mlir/Target/LLVMIR.h"
+     #include "mlir/Transforms/DialectConversion.h"
+     #include "mlir/Transforms/Passes.h"
+     #include <unordered_map>
+     #include <tr1/unordered_map>
+     #include <iostream>
+     #include <unordered_set>
+     
+     using namespace mlir;
+     
+     namespace qllvm {
+     struct new
+         : public PassWrapper<new, OperationPass<ModuleOp>> {
+       void getDependentDialects(DialectRegistry &registry) const override;
+       void runOnOperation() final;
+       new() {};
+       new(std::unordered_set<std::string> basicgate){
+         basic_gate = basicgate;
+       }
+       new(std::map<std::string, bool> bool_args,int &opt_count, int &opt_depth, int &cir_depth, int &zero_count, int &enable, int &pass_count) {
+         if(bool_args.find("pass_effect") != bool_args.end()){
+           printCountAndDepth = false;
+           p = &opt_count;
+           q = &opt_depth;
+           c_d = &cir_depth;
+         }
+         if(bool_args.find("syn_opt") != bool_args.end()||bool_args.find("customPassSequence") != bool_args.end()){
+           syn = true;
+           o = &zero_count;
+           e = &enable;
+           c_d = &cir_depth;
+         }
+         if(bool_args.find("pass_count") != bool_args.end()){
+           c = &pass_count;
+           f = true;
+         }
+       }
+     
+       private:
+       bool printCountAndDepth = false;
+       bool syn = false;
+       bool f = false;
+       int *p = nullptr;
+       int *q = nullptr;
+       int *o = nullptr;
+       int *e = nullptr;
+       int *c = nullptr;
+       int *c_d = nullptr;
+       int before_gate_count = 0;
+       int before_circuit_depth = 0;
+       int after_gate_count = 0;
+       int after_circuit_depth = 0;
+       std::unordered_set<std::string> basic_gate;
+       std::vector<mlir::quantum::ValueSemanticsInstOp> top_op;
+       std::string passname = "new";
+     };
+     }
 
-4. **Install development dependencies**
+- **new.cpp Example**
 
-   * Install development dependencies
+  .. code-block:: cpp
+     :caption: qllvm/mlir/transforms/optimizations/new.cpp
+     :linenos:
 
-.. code-block:: bash
+     #include "new.hpp"  
+     #include "Quantum/QuantumOps.h"  
+     #include "mlir/Dialect/LLVMIR/LLVMDialect.h"  
+     #include "mlir/Dialect/StandardOps/IR/Ops.h"  
+     #include "mlir/IR/Matchers.h"  
+     #include "mlir/IR/PatternMatch.h"  
+     #include "mlir/Pass/Pass.h"  
+     #include "mlir/Pass/PassManager.h"  
+     #include "mlir/Target/LLVMIR.h"  
+     #include "mlir/Transforms/DialectConversion.h"  
+     #include "mlir/Transforms/Passes.h"  
+     
+     namespace qllvm {  
+     using namespace std::complex_literals;  
+     
+     void new::getDependentDialects(DialectRegistry &registry) const {  
+       registry.insert<LLVM::LLVMDialect>();  
+     }  
+         
+     void new::runOnOperation() {  
+         
+     }  
+     }
 
-    pip install -e .[dev]
+**2. Mount to PassManager**
 
-5. **Make modifications**
+In ``qllvm/mlir/transforms/pass_manager.hpp``, mount the new Pass to ``mlir::PassManager`` in the ``configureOptimizationPasses`` function.
 
-   * Make your code modifications
-   * Ensure code style meets project requirements
-   * Add appropriate tests
+The compiler supports two configuration methods:
 
-6. **Run tests**
+- **Default order**: Custom sequence based on ``PassManagerOptions`` (e.g., ``customPassSequence``)
+- **Default enabled**: Directly call ``addPass`` in the default branch
+- **Optional enabled**: Extend according to existing macros and ``switch`` patterns
 
-   * Run tests to ensure your modifications do not break existing functionality
+**Method 1: Default Enabled**
 
-.. code-block:: bash
+Add in ``configureOptimizationPasses``:
 
-    pytest
+.. code-block:: cpp
 
-7. **Commit changes**
+   passManager.addPass(std::make_unique<new>());
 
-   * Commit your changes with a clear commit message
+.. image:: image/010.png
+   :align: center
+   :width: 80%
 
-.. code-block:: bash
+**Method 2: Optional Enabled (via macros and switch)**
 
-    git add .
-    git commit -m "Add feature: your feature description"
+- Define macro: Add ``#define NEW 12`` in ``pass_manager.hpp``
 
-8. **Push branch**
+.. image:: image/011.png
+   :align: center
+   :width: 80%
 
-   * Push your branch to GitHub
+- Add ``"NEW"`` to ``passNames``
 
-.. code-block:: bash
+- Add corresponding ``case`` branch in the ``for`` loop
 
-    git push origin feature/your-feature-name   
+.. image:: image/012.png
+   :align: center
+   :width: 80%
 
-9. **Create Pull Request**
+.. _add-new-language:
 
-   * Create a Pull Request on GitHub, describing your changes
-   * Wait for project maintainers to review
+Adding Input Language Support
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**1. Implement Parser**
+
+Create language subdirectory under ``qllvm/mlir/parsers/``:
+
+- Write ANTLR grammar file (``.g4``) and generate lexer/parser code
+- Implement Visitor and ``*_mlir_generator`` to gradually lower AST to MLIR
+- Refer to existing implementations: ``qasm3/``, ``qiskit/``, ``qcis/``
+
+.. image:: image/013.png
+   :align: center
+   :width: 80%
+
+|
+
+.. warning::
+   QASM programs currently only support **OPENQASM 2.0** format specification, and do not support compiling QASM programs with multiple quantum registers.
+
+**2. Add Routing**
+
+Add routing in ``loadMLIR`` in ``qllvm/mlir/tools/qllvm-mlir-helper.hpp``:
+
+- Extend ``SourceLanguage`` enum
+- Select corresponding generation function by file content, extension, or invocation parameters
+- Return ``OwningModuleRef`` and unified ``MlirGenerationResult`` semantics
+
+.. image:: image/014.png
+   :align: center
+   :width: 80%
+
+.. _add-new-backend:
+
+Adding Backend Type
+^^^^^^^^^^^^^^^^^^^
+
+**1. Implement Backend Logic**
+
+Implement the backend's ``emit`` method (QIR to target representation conversion) in ``qllvm/backend/backends/``, alongside existing backends like ``QasmBackend``, ``TianyanBackend``, etc.
+
+.. image:: image/015.png
+   :align: center
+   :width: 80%
+
+**2. Declare Backend Class**
+
+Declare the corresponding backend class in ``qllvm/backend/include/qllvm/backends/``.
+
+.. image:: image/016.png
+   :align: center
+   :width: 80%
+
+**3. Register Backend**
+
+Register in ``registerBuiltinBackends()`` in ``qllvm/backend/BackendRegistry.cpp``:
+
+.. code-block:: cpp
+
+   BackendRegistry::instance().registerBackend(
+       std::make_unique<YourBackend>());
+
+.. image:: image/017.png
+   :align: center
+   :width: 80%
+
+After registration, the implementation can be resolved by name at runtime.
+
+.. note::
+   New files typically need to add compilation targets and link dependencies in relevant ``CMakeLists.txt``.
+
+
+.. _submitting-pull-request:
+
+Submitting Pull Request
+^^^^^^^^^^^^^^^^^^^^^^^
+
+After completing code modifications, follow these steps to submit your contribution.
+
+- **Fork repository**: Fork the QLLVM repository to your personal account on GitHub
+
+- **Clone and create branch**
+
+   .. code-block:: bash
+
+      git clone https://github.com/your-username/QLLVM.git
+      cd qllvm
+      git checkout -b feature/your-feature-name
+
+- **Install development dependencies**
+
+   .. code-block:: bash
+
+      pip install -e .[dev]
+
+- **Make modifications and test**
+
+   .. code-block:: bash
+
+      pytest
+
+- **Commit and push**
+
+   .. code-block:: bash
+
+      git add .
+      git commit -m "Add feature: brief description"
+      git push origin feature/your-feature-name
+
+- **Create Pull Request**: Create a PR on GitHub, clearly describing your changes, and wait for maintainers to review
+
+.. tip::
+   - Maintain consistent code style with the project
+   - Add appropriate test cases
+   - Use clear, standardized commit messages
 
 Contributing Documentation
 -------------------------------
