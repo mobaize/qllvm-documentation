@@ -401,7 +401,7 @@ Supports compiling C++ main programs, CUDA kernels, and QASM quantum circuits in
     ./hybrid_app -shots 1024
 
 .. warning::
-   QASM programs currently only support **OPENQASM 2.0** format specification, and do not support compiling QASM programs with multiple quantum registers.
+   QASM programs currently only support **OPENQASM 2.0** format specification.
 
 
 .. _compilation-parameter-explanation:
