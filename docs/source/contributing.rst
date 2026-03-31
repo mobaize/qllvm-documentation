@@ -200,9 +200,6 @@
 
 |
 
-.. warning::
-   QASM 程序当前仅支持 **OPENQASM 2.0** 格式规范，不支持编译含多种量子寄存器的 QASM 程序。
-
 **2. 添加路由**
 
 在 ``qllvm/mlir/tools/qllvm-mlir-helper.hpp`` 的 ``loadMLIR`` 中增加路由：

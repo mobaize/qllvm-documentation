@@ -403,7 +403,8 @@ C++ + CUDA + QASM 混合编译
     # 运行
     ./hybrid_app -shots 1024
 
-
+.. warning::
+   QASM 程序当前仅支持 **OPENQASM 2.0** 格式规范，不支持编译含多种量子寄存器的 QASM 程序。
 
 编译参数说明
 ------------

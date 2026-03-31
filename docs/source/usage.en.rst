@@ -331,6 +331,7 @@ Use `scripts/qir_runner_counts.py` to convert raw output to Qiskit-style `get_co
 
 `.bc` is standard LLVM bitcode, which can be loaded by tools like [qir-alliance/qir-runner](https://github.com/qir-alliance/qir-runner) (requires Python 3.9+).
 
+
 .. _classical-quantum-hybrid-compilation:
 
 Compiling Classical-Quantum Hybrid Programs
@@ -398,6 +399,10 @@ Supports compiling C++ main programs, CUDA kernels, and QASM quantum circuits in
 
     # Run
     ./hybrid_app -shots 1024
+
+.. warning::
+   QASM programs currently only support **OPENQASM 2.0** format specification, and do not support compiling QASM programs with multiple quantum registers.
+
 
 .. _compilation-parameter-explanation:
 

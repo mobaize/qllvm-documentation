@@ -202,9 +202,6 @@ Create language subdirectory under ``qllvm/mlir/parsers/``:
 
 |
 
-.. warning::
-   QASM programs currently only support **OPENQASM 2.0** format specification, and do not support compiling QASM programs with multiple quantum registers.
-
 **2. Add Routing**
 
 Add routing in ``loadMLIR`` in ``qllvm/mlir/tools/qllvm-mlir-helper.hpp``:
