@@ -107,14 +107,7 @@ Qcoder配置
 
 .. code-block:: bash
 
-  # 手动下载解压方式
-  # 访问 https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
-  # 选择 clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz 下载
-
-  tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-  mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
-
-  # 或使用 wget 直接下载并解压
+  # 使用 wget 直接下载并解压
   wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm

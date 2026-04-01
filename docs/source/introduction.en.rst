@@ -5,7 +5,7 @@ QLLVM Introduction
 
 * QLLVM supports multiple quantum programming languages and backends, including Qiskit, OpenQASM, QPanda, Cirq, etc. for programming languages, and qasm simulator, Benyuan quantum computer, China Telecom "Tianyan" quantum computer, etc. for target backends.
 
-* QLLVM supports unified compilation of quantum programs, CUDA programs, and classical C++ programs, providing an efficient, flexible, and industrial-grade compilation infrastructure for future classical-quantum software development.
+* QLLVM supports unified compilation of quantum programs, CUDA programs, and classical C++ programs, providing an efficient, flexible, and industrial-grade compilation infrastructure for classical-quantum software development.
 
 Overall Features
 ----------------

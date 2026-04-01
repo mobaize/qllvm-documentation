@@ -662,14 +662,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <p><strong>LLVM/MLIR</strong>: QLLVM requires LLVM with MLIR. It is recommended to use a pre-built package, or build from source using <a class="reference external" href="https://github.com/ornl-qci/llvm-project-csp">llvm-project-csp</a> (enable <code class="docutils literal notranslate"><span class="pre">clang;mlir</span></code>).</p>
 <p>Download and Install LLVM 12.0.0 Pre-built Package</p>
 <p>Download and extract to <code class="docutils literal notranslate"><span class="pre">$HOME/.llvm</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Manual download and extraction</span>
-<span class="c1"># Visit https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0</span>
-<span class="c1"># Select clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz to download</span>
-
-tar<span class="w"> </span>-xf<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-mv<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04<span class="w"> </span>~/.llvm
-
-<span class="c1"># Or download and extract directly using wget</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use wget to download and extract directly</span>
 wget<span class="w"> </span>https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
 tar<span class="w"> </span>-xf<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
 mv<span class="w"> </span>clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04<span class="w"> </span>~/.llvm

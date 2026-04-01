@@ -359,8 +359,23 @@ qir-runner 命令行参数
     qllvm main.cpp circuit.qasm -o hybrid_app
 
     # 示例位于 examples/hybrid/
+
+    # bell
     qllvm examples/hybrid/main.cpp examples/hybrid/bell.qasm -o hybrid_bell
     ./hybrid_bell
+    # simon
+    qllvm examples/hybrid/main_gmac_simon.cpp examples/hybrid/gmac_simon.qasm -o hybrid_simon
+    ./hybrid_simon
+    #vqe
+    qllvm examples/hybrid/main_vqe.cpp examples/hybrid/vqe.qasm -o hybrid_vqe
+    ./hybrid_vqe
+    # 具有最优解的qaoa
+    qllvm examples/hybrid/main_qaoa.cpp examples/hybrid/qaoa.qasm -o hybrid_qaoa
+    ./hybrid_qaoa
+    # 非最优解的qaoa
+    qllvm examples/hybrid/main_qaoa_suboptimal.cpp examples/hybrid/qaoa_suboptimal.qasm -o hybrid_qaoa_suboptimal
+    ./hybrid_qaoa_suboptimal
+
 
 .. _using-qir-runner-as-simulator:
 

@@ -356,8 +356,22 @@ Supports compiling C++ main programs with QASM quantum circuits into a single ex
     qllvm main.cpp circuit.qasm -o hybrid_app
 
     # Example located in examples/hybrid/
+
+    # bell
     qllvm examples/hybrid/main.cpp examples/hybrid/bell.qasm -o hybrid_bell
     ./hybrid_bell
+    # simon
+    qllvm examples/hybrid/main_gmac_simon.cpp examples/hybrid/gmac_simon.qasm -o hybrid_simon
+    ./hybrid_simon
+    # vqe
+    qllvm examples/hybrid/main_vqe.cpp examples/hybrid/vqe.qasm -o hybrid_vqe
+    ./hybrid_vqe
+    # qaoa with optimal solution
+    qllvm examples/hybrid/main_qaoa.cpp examples/hybrid/qaoa.qasm -o hybrid_qaoa
+    ./hybrid_qaoa
+    # qaoa with suboptimal solution
+    qllvm examples/hybrid/main_qaoa_suboptimal.cpp examples/hybrid/qaoa_suboptimal.qasm -o hybrid_qaoa_suboptimal
+    ./hybrid_qaoa_suboptimal
 
 .. _using-qir-runner-as-simulator:
 

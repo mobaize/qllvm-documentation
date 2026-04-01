@@ -93,14 +93,7 @@ Download and extract to ``$HOME/.llvm``:
 
 .. code-block:: bash
 
-  # Manual download and extraction
-  # Visit https://github.com/llvm/llvm-project/releases/tag/llvmorg-12.0.0
-  # Select clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz to download
-
-  tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-  mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm
-
-  # Or download and extract directly using wget
+  # Use wget to download and extract directly
   wget https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
   tar -xf clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
   mv clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 ~/.llvm

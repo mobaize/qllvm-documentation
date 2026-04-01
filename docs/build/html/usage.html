@@ -899,8 +899,22 @@ python3<span class="w"> </span>scripts/qir_runner_counts.py<span class="w"> </sp
 qllvm<span class="w"> </span>main.cpp<span class="w"> </span>circuit.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_app
 
 <span class="c1"># 示例位于 examples/hybrid/</span>
+
+<span class="c1"># bell</span>
 qllvm<span class="w"> </span>examples/hybrid/main.cpp<span class="w"> </span>examples/hybrid/bell.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_bell
 ./hybrid_bell
+<span class="c1"># simon</span>
+qllvm<span class="w"> </span>examples/hybrid/main_gmac_simon.cpp<span class="w"> </span>examples/hybrid/gmac_simon.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_simon
+./hybrid_simon
+<span class="c1">#vqe</span>
+qllvm<span class="w"> </span>examples/hybrid/main_vqe.cpp<span class="w"> </span>examples/hybrid/vqe.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_vqe
+./hybrid_vqe
+<span class="c1"># 具有最优解的qaoa</span>
+qllvm<span class="w"> </span>examples/hybrid/main_qaoa.cpp<span class="w"> </span>examples/hybrid/qaoa.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_qaoa
+./hybrid_qaoa
+<span class="c1"># 非最优解的qaoa</span>
+qllvm<span class="w"> </span>examples/hybrid/main_qaoa_suboptimal.cpp<span class="w"> </span>examples/hybrid/qaoa_suboptimal.qasm<span class="w"> </span>-o<span class="w"> </span>hybrid_qaoa_suboptimal
+./hybrid_qaoa_suboptimal
 </pre></div>
 </div>
 <div class="highlight-bash notranslate" id="using-qir-runner-as-simulator"><div class="highlight"><pre><span></span><span class="c1"># 混合编译 + qir-runner 模拟（生成 exe 与 .bc）</span>
