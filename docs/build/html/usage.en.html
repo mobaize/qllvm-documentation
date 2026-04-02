@@ -472,8 +472,8 @@
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vscode">从VSCode插件商店安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vsix">从VSIX文件安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#basic-configuration">基本配置</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-circuit-composer">Quantum Circuit Composer配置</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder">Qcoder配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-compiler">Quantum Compiler配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder-chat">qcoder-chat配置</a></li>
 </ul>
 </li>
 </ul>
@@ -495,7 +495,7 @@
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder-chat">qcoder-chat</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-command-line">使用命令行</a><ul>
@@ -666,10 +666,14 @@ measure q[1] -&gt; c[1];
 </li>
 </ol>
 </section>
-<section id="qcoder">
-<h4>Qcoder<a class="headerlink" href="#qcoder" title="Link to this heading"></a></h4>
+<section id="qcoder-chat">
+<h4>qcoder-chat<a class="headerlink" href="#qcoder-chat" title="Link to this heading"></a></h4>
 <p><strong>VS Code Sidebar AI Assistant for Quantum Computing Learning and Development</strong></p>
-<p>QCoder embeds large model dialogue into the editor sidebar, focusing on quantum algorithms, quantum circuits, and toolchain issues, rather than general chat. It allows users to configure their own API Key for Alibaba Cloud, DeepSeek, or <strong>custom SCNet models</strong>.</p>
+<p>qcoder-chat focuses on quantum code intelligent development, providing AI dialogue programming, intelligent code completion, and autonomous Agent task execution. It connects downward to compilation and running, providing high-quality quantum code and task instructions for <code class="docutils literal notranslate"><span class="pre">qcoder-compiler</span></code>, serving as the development interaction entry point. It allows users to add SCNet, Alibaba Cloud, DeepSeek and other vendor large models to qcoder-chat.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When using the <strong>built-in free Shuguang large model</strong>, you can directly use qcoder-chat quantum programming functions without configuring an API Key.</p>
+</div>
 <p><strong>Quick start:</strong></p>
 <ol class="arabic">
 <li><p><strong>Installation</strong></p>
@@ -678,22 +682,21 @@ measure q[1] -&gt; c[1];
 </ul>
 </li>
 <li><p><strong>Configure API Key (according to the model you actually use)</strong></p>
-<p>Open the command palette (<cite>Ctrl+Shift+P</cite> / <cite>Cmd+Shift+P</cite>):</p>
+<p>Open the command palette (<kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">P</kbd> / <kbd class="kbd docutils literal notranslate">Cmd</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">P</kbd>):</p>
 <ul class="simple">
-<li><p><strong>QCoder: Set QCoder Qwen API Key</strong>: Alibaba Cloud (custom Qwen model)</p></li>
-<li><p><strong>QCoder: Set QCoder DeepSeek API Key</strong>: DeepSeek (custom)</p></li>
-<li><p><strong>QCoder: Set QCoder SCNet API Key</strong>: Only used for <strong>custom added SCNet models</strong>, unrelated to the three built-in official models</p></li>
+<li><p><strong>QCoder: Set QCoder Qwen API Key</strong>: Add Alibaba Cloud Baillan large model</p></li>
+<li><p><strong>QCoder: Set QCoder DeepSeek API Key</strong>: Add DeepSeek large model</p></li>
+<li><p><strong>QCoder: Set QCoder SCNet API Key</strong>: Add SCNet large model</p></li>
 </ul>
-<p>When only using the <strong>three built-in SCNet models</strong>, you don’t need to configure Qwen / DeepSeek / custom SCNet Key.</p>
 </li>
 <li><p><strong>Open chat</strong></p>
 <ul class="simple">
-<li><p>Click the <strong>QCoder</strong> icon in the activity bar to open the sidebar chat, or run <strong>QCoder: Chat with Quantum Programming Assistant</strong>.</p></li>
+<li><p>Click the <strong>qcoder-chat</strong> icon in the activity bar to open the sidebar chat, or run <strong>Chat with Quantum Programming Assistant</strong>.</p></li>
 </ul>
 </li>
 <li><p><strong>Sidebar settings</strong></p>
 <ul class="simple">
-<li><p>Open <strong>Settings</strong> in the title bar or interface: manage custom model lists, interface language, and key writing related to model testing (in supported builds).</p></li>
+<li><p>Open <strong>Settings</strong> in the title bar or interface: manage the list of added large models, interface language, etc.</p></li>
 </ul>
 </li>
 </ol>

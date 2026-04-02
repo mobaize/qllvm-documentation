@@ -473,8 +473,8 @@
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vscode">从VSCode插件商店安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vsix">从VSIX文件安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#basic-configuration">基本配置</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-circuit-composer">Quantum Circuit Composer配置</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder">Qcoder配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-compiler">Quantum Compiler配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder-chat">qcoder-chat配置</a></li>
 </ul>
 </li>
 </ul>
@@ -496,7 +496,7 @@
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder-chat">qcoder-chat</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-command-line">使用命令行</a><ul>
@@ -609,11 +609,17 @@
 </div>
 <section id="id1">
 <h2>快速开始<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p><strong>使用插件（推荐）</strong>：</p>
-<ul class="simple">
-<li><p><strong>Quantum Circuit Composer</strong>：VSCode插件，只需安装插件即可使用QLLVM编译器，无需本地安装。支持多编译器并行编译、QIR模拟器运行等功能。</p></li>
-<li><p><strong>Qcoder</strong>：VSCode侧栏AI助手，聚焦量子算法、量子电路与工具链问题，提供智能对话和代码插入功能。</p></li>
+<ol class="arabic">
+<li><p><strong>VSCode插件协同（推荐）</strong></p>
+<ul>
+<li><p><strong>qcoder-chat</strong>：聚焦于量子代码智能开发。提供AI对话编程、智能代码补全与自主Agent任务执行。向下衔接编译与运行，为 <code class="docutils literal notranslate"><span class="pre">qcoder-compiler</span></code> 提供高质量量子代码与任务指令，是开发交互入口。</p></li>
+<li><p><strong>qcoder-compiler</strong>：聚焦于量子代码编译运行。内置QLLVM、qiskit、pyqpanda编译器云编译环境，具备多编译器并行调度、QIR模拟器运行能力。承接 <code class="docutils literal notranslate"><span class="pre">qcoder-chat</span></code> 生成结果，编译优化量子代码，完成运行验证，是功能落地关键。</p></li>
+<li><p><strong>协作体系</strong>：
+<a href="#id2"><span class="problematic" id="id3">``</span></a>qcoder-chat``（智能生成/对话）
+→ <a href="#id4"><span class="problematic" id="id5">``</span></a>qcoder-compiler``（编译运行承接）
+→ QLLVM编译器（云端编译）</p>
+<p>形成层层衔接、高效联动的核心协作体系。</p>
+</li>
 <li><p>详细信息请参考 <a class="reference internal" href="usage.html"><span class="doc">使用</span></a> 指南中的使用示例部分。</p></li>
 </ul>
 </li>
@@ -622,8 +628,8 @@
 <li><p><strong>贡献代码</strong>：如果您想贡献代码，请参考 <a class="reference internal" href="contributing.html"><span class="doc">贡献指南</span></a> 指南</p></li>
 </ol>
 </section>
-<section id="id2">
-<h2>获取帮助<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id6">
+<h2>获取帮助<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p>如果您在使用QLLVM时遇到问题，可以通过以下方式获取帮助：</p>
 <ul class="simple">
 <li><p>在GitHub上提交 <a class="reference external" href="https://github.com/QCFlow/QLLVM/issues">Issue</a></p></li>

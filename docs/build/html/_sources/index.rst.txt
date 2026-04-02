@@ -33,12 +33,19 @@ QLLVM文档
 快速开始
 --------
 
-1. **使用插件（推荐）**：
+1. **VSCode插件协同（推荐）**
 
-   * **Quantum Circuit Composer**：VSCode插件，只需安装插件即可使用QLLVM编译器，无需本地安装。支持多编译器并行编译、QIR模拟器运行等功能。
+   * **qcoder-chat**：聚焦于量子代码智能开发。提供AI对话编程、智能代码补全与自主Agent任务执行。向下衔接编译与运行，为 ``qcoder-compiler`` 提供高质量量子代码与任务指令，是开发交互入口。
 
-   * **Qcoder**：VSCode侧栏AI助手，聚焦量子算法、量子电路与工具链问题，提供智能对话和代码插入功能。
+   * **qcoder-compiler**：聚焦于量子代码编译运行。内置QLLVM、qiskit、pyqpanda编译器云编译环境，具备多编译器并行调度、QIR模拟器运行能力。承接 ``qcoder-chat`` 生成结果，编译优化量子代码，完成运行验证，是功能落地关键。
 
+   * **协作体系**：
+     ``qcoder-chat``（智能生成/对话）
+     → ``qcoder-compiler``（编译运行承接）
+     → QLLVM编译器（云端编译）
+
+     形成层层衔接、高效联动的核心协作体系。
+     
    * 详细信息请参考 :doc:`usage` 指南中的使用示例部分。
 
 2. **安装QLLVM**：参考 :doc:`installation` 指南安装QLLVM

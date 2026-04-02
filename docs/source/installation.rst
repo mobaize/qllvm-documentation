@@ -10,8 +10,8 @@
 
 我们提供了两个VSCode插件，让您可以直接使用QLLVM编译器，无需本地安装：
 
-1. **Quantum Circuit Composer**：量子编译工具，支持多编译器并行编译、QIR模拟器运行等功能。
-2. **Qcoder**：量子编程助手，提供智能对话和代码插入功能。
+1. **qcoder-chat**：量子编程小助手，提供AI对话编程、智能代码补全与自主Agent任务执行。
+2. **qcoder-compiler**：量子编译工具，支持多编译器并行编译、QIR模拟器运行等功能。
 
 .. _install-from-VSCode-extension-store:
 
@@ -69,7 +69,7 @@
 
 .. _quantum-circuit-composer-configuration:
 
-Quantum Circuit Composer配置
+Quantum Compiler配置
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. 打开编译器设置：在命令面板中输入 Open Quantum Compiler Settings
@@ -78,21 +78,33 @@ Quantum Circuit Composer配置
 
    * QLLVM：设置设备类型（NISQ/FTQC）、后端类型（qasm-backend/benyuan/tianyan/zheda）、优化等级（O0/O1）等
    * Python环境：支持自动检测系统Python、虚拟环境（venv/conda），或手动指定解释器路径
-   * 远程编译：可配置SSH连接信息，将编译任务提交到远程服务器
 
 .. _qcoder-configuration:
 
-Qcoder配置
+qcoder-chat配置
 ^^^^^^^^^^^^^^^^^^^
 
-1. 配置 API Key（按需执行）：
-   - `Set QCoder Qwen API Key`：阿里云
-   - `Set QCoder DeepSeek API Key`：DeepSeek
-   - `Set QCoder SCNet API Key`：自定义SCNet模型
+.. image:: image/018.png
+   :align: center
+   :width: 60%
+
+|
+
+1. 通过 **模型管理** 添加模型信息
+
+   .. image:: image/019.png
+      :align: center
+      :width: 60%
+
+|
+
 2. 可选配置：
-   - `qcoder.qllvmInstallPath`：QLLVM安装路径（用于快速开始）
-   - `qcoder.uiLanguage`：界面语言（en/zh-CN/zh-TW）
-   - RAG知识增强：在聊天设置中启用"Online Service"，获取基于量子计算知识库的增强回答
+
+   * **Ask/Agent模式**：Ask模式仅提供聊天交互功能；Agent模式提供写入文件、查询报错信息、调用QLLVM编译、调用QLLVM运行等工具。
+
+   * **深度思考模式**：用于选择大模型是否进行深度思考。部分模型因自身限制只能深度思考，无法取消。
+
+   * **在线服务**：用于启用量子领域专用知识库，通过RAG技术增强量子编程能力。
 
 .. _installation-from-source:
 

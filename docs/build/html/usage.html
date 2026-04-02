@@ -474,8 +474,8 @@
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vscode">从VSCode插件商店安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vsix">从VSIX文件安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#basic-configuration">基本配置</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-circuit-composer">Quantum Circuit Composer配置</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder">Qcoder配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-compiler">Quantum Compiler配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder-chat">qcoder-chat配置</a></li>
 </ul>
 </li>
 </ul>
@@ -497,7 +497,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#using-plugins">使用插件</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#quantum-circuit-composer">Quantum Circuit Composer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#qcoder">Qcoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qcoder-chat">qcoder-chat</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#using-command-line">使用命令行</a><ul>
@@ -668,34 +668,37 @@ measure q[1] -&gt; c[1];
 </li>
 </ol>
 </section>
-<section id="qcoder">
-<h4>Qcoder<a class="headerlink" href="#qcoder" title="Link to this heading"></a></h4>
+<section id="qcoder-chat">
+<h4>qcoder-chat<a class="headerlink" href="#qcoder-chat" title="Link to this heading"></a></h4>
 <p><strong>面向量子计算学习与开发的 VS Code 侧栏 AI 助手</strong></p>
-<p>QCoder 将大模型对话嵌入编辑器侧栏，聚焦量子算法、量子电路与工具链问题，而不是通用闲聊。允许用户为阿里云、DeepSeek 或**自定义 SCNet 模型**配置自己的 API Key。</p>
+<p>qcoder-chat 聚焦于量子代码智能开发，提供 AI 对话编程、智能代码补全与自主 Agent 任务执行。向下衔接编译与运行，为 <code class="docutils literal notranslate"><span class="pre">qcoder-compiler</span></code> 提供高质量量子代码与任务指令，是开发交互入口。允许用户添加 SCNet、阿里云、DeepSeek 等厂商大模型接入 qcoder-chat。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>使用 <strong>内置免费曙光大模型</strong> 时，无需配置 API Key 即可直接使用 qcoder-chat 量子编程功能。</p>
+</div>
 <p><strong>快速开始：</strong></p>
 <ol class="arabic">
 <li><p><strong>安装</strong></p>
 <ul class="simple">
-<li><p>在 VS Code 扩展视图搜索安装，或使用 <strong>Install from VSIX…</strong> 安装组织分发的 <cite>.vsix</cite>。</p></li>
+<li><p>在 VS Code 扩展视图搜索安装，或使用 <strong>Install from VSIX…</strong> 安装组织分发的 <code class="docutils literal notranslate"><span class="pre">.vsix</span></code> 文件。</p></li>
 </ul>
 </li>
-<li><p><strong>配置 API Key（按你实际使用的模型）</strong></p>
-<p>打开命令面板（<cite>Ctrl+Shift+P</cite> / <cite>Cmd+Shift+P</cite>）：</p>
+<li><p><strong>配置 API Key（按实际使用的模型选择）</strong></p>
+<p>打开命令面板（<kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">P</kbd> / <kbd class="kbd docutils literal notranslate">Cmd</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">P</kbd>）：</p>
 <ul class="simple">
-<li><p><strong>QCoder: 设置 QCoder Qwen API Key</strong>：阿里云百炼（自定义 Qwen 模型）</p></li>
-<li><p><strong>QCoder: 设置 QCoder DeepSeek API Key</strong>：DeepSeek（自定义）</p></li>
-<li><p><strong>QCoder: 设置 QCoder SCNet API Key</strong>：仅用于**自定义添加的 SCNet 模型**，与内置三条官方模型无关</p></li>
+<li><p><strong>QCoder: 设置 QCoder Qwen API Key</strong>：添加阿里云百炼大模型</p></li>
+<li><p><strong>QCoder: 设置 QCoder DeepSeek API Key</strong>：添加 DeepSeek 大模型</p></li>
+<li><p><strong>QCoder: 设置 QCoder SCNet API Key</strong>：添加 SCNet 大模型</p></li>
 </ul>
-<p>仅使用**内置三条 SCNet 模型**时，可以不配置 Qwen / DeepSeek / 自定义 SCNet Key。</p>
 </li>
 <li><p><strong>打开聊天</strong></p>
 <ul class="simple">
-<li><p>点击活动栏 <strong>QCoder</strong> 图标打开侧栏聊天，或运行 <strong>QCoder: 与量子编程小助手聊天</strong>。</p></li>
+<li><p>点击活动栏 <strong>qcoder-chat</strong> 图标打开侧栏聊天，或运行 <strong>与量子编程小助手聊天</strong>。</p></li>
 </ul>
 </li>
 <li><p><strong>侧栏设置</strong></p>
 <ul class="simple">
-<li><p>标题栏或界面内可打开 <strong>设置</strong>：管理自定义模型列表、界面语言、以及（在支持的构建中）与模型测试相关的 Key 写入。</p></li>
+<li><p>标题栏或界面内可打开 <strong>设置</strong>：管理已添加的大模型列表、界面语言等。</p></li>
 </ul>
 </li>
 </ol>

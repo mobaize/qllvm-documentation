@@ -10,8 +10,8 @@ Installation from Plugins
 
 We provide two VSCode plugins that allow you to use the QLLVM compiler directly without local installation:
 
-1. **Quantum Circuit Composer**: Quantum compilation tool, supporting multi-compiler parallel compilation, QIR simulator running, and other functions.
-2. **Qcoder**: Quantum programming assistant, providing intelligent dialogue and code insertion functions.
+1. **qcoder-chat**: Quantum programming assistant, providing AI dialogue programming, intelligent code completion, and autonomous Agent task execution.
+2. **qcoder-compiler**: Quantum compilation tool, supporting multi-compiler parallel compilation, QIR simulator running, and other functions.
 
 .. _install-from-vscode-extension-store:
 
@@ -64,8 +64,8 @@ Download the plugin installation packages from the repository:
 Basic Configuration
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Quantum Circuit Composer Configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Quantum Compiler Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Open compiler settings: Type **Open Quantum Compiler Settings** in the command palette
 2. Enable compilers: Check the compilers you need in the configuration interface (such as QLLVM, Qiskit, QPanda)
@@ -73,19 +73,31 @@ Quantum Circuit Composer Configuration
 
    * QLLVM: Set device type (NISQ/FTQC), backend type (qasm-backend/benyuan/tianyan/zheda), optimization level (O0/O1), etc.
    * Python environment: Supports automatic detection of system Python, virtual environments (venv/conda), or manually specifying interpreter path
-   * Remote compilation: Can configure SSH connection information to submit compilation tasks to remote servers
 
-Qcoder Configuration
-^^^^^^^^^^^^^^^^^^^^^
+qcoder-chat Configuration
+^^^^^^^^^^^^^^^^^^^
 
-1. Configure API Key (execute as needed):
-   - `Set QCoder Qwen API Key`: Alibaba Cloud
-   - `Set QCoder DeepSeek API Key`: DeepSeek
-   - `Set QCoder SCNet API Key`: Custom SCNet model
+.. image:: image/018.png
+   :align: center
+   :width: 60%
+
+|
+
+1. Add model information through **Model Management**
+
+   .. image:: image/019.png
+      :align: center
+      :width: 60%
+
+|
+
 2. Optional configuration:
-   - `qcoder.qllvmInstallPath`: QLLVM installation path (for quick start)
-   - `qcoder.uiLanguage`: Interface language (en/zh-CN/zh-TW)
-   - RAG knowledge enhancement: Enable "Online Service" in chat settings to get enhanced answers based on quantum computing knowledge base
+
+   * **Ask/Agent mode**: Ask mode only provides chat interaction functionality; Agent mode provides tools for writing files, querying error information, calling QLLVM compilation, calling QLLVM running, etc.
+
+   * **Deep thinking mode**: Used to select whether the large model performs deep thinking. Some models can only think deeply due to their own limitations and cannot be canceled.
+
+   * **Online service**: Used to enable quantum field-specific knowledge base, enhancing quantum programming capabilities through RAG technology.
 
 Installation from Source
 ------------------------

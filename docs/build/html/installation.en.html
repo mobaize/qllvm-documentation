@@ -472,8 +472,8 @@
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vscode">从VSCode插件商店安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#vsix">从VSIX文件安装</a></li>
 <li class="toctree-l3"><a class="reference internal" href="installation.html#basic-configuration">基本配置</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-circuit-composer">Quantum Circuit Composer配置</a></li>
-<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder">Qcoder配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#quantum-compiler">Quantum Compiler配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#qcoder-chat">qcoder-chat配置</a></li>
 </ul>
 </li>
 </ul>
@@ -495,7 +495,7 @@
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-plugins">使用插件</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#id4">云端使用</a></li>
 <li class="toctree-l4"><a class="reference internal" href="usage.html#quantum-circuit-composer">Quantum Circuit Composer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder">Qcoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usage.html#qcoder-chat">qcoder-chat</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-command-line">使用命令行</a><ul>
@@ -577,8 +577,8 @@
 <span id="id1"></span><h2>Installation from Plugins<a class="headerlink" href="#installation-from-plugins" title="Link to this heading"></a></h2>
 <p>We provide two VSCode plugins that allow you to use the QLLVM compiler directly without local installation:</p>
 <ol class="arabic simple">
-<li><p><strong>Quantum Circuit Composer</strong>: Quantum compilation tool, supporting multi-compiler parallel compilation, QIR simulator running, and other functions.</p></li>
-<li><p><strong>Qcoder</strong>: Quantum programming assistant, providing intelligent dialogue and code insertion functions.</p></li>
+<li><p><strong>qcoder-chat</strong>: Quantum programming assistant, providing AI dialogue programming, intelligent code completion, and autonomous Agent task execution.</p></li>
+<li><p><strong>qcoder-compiler</strong>: Quantum compilation tool, supporting multi-compiler parallel compilation, QIR simulator running, and other functions.</p></li>
 </ol>
 <section id="install-from-vscode-extension-store">
 <span id="id2"></span><h3>Install from VSCode Extension Store<a class="headerlink" href="#install-from-vscode-extension-store" title="Link to this heading"></a></h3>
@@ -632,8 +632,8 @@
 </section>
 <section id="basic-configuration">
 <h3>Basic Configuration<a class="headerlink" href="#basic-configuration" title="Link to this heading"></a></h3>
-<section id="quantum-circuit-composer-configuration">
-<h4>Quantum Circuit Composer Configuration<a class="headerlink" href="#quantum-circuit-composer-configuration" title="Link to this heading"></a></h4>
+<section id="quantum-compiler-configuration">
+<h4>Quantum Compiler Configuration<a class="headerlink" href="#quantum-compiler-configuration" title="Link to this heading"></a></h4>
 <ol class="arabic simple">
 <li><p>Open compiler settings: Type <strong>Open Quantum Compiler Settings</strong> in the command palette</p></li>
 <li><p>Enable compilers: Check the compilers you need in the configuration interface (such as QLLVM, Qiskit, QPanda)</p></li>
@@ -641,22 +641,34 @@
 <ul class="simple">
 <li><p>QLLVM: Set device type (NISQ/FTQC), backend type (qasm-backend/benyuan/tianyan/zheda), optimization level (O0/O1), etc.</p></li>
 <li><p>Python environment: Supports automatic detection of system Python, virtual environments (venv/conda), or manually specifying interpreter path</p></li>
-<li><p>Remote compilation: Can configure SSH connection information to submit compilation tasks to remote servers</p></li>
 </ul>
 </li>
 </ol>
 </section>
-<section id="qcoder-configuration">
-<h4>Qcoder Configuration<a class="headerlink" href="#qcoder-configuration" title="Link to this heading"></a></h4>
-<ol class="arabic simple">
-<li><p>Configure API Key (execute as needed):
-- <cite>Set QCoder Qwen API Key</cite>: Alibaba Cloud
-- <cite>Set QCoder DeepSeek API Key</cite>: DeepSeek
-- <cite>Set QCoder SCNet API Key</cite>: Custom SCNet model</p></li>
-<li><p>Optional configuration:
-- <cite>qcoder.qllvmInstallPath</cite>: QLLVM installation path (for quick start)
-- <cite>qcoder.uiLanguage</cite>: Interface language (en/zh-CN/zh-TW)
-- RAG knowledge enhancement: Enable “Online Service” in chat settings to get enhanced answers based on quantum computing knowledge base</p></li>
+<section id="qcoder-chat-configuration">
+<h4>qcoder-chat Configuration<a class="headerlink" href="#qcoder-chat-configuration" title="Link to this heading"></a></h4>
+<a class="reference internal image-reference" href="_images/018.png"><img alt="_images/018.png" class="align-center" src="_images/018.png" style="width: 60%;" />
+</a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic">
+<li><p>Add model information through <strong>Model Management</strong></p>
+<a class="reference internal image-reference" href="_images/019.png"><img alt="_images/019.png" class="align-center" src="_images/019.png" style="width: 60%;" />
+</a>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Optional configuration:</p>
+<ul class="simple">
+<li><p><strong>Ask/Agent mode</strong>: Ask mode only provides chat interaction functionality; Agent mode provides tools for writing files, querying error information, calling QLLVM compilation, calling QLLVM running, etc.</p></li>
+<li><p><strong>Deep thinking mode</strong>: Used to select whether the large model performs deep thinking. Some models can only think deeply due to their own limitations and cannot be canceled.</p></li>
+<li><p><strong>Online service</strong>: Used to enable quantum field-specific knowledge base, enhancing quantum programming capabilities through RAG technology.</p></li>
+</ul>
+</li>
 </ol>
 </section>
 </section>

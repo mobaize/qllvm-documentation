@@ -88,12 +88,15 @@ Quantum Circuit Composer is a Visual Studio Code plugin with the following main 
    * Enter shots (number of runs) and random seed (optional) in the pop-up input box.
    * After simulation is complete, the output channel will display measurement result statistics.
 
-Qcoder
-^^^^^^
+qcoder-chat
+^^^^^^^^^^^^
 
 **VS Code Sidebar AI Assistant for Quantum Computing Learning and Development**
 
-QCoder embeds large model dialogue into the editor sidebar, focusing on quantum algorithms, quantum circuits, and toolchain issues, rather than general chat. It allows users to configure their own API Key for Alibaba Cloud, DeepSeek, or **custom SCNet models**.
+qcoder-chat focuses on quantum code intelligent development, providing AI dialogue programming, intelligent code completion, and autonomous Agent task execution. It connects downward to compilation and running, providing high-quality quantum code and task instructions for ``qcoder-compiler``, serving as the development interaction entry point. It allows users to add SCNet, Alibaba Cloud, DeepSeek and other vendor large models to qcoder-chat.
+
+.. tip::
+   When using the **built-in free Shuguang large model**, you can directly use qcoder-chat quantum programming functions without configuring an API Key.
 
 **Quick start:**
 
@@ -103,21 +106,19 @@ QCoder embeds large model dialogue into the editor sidebar, focusing on quantum 
 
 2. **Configure API Key (according to the model you actually use)**
 
-   Open the command palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
+   Open the command palette (:kbd:`Ctrl+Shift+P` / :kbd:`Cmd+Shift+P`):
 
-   * **QCoder: Set QCoder Qwen API Key**: Alibaba Cloud (custom Qwen model)
-   * **QCoder: Set QCoder DeepSeek API Key**: DeepSeek (custom)
-   * **QCoder: Set QCoder SCNet API Key**: Only used for **custom added SCNet models**, unrelated to the three built-in official models
-
-   When only using the **three built-in SCNet models**, you don't need to configure Qwen / DeepSeek / custom SCNet Key.
+   * **QCoder: Set QCoder Qwen API Key**: Add Alibaba Cloud Baillan large model
+   * **QCoder: Set QCoder DeepSeek API Key**: Add DeepSeek large model
+   * **QCoder: Set QCoder SCNet API Key**: Add SCNet large model
 
 3. **Open chat**
 
-   * Click the **QCoder** icon in the activity bar to open the sidebar chat, or run **QCoder: Chat with Quantum Programming Assistant**.
+   * Click the **qcoder-chat** icon in the activity bar to open the sidebar chat, or run **Chat with Quantum Programming Assistant**.
 
 4. **Sidebar settings**
 
-   * Open **Settings** in the title bar or interface: manage custom model lists, interface language, and key writing related to model testing (in supported builds).
+   * Open **Settings** in the title bar or interface: manage the list of added large models, interface language, etc.
 
 
 
