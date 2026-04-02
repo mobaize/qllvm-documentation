@@ -13,17 +13,54 @@
 1. **Quantum Circuit Composer**：量子编译工具，支持多编译器并行编译、QIR模拟器运行等功能。
 2. **Qcoder**：量子编程助手，提供智能对话和代码插入功能。
 
+.. _install-from-VSCode-extension-store:
+
+从VSCode插件商店安装
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: image/007.png
+   :align: center
+   :width: 80%
+
+.. centered:: VSCode插件商店检索
+
+通过云端 VSCode 一键安装插件，操作简单快捷：
+
+1. 打开云端 VSCode 左侧的 **扩展面板**（快捷键：:kbd:`Ctrl+Shift+X`）；
+2. 在扩展搜索框中输入 ``qcflow-publisher.qcoder-chat`` 并搜索；
+3. 点击 **安装** 按钮，系统将自动安装以下两个插件：
+
+   - ``qcflow-publisher.qcoder-chat``
+   - ``qcflow-publisher.qcoder-compiler``
+
+4. 安装完成后，插件自动生效，即可使用智能编程、编译及运行服务。
+
+
 .. _install-from-vsix-file:
 
 从VSIX文件安装
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
-1. 下载插件安装包：
-   - `quantum-circuit-composer-*.vsix`
-   - `qcoder-*.vsix`
-2. 在VSCode中打开命令面板（`Ctrl+Shift+P` / `Cmd+Shift+P`）
-3. 输入并选择 **Extensions: Install from VSIX...**
-4. 依次选择下载的 `.vsix` 文件完成安装
+**1. 获取插件安装包**
+
+下载仓库中的插件安装包：
+
+- ``./plugin/qcflow-publisher.qcoder-compiler-0.1.0.vsix``
+- ``./plugin/qcflow-publisher.qcoder-chat-0.1.1.vsix``
+
+**2. 安装 VSIX 文件**
+
+.. list-table::
+   :widths: auto
+   :header-rows: 0
+
+   * - | ① 打开命令面板
+     - 使用快捷键 :kbd:`Ctrl+Shift+P` (Windows/Linux) 或 :kbd:`Cmd+Shift+P` (macOS)
+   * - | ② 输入并选择命令
+     - ``Extensions: Install from VSIX...``
+   * - | ③ 选择文件
+     - 依次选择已下载的 ``.vsix`` 文件完成安装
+
 
 .. _basic-configuration:
 

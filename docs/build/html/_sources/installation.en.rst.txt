@@ -3,23 +3,63 @@ Installation
 
 This guide will help you install the QLLVM project, including installation from plugins and installation from source code.
 
+.. _installation-from-plugins:
+
 Installation from Plugins
--------------------------
+------------------------
 
 We provide two VSCode plugins that allow you to use the QLLVM compiler directly without local installation:
 
 1. **Quantum Circuit Composer**: Quantum compilation tool, supporting multi-compiler parallel compilation, QIR simulator running, and other functions.
 2. **Qcoder**: Quantum programming assistant, providing intelligent dialogue and code insertion functions.
 
+.. _install-from-vscode-extension-store:
+
+Install from VSCode Extension Store
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: image/007.png
+   :align: center
+   :width: 80%
+
+.. centered:: VSCode Extension Store Search
+
+Install plugins with one click through cloud VSCode, simple and quick:
+
+1. Open the **Extensions panel** on the left side of cloud VSCode (shortcut: :kbd:`Ctrl+Shift+X`);
+2. Enter ``qcflow-publisher.qcoder-chat`` in the extension search box and search;
+3. Click the **Install** button, the system will automatically install the following two plugins:
+
+   - ``qcflow-publisher.qcoder-chat``
+   - ``qcflow-publisher.qcoder-compiler``
+
+4. After installation is complete, the plugins will take effect automatically, and you can use intelligent programming, compilation, and running services.
+
+
+.. _install-from-vsix-file:
+
 Install from VSIX File
 ~~~~~~~~~~~~~~~~~~~~~~
 
-1. Download the plugin installation packages:
-   - `quantum-circuit-composer-*.vsix`
-   - `qcoder-*.vsix`
-2. Open the command palette in VSCode (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-3. Type and select **Extensions: Install from VSIX...**
-4. Select the downloaded `.vsix` files one by one to complete the installation
+**1. Get plugin installation packages**
+
+Download the plugin installation packages from the repository:
+
+- ``./plugin/qcflow-publisher.qcoder-compiler-0.1.0.vsix``
+- ``./plugin/qcflow-publisher.qcoder-chat-0.1.1.vsix``
+
+**2. Install VSIX files**
+
+.. list-table::
+   :widths: auto
+   :header-rows: 0
+
+   * - | ① Open command palette
+     - Use shortcut :kbd:`Ctrl+Shift+P` (Windows/Linux) or :kbd:`Cmd+Shift+P` (macOS)
+   * - | ② Enter and select command
+     - ``Extensions: Install from VSIX...``
+   * - | ③ Select files
+     - Select the downloaded ``.vsix`` files one by one to complete the installation
 
 Basic Configuration
 ~~~~~~~~~~~~~~~~~~~~~~
