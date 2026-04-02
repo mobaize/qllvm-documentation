@@ -3,7 +3,7 @@ QLLVM Introduction
 
 * QLLVM is a classical-quantum hybrid compilation framework built on LLVM, with excellent extensibility and seamless integration with classical high-performance computing ecosystems.
 
-* QLLVM supports multiple quantum programming languages and backends, including Qiskit, OpenQASM, QPanda, Cirq, etc. for programming languages, and qasm simulator, Benyuan quantum computer, China Telecom "Tianyan" quantum computer, etc. for target backends.
+* QLLVM supports multiple quantum programming languages and backends, including Qiskit, Cirq, QPanda, OpenQASM, etc. for programming languages, and OpenQASM 2.0, OriginIR, QCIS, etc. for backend instructions.
 
 * QLLVM supports unified compilation of quantum programs, CUDA programs, and classical C++ programs, providing an efficient, flexible, and industrial-grade compilation infrastructure for classical-quantum software development.
 
@@ -12,7 +12,7 @@ Overall Features
 
 QLLVM compiles high-level quantum programs into target back-end executable code, with the following main features:
 
-* **Multi-language front-end**: Supports OpenQASM 2.0/3.0, Qiskit QuantumCircuit, QPanda, Cirq and other inputs
+* **Multi-language front-end**: Supports OpenQASM 2.0, Qiskit QuantumCircuit, QPanda, Cirq and other inputs
 * **MLIR optimization**: Single-qubit gate merging, cancellation, diagonal gate removal, gate synthesis and other optimization passes
 * **QIR generation**: Lowering MLIR dialects to QIR (quantum intermediate representation in LLVM IR form)
 * **SABRE mapping**: C++/Qiskit implementation of qubit layout and SWAP insertion

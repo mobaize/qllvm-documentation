@@ -571,14 +571,14 @@
 <h1>QLLVM Introduction<a class="headerlink" href="#qllvm-introduction" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p>QLLVM is a classical-quantum hybrid compilation framework built on LLVM, with excellent extensibility and seamless integration with classical high-performance computing ecosystems.</p></li>
-<li><p>QLLVM supports multiple quantum programming languages and backends, including Qiskit, OpenQASM, QPanda, Cirq, etc. for programming languages, and qasm simulator, Benyuan quantum computer, China Telecom “Tianyan” quantum computer, etc. for target backends.</p></li>
+<li><p>QLLVM supports multiple quantum programming languages and backends, including Qiskit, Cirq, QPanda, OpenQASM, etc. for programming languages, and OpenQASM 2.0, OriginIR, QCIS, etc. for backend instructions.</p></li>
 <li><p>QLLVM supports unified compilation of quantum programs, CUDA programs, and classical C++ programs, providing an efficient, flexible, and industrial-grade compilation infrastructure for classical-quantum software development.</p></li>
 </ul>
 <section id="overall-features">
 <h2>Overall Features<a class="headerlink" href="#overall-features" title="Link to this heading"></a></h2>
 <p>QLLVM compiles high-level quantum programs into target back-end executable code, with the following main features:</p>
 <ul class="simple">
-<li><p><strong>Multi-language front-end</strong>: Supports OpenQASM 2.0/3.0, Qiskit QuantumCircuit, QPanda, Cirq and other inputs</p></li>
+<li><p><strong>Multi-language front-end</strong>: Supports OpenQASM 2.0, Qiskit QuantumCircuit, QPanda, Cirq and other inputs</p></li>
 <li><p><strong>MLIR optimization</strong>: Single-qubit gate merging, cancellation, diagonal gate removal, gate synthesis and other optimization passes</p></li>
 <li><p><strong>QIR generation</strong>: Lowering MLIR dialects to QIR (quantum intermediate representation in LLVM IR form)</p></li>
 <li><p><strong>SABRE mapping</strong>: C++/Qiskit implementation of qubit layout and SWAP insertion</p></li>

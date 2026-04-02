@@ -3,7 +3,7 @@ QLLVM介绍
 
 * QLLVM是一个基于LLVM构建的经典-量子混合编译框架，具备卓越的可扩展性以及与经典高性能计算生态的无缝集成能力。
 
-* QLLVM支持多种量子编程语言及后端，所支持的编程语言包括Qiskit、OpenQASM、QPanda、Cirq等，目标后端包括qasm模拟器、本源量子计算机、中电信“天衍”量子计算机等。
+* QLLVM支持多种量子编程语言及后端，所支持的编程语言包括Qiskit、Cirq、Qpanda、openQASM等，后端指令包括openQASM2.0、OriginIR、qcis等。
 
 * QLLVM支持量子程序、CUDA程序和经典C++程序的统一编译，为经典-量子软件开发提供了高效、灵活且工业级的编译基础设施。
 
@@ -12,7 +12,7 @@ QLLVM介绍
 
 QLLVM 将高级量子程序编译为目标后端可执行代码，主要功能包括：
 
-* **多语言前端**：支持 OpenQASM 2.0/3.0、Qiskit QuantumCircuit、QPanda、Cirq 等输入
+* **多语言前端**：支持 OpenQASM 2.0、Qiskit QuantumCircuit、QPanda、Cirq 等输入
 * **MLIR 优化**：单比特门合并、抵消、对角门移除、门综合等优化 Pass
 * **QIR 生成**：将 MLIR 方言 Lowering 为 QIR（LLVM IR 形式的量子中间表示）
 * **SABRE 映射**：C++/Qiskit 实现的量子比特布局与 SWAP 插入
