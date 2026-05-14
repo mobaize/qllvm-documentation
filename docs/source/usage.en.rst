@@ -332,6 +332,36 @@ Use `scripts/qir_runner_counts.py` to convert raw output to Qiskit-style `get_co
 
 `.bc` is standard LLVM bitcode, which can be loaded by tools like [qir-alliance/qir-runner](https://github.com/qir-alliance/qir-runner) (requires Python 3.9+).
 
+.. _ion-trap-backend:
+
+Ion Trap Backend Compilation Example
+"""""""""""""""""""""""""""""""""""
+
+The compiler supports compiling to QASM programs for ion trap backends. When specifying `-qpu` as `trappedion-qasm`, the output is a QASM program targeting Quantinuum.
+
+Compilation command:
+
+.. code-block:: bash
+
+    qllvm test.qasm -qrt nisq -qpu trappedion-qasm -O1
+
+Compiled quantum program example:
+
+.. code-block:: text
+
+    OPENQASM 2.0;
+    include "hqslib1.inc";
+    qreg q[2];
+    creg c[2];
+    U1q (-1*pi, 0.25*pi) q[0];
+    U1q (2*pi, 0.5*pi) q[0];
+    U1q ( 2.5*pi, 0.5*pi) q[1];
+    RZZ (0.5*pi) q[0], q[1];
+    U1q (0.5*pi, 0.0*pi) q[1];
+    measure q[0] -> c[0];
+    measure q[1] -> c[1];
+
+For detailed usage examples, refer to `https://github.com/QCFlow/QLLVM/test/Compilation_for_Ion_Trap_Backend.ipynb`
 
 .. _classical-quantum-hybrid-compilation:
 
@@ -593,3 +623,24 @@ If you only need QASM compilation functionality without XACC dependencies, you c
     make install
 
 This will only build the QASM frontend and related passes, without depending on XACC and its dependencies (antlr4, exprtk, etc.).
+
+.. _quantum-physics-systems:
+
+Quantum Physics Systems Supported by Compiler
+--------------------------------------------
+
+.. _superconducting-quantum-computers:
+
+I. Superconducting Quantum Computers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Qasm simulator: ``-qpu qasm-backend``
+2. Origin Quantum Wukong: ``-qpu originquantum``
+3. CTG Tianyan: ``-qpu tianyan``
+
+.. _ion-trap-quantum-computers:
+
+II. Ion Trap Quantum Computers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. H-series simulator: ``-qpu trappedion-qasm``

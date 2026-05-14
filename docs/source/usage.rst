@@ -334,8 +334,38 @@ qir-runner 命令行参数
 
 `.bc` 为标准 LLVM 位码，可被 [qir-alliance/qir-runner](https://github.com/qir-alliance/qir-runner) 等工具加载（需 Python 3.9+）。
 
-.. _classical-quantum-hybrid-compilation:
+.. _ion-trap-backend:
 
+离子阱后端编译示例
+""""""""""""""""""""
+
+编译器支持编译生成面向离子阱后端的QASM程序。当指定 `-qpu` 为 `trappedion-qasm` 时，输出类型为面向Quantinuum的QASM程序。
+
+编译命令：
+
+.. code-block:: bash
+
+    qllvm test.qasm -qrt nisq -qpu trappedion-qasm -O1
+
+编译后量子程序示例：
+
+.. code-block:: text
+
+    OPENQASM 2.0;
+    include "hqslib1.inc";
+    qreg q[2];
+    creg c[2];
+    U1q (-1*pi, 0.25*pi) q[0];
+    U1q (2*pi, 0.5*pi) q[0];
+    U1q ( 2.5*pi, 0.5*pi) q[1];
+    RZZ (0.5*pi) q[0], q[1];
+    U1q (0.5*pi, 0.0*pi) q[1];
+    measure q[0] -> c[0];
+    measure q[1] -> c[1];
+
+具体使用实例可参考 `https://github.com/QCFlow/QLLVM/test/Compilation_for_Ion_Trap_Backend.ipynb`
+
+.. _classical-quantum-hybrid-compilation:
 
 编译经典-量子混合程序
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -575,4 +605,19 @@ CMake 构建参数
      - 启用 QASM-only 独立构建
 
 .. _optional-dependencies-usage:
+
+编译器适配的量子物理体系
+------------------------
+
+一、超导量子计算机
+~~~~~~~~~~~~~~~~~~~~~~
+
+1. Qasm模拟器：``-qpu qasm-backend``
+2. 本源悟空量子计算机：``-qpu originquantum``
+3. 中电信天衍真机：``-qpu tianyan``
+
+二、离子阱量子计算机
+~~~~~~~~~~~~~~~~~~~~~~
+
+1. H-series模拟器：``-qpu trappedion-qasm``
 

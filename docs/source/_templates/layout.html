@@ -73,6 +73,10 @@
                 '可选依赖（按需安装）': 'Optional Dependencies (install as needed)',
                 'CUDA环境（仅C+++CUDA+QASM混合需要）': 'CUDA Environment (only needed for C+++CUDA+QASM hybrid)',
                 '故障排除': 'Troubleshooting',
+                '离子阱后端编译示例': 'Ion Trap Backend Compilation Example',
+                '编译器适配的量子物理体系': 'Quantum Physics Systems Supported by Compiler',
+                '超导量子计算机': 'Superconducting Quantum Computers',
+                '离子阱量子计算机': 'Ion Trap Quantum Computers',
                 '使用示例': 'Usage Examples',
                 '使用插件': 'Using Plugins',
                 'Quantum Circuit Composer': 'Quantum Circuit Composer',
@@ -136,6 +140,10 @@
                 'Optional Dependencies (install as needed)': 'optional-dependencies-install-as-needed',
                 'CUDA Environment (only needed for C+++CUDA+QASM hybrid)': 'cuda-environment-only-needed-for-c-cuda-qasm-hybrid',
                 'Troubleshooting': 'troubleshooting',
+                'Ion Trap Backend Compilation Example': 'ion-trap-backend',
+                'Quantum Physics Systems Supported by Compiler': 'quantum-physics-systems-supported-by-compiler',
+                'Superconducting Quantum Computers': 'i-superconducting-quantum-computers',
+                'Ion Trap Quantum Computers': 'ii-ion-trap-quantum-computers',
                 'Usage Examples': 'usage-examples',
                 'Using Plugins': 'using-plugins',
                 'Quantum Circuit Composer': 'quantum-circuit-composer',
@@ -258,6 +266,14 @@
                             if (!href.includes('.en.html')) {
                                 var newHref = href.replace('.html', '.en.html');
                                 link.setAttribute('href', newHref);
+                            } else if (href.includes('#')) {
+                                // 处理 .en.html 页面中的锚点映射
+                                var parts = href.split('#');
+                                var anchor = parts[1];
+                                // 如果锚点在anchorMap中，替换为正确的锚点
+                                if (anchorMap[text]) {
+                                    link.setAttribute('href', parts[0] + '#' + anchorMap[text]);
+                                }
                             }
                         }
                         // 处理页面内部的锚点链接
